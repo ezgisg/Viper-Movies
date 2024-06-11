@@ -27,6 +27,15 @@
 		AB7A6B182C186F9000E33A60 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7A6B162C186F9000E33A60 /* SplashViewController.swift */; };
 		AB7A6B192C186F9000E33A60 /* SplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB7A6B172C186F9000E33A60 /* SplashViewController.xib */; };
 		AB7A6B1B2C1871A500E33A60 /* SplashInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7A6B1A2C1871A500E33A60 /* SplashInteractor.swift */; };
+		AB7A6B1D2C1871FB00E33A60 /* SplashRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7A6B1C2C1871FB00E33A60 /* SplashRouter.swift */; };
+		AB7A6B1F2C18720700E33A60 /* SplashPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7A6B1E2C18720700E33A60 /* SplashPresenter.swift */; };
+		AB7A6B212C187DA200E33A60 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7A6B202C187DA200E33A60 /* BaseViewController.swift */; };
+		AB7A6B242C18853300E33A60 /* FirstPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB7A6B232C18853300E33A60 /* FirstPageViewController.xib */; };
+		AB7A6B252C18853300E33A60 /* FirstPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7A6B222C18853300E33A60 /* FirstPageViewController.swift */; };
+		AB7A6B292C18855000E33A60 /* SecondPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB7A6B282C18855000E33A60 /* SecondPageViewController.xib */; };
+		AB7A6B2A2C18855000E33A60 /* SecondPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7A6B272C18855000E33A60 /* SecondPageViewController.swift */; };
+		AB7A6B2C2C18874B00E33A60 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7A6B2B2C18874B00E33A60 /* UIImage+Extensions.swift */; };
+		AB7A6B2E2C188D4E00E33A60 /* video-channel.gif in Resources */ = {isa = PBXBuildFile; fileRef = AB7A6B2D2C188D4E00E33A60 /* video-channel.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +78,15 @@
 		AB7A6B162C186F9000E33A60 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		AB7A6B172C186F9000E33A60 /* SplashViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashViewController.xib; sourceTree = "<group>"; };
 		AB7A6B1A2C1871A500E33A60 /* SplashInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashInteractor.swift; sourceTree = "<group>"; };
+		AB7A6B1C2C1871FB00E33A60 /* SplashRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashRouter.swift; sourceTree = "<group>"; };
+		AB7A6B1E2C18720700E33A60 /* SplashPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashPresenter.swift; sourceTree = "<group>"; };
+		AB7A6B202C187DA200E33A60 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		AB7A6B222C18853300E33A60 /* FirstPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstPageViewController.swift; sourceTree = "<group>"; };
+		AB7A6B232C18853300E33A60 /* FirstPageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirstPageViewController.xib; sourceTree = "<group>"; };
+		AB7A6B272C18855000E33A60 /* SecondPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondPageViewController.swift; sourceTree = "<group>"; };
+		AB7A6B282C18855000E33A60 /* SecondPageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SecondPageViewController.xib; sourceTree = "<group>"; };
+		AB7A6B2B2C18874B00E33A60 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		AB7A6B2D2C188D4E00E33A60 /* video-channel.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "video-channel.gif"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +176,7 @@
 				AB7A6AC62C1842E700E33A60 /* AppDelegate.swift */,
 				AB7A6AC82C1842E700E33A60 /* SceneDelegate.swift */,
 				AB7A6AD22C1842E900E33A60 /* Assets.xcassets */,
+				AB7A6B2D2C188D4E00E33A60 /* video-channel.gif */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -165,6 +184,7 @@
 		AB7A6AFA2C18433400E33A60 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				AB7A6B202C187DA200E33A60 /* BaseViewController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -218,6 +238,7 @@
 		AB7A6B0F2C186DC900E33A60 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				AB7A6B2B2C18874B00E33A60 /* UIImage+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -233,9 +254,12 @@
 		AB7A6B112C186DFF00E33A60 /* Splash */ = {
 			isa = PBXGroup;
 			children = (
+				AB7A6B262C18853A00E33A60 /* SplashViewControllers */,
 				AB7A6B162C186F9000E33A60 /* SplashViewController.swift */,
 				AB7A6B172C186F9000E33A60 /* SplashViewController.xib */,
 				AB7A6B1A2C1871A500E33A60 /* SplashInteractor.swift */,
+				AB7A6B1E2C18720700E33A60 /* SplashPresenter.swift */,
+				AB7A6B1C2C1871FB00E33A60 /* SplashRouter.swift */,
 			);
 			path = Splash;
 			sourceTree = "<group>";
@@ -268,6 +292,17 @@
 				AB7A6B0B2C1854E600E33A60 /* MovieDetailsResponse.swift */,
 			);
 			path = Entity;
+			sourceTree = "<group>";
+		};
+		AB7A6B262C18853A00E33A60 /* SplashViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				AB7A6B222C18853300E33A60 /* FirstPageViewController.swift */,
+				AB7A6B232C18853300E33A60 /* FirstPageViewController.xib */,
+				AB7A6B272C18855000E33A60 /* SecondPageViewController.swift */,
+				AB7A6B282C18855000E33A60 /* SecondPageViewController.xib */,
+			);
+			path = SplashViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -382,8 +417,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB7A6AD32C1842E900E33A60 /* Assets.xcassets in Resources */,
+				AB7A6B2E2C188D4E00E33A60 /* video-channel.gif in Resources */,
 				AB7A6AD62C1842E900E33A60 /* Base in Resources */,
 				AB7A6ACE2C1842E700E33A60 /* Base in Resources */,
+				AB7A6B292C18855000E33A60 /* SecondPageViewController.xib in Resources */,
+				AB7A6B242C18853300E33A60 /* FirstPageViewController.xib in Resources */,
 				AB7A6B192C186F9000E33A60 /* SplashViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -410,16 +448,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB7A6ACB2C1842E700E33A60 /* ViewController.swift in Sources */,
+				AB7A6B2A2C18855000E33A60 /* SecondPageViewController.swift in Sources */,
+				AB7A6B1D2C1871FB00E33A60 /* SplashRouter.swift in Sources */,
 				AB7A6B0A2C1854D600E33A60 /* MoviesResponse.swift in Sources */,
 				AB7A6AD12C1842E700E33A60 /* Viper_Movies.xcdatamodeld in Sources */,
 				AB7A6B0C2C1854E600E33A60 /* MovieDetailsResponse.swift in Sources */,
+				AB7A6B212C187DA200E33A60 /* BaseViewController.swift in Sources */,
 				AB7A6AFF2C18437B00E33A60 /* NetworkManager.swift in Sources */,
 				AB7A6B1B2C1871A500E33A60 /* SplashInteractor.swift in Sources */,
 				AB7A6B032C18439200E33A60 /* Router.swift in Sources */,
 				AB7A6AC72C1842E700E33A60 /* AppDelegate.swift in Sources */,
 				AB7A6AC92C1842E700E33A60 /* SceneDelegate.swift in Sources */,
 				AB7A6B012C18438800E33A60 /* ServiceManager.swift in Sources */,
+				AB7A6B252C18853300E33A60 /* FirstPageViewController.swift in Sources */,
+				AB7A6B2C2C18874B00E33A60 /* UIImage+Extensions.swift in Sources */,
 				AB7A6B182C186F9000E33A60 /* SplashViewController.swift in Sources */,
+				AB7A6B1F2C18720700E33A60 /* SplashPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
