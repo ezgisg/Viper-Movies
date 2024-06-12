@@ -60,7 +60,7 @@ final class OnboardingViewController: BaseViewController {
 //MARK: OnboardingViewControllerProtocol
 extension OnboardingViewController: OnboardingViewControllerProtocol {
     func makeAlert(title: String, message: String) {
-        showAlert(title: title, message: message)
+        showAlert(title: title, message: message, completion: nil)
     }
 }
 

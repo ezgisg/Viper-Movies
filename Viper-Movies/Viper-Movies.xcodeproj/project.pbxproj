@@ -42,6 +42,11 @@
 		AB9F72682C199B80007C321D /* MainScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9F72672C199B80007C321D /* MainScreenInteractor.swift */; };
 		AB9F726A2C199B8D007C321D /* MainScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9F72692C199B8D007C321D /* MainScreenPresenter.swift */; };
 		AB9F726C2C199B9D007C321D /* MainScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9F726B2C199B9D007C321D /* MainScreenRouter.swift */; };
+		AB9F72702C19BF52007C321D /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9F726E2C19BF52007C321D /* SplashViewController.swift */; };
+		AB9F72712C19BF52007C321D /* SplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB9F726F2C19BF52007C321D /* SplashViewController.xib */; };
+		AB9F72732C19BF62007C321D /* SplashInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9F72722C19BF62007C321D /* SplashInteractor.swift */; };
+		AB9F72752C19BF6C007C321D /* SplashPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9F72742C19BF6C007C321D /* SplashPresenter.swift */; };
+		AB9F72772C19BF75007C321D /* SplashRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9F72762C19BF75007C321D /* SplashRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +104,11 @@
 		AB9F72672C199B80007C321D /* MainScreenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenInteractor.swift; sourceTree = "<group>"; };
 		AB9F72692C199B8D007C321D /* MainScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenPresenter.swift; sourceTree = "<group>"; };
 		AB9F726B2C199B9D007C321D /* MainScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenRouter.swift; sourceTree = "<group>"; };
+		AB9F726E2C19BF52007C321D /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		AB9F726F2C19BF52007C321D /* SplashViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashViewController.xib; sourceTree = "<group>"; };
+		AB9F72722C19BF62007C321D /* SplashInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashInteractor.swift; sourceTree = "<group>"; };
+		AB9F72742C19BF6C007C321D /* SplashPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashPresenter.swift; sourceTree = "<group>"; };
+		AB9F72762C19BF75007C321D /* SplashRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashRouter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +224,7 @@
 		AB7A6AFC2C18434100E33A60 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				AB9F726D2C19BF39007C321D /* Splash */,
 				AB7A6B142C186E9400E33A60 /* Detail */,
 				AB7A6B132C186E1400E33A60 /* Specials */,
 				AB7A6B122C186E0800E33A60 /* Main */,
@@ -321,6 +332,18 @@
 				AB7A6B282C18855000E33A60 /* SecondPageViewController.xib */,
 			);
 			path = OnboardingViewControllers;
+			sourceTree = "<group>";
+		};
+		AB9F726D2C19BF39007C321D /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				AB9F726E2C19BF52007C321D /* SplashViewController.swift */,
+				AB9F726F2C19BF52007C321D /* SplashViewController.xib */,
+				AB9F72722C19BF62007C321D /* SplashInteractor.swift */,
+				AB9F72742C19BF6C007C321D /* SplashPresenter.swift */,
+				AB9F72762C19BF75007C321D /* SplashRouter.swift */,
+			);
+			path = Splash;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -435,6 +458,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB9F72602C1982C7007C321D /* movieGif.gif in Resources */,
+				AB9F72712C19BF52007C321D /* SplashViewController.xib in Resources */,
 				AB9F72662C199B6F007C321D /* MainScreenViewController.xib in Resources */,
 				AB7A6AD32C1842E900E33A60 /* Assets.xcassets in Resources */,
 				AB7A6AD62C1842E900E33A60 /* Base in Resources */,
@@ -471,13 +495,17 @@
 				AB9F726A2C199B8D007C321D /* MainScreenPresenter.swift in Sources */,
 				AB7A6B2A2C18855000E33A60 /* SecondPageViewController.swift in Sources */,
 				AB7A6B1D2C1871FB00E33A60 /* OnboardingRouter.swift in Sources */,
+				AB9F72702C19BF52007C321D /* SplashViewController.swift in Sources */,
 				AB7A6B0A2C1854D600E33A60 /* MoviesResponse.swift in Sources */,
+				AB9F72732C19BF62007C321D /* SplashInteractor.swift in Sources */,
 				AB9F72682C199B80007C321D /* MainScreenInteractor.swift in Sources */,
 				AB9F726C2C199B9D007C321D /* MainScreenRouter.swift in Sources */,
 				AB7A6AD12C1842E700E33A60 /* Viper_Movies.xcdatamodeld in Sources */,
+				AB9F72752C19BF6C007C321D /* SplashPresenter.swift in Sources */,
 				AB7A6B0C2C1854E600E33A60 /* MovieDetailsResponse.swift in Sources */,
 				AB7A6B212C187DA200E33A60 /* BaseViewController.swift in Sources */,
 				AB7A6AFF2C18437B00E33A60 /* NetworkManager.swift in Sources */,
+				AB9F72772C19BF75007C321D /* SplashRouter.swift in Sources */,
 				AB7A6B1B2C1871A500E33A60 /* OnboardingInteractor.swift in Sources */,
 				AB9F72652C199B6F007C321D /* MainScreenViewController.swift in Sources */,
 				AB7A6B032C18439200E33A60 /* Router.swift in Sources */,

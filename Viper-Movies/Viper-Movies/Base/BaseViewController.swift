@@ -12,10 +12,12 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
-    func showAlert(title: String, message: String) {
+    
+    func showAlert(title: String, message: String, buttonTitle: String = "Try Again", completion: (() -> Void)?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        let okAction = UIAlertAction(title: buttonTitle, style: .default) { _ in
+            completion?()
+        }
         alert.addAction(okAction)
         self.present(alert, animated: true, completion: nil)
     }
