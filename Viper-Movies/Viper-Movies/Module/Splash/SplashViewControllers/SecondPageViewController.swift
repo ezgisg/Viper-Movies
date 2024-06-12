@@ -12,7 +12,7 @@ class SecondPageViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        imageView.image = UIImage(named: "imdb")
+        imageView.image = UIImage(named: "cinema")
     }
 
     @IBAction func startButton(_ sender: Any) {

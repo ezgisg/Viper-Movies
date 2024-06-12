@@ -12,7 +12,7 @@ class FirstPageViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        let videoGif = UIImage.gifImageWithName("video-channel")
+        let videoGif = UIImage.gifImageWithName("movieGif")
         self.imageView.image = videoGif
     }
     

@@ -19,14 +19,6 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k1Z-C7-uZK">
-                    <rect key="frame" x="281" y="753" width="82" height="35"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="Skip &gt;&gt;"/>
-                    <connections>
-                        <action selector="skipButton:" destination="-1" eventType="touchUpInside" id="n5N-M9-cU6"/>
-                    </connections>
-                </button>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xpk-DF-kGa">
                     <rect key="frame" x="20" y="159" width="353" height="353"/>
                     <constraints>
@@ -37,9 +29,7 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="k1Z-C7-uZK" secondAttribute="bottom" constant="30" id="1dH-EU-ZtB"/>
                 <constraint firstItem="Xpk-DF-kGa" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="4ea-ZM-bJc"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="k1Z-C7-uZK" secondAttribute="trailing" constant="30" id="AXK-6v-jHd"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Xpk-DF-kGa" secondAttribute="trailing" constant="20" id="Bdl-zE-yCw"/>
                 <constraint firstItem="Xpk-DF-kGa" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="100" id="V8k-gb-RRe"/>
             </constraints>

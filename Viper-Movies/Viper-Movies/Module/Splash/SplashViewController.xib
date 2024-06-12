@@ -11,7 +11,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SplashViewController" customModule="Viper_Movies" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="Nzf-ri-b4p" id="y7b-Pl-VPE"/>
+                <outlet property="nextButton" destination="VRA-Fr-IQJ" id="kjG-5j-NMJ"/>
                 <outlet property="pageController" destination="Kx5-7J-cjZ" id="A6R-3z-7KZ"/>
+                <outlet property="skipButton" destination="gpi-Pr-ywd" id="Vke-wb-gJR"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -24,21 +26,83 @@
                     <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </view>
-                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Kx5-7J-cjZ">
-                    <rect key="frame" x="138.66666666666666" y="762" width="116" height="26"/>
-                    <color key="pageIndicatorTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <color key="currentPageIndicatorTintColor" red="0.95294117649999999" green="0.80784313730000001" blue="0.074509803920000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                </pageControl>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="TM4-U2-deI">
+                    <rect key="frame" x="20" y="660" width="353" height="128"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cg8-Oo-KYx">
+                            <rect key="frame" x="0.0" y="0.0" width="117.66666666666667" height="128"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gpi-Pr-ywd">
+                                    <rect key="frame" x="0.0" y="0.0" width="55.333333333333336" height="128"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain">
+                                        <attributedString key="attributedTitle">
+                                            <fragment content="Skip">
+                                                <attributes>
+                                                    <font key="NSFont" size="16" name="Helvetica"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                    </buttonConfiguration>
+                                    <connections>
+                                        <action selector="skipButtonClicked:" destination="-1" eventType="touchUpInside" id="0A7-FT-obp"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="gpi-Pr-ywd" firstAttribute="top" secondItem="Cg8-Oo-KYx" secondAttribute="top" id="1kz-Zi-GXv"/>
+                                <constraint firstAttribute="bottom" secondItem="gpi-Pr-ywd" secondAttribute="bottom" id="JMa-Hv-HBi"/>
+                                <constraint firstItem="gpi-Pr-ywd" firstAttribute="leading" secondItem="Cg8-Oo-KYx" secondAttribute="leading" id="wwc-8s-E0T"/>
+                            </constraints>
+                        </view>
+                        <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Kx5-7J-cjZ">
+                            <rect key="frame" x="117.66666666666666" y="0.0" width="117.66666666666666" height="128"/>
+                            <color key="pageIndicatorTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="currentPageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </pageControl>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="auD-OA-PrB">
+                            <rect key="frame" x="235.33333333333334" y="0.0" width="117.66666666666666" height="128"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VRA-Fr-IQJ">
+                                    <rect key="frame" x="60.666666666666657" y="0.0" width="57" height="128"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain">
+                                        <attributedString key="attributedTitle">
+                                            <fragment content="Next">
+                                                <attributes>
+                                                    <font key="NSFont" size="16" name="Helvetica"/>
+                                                    <font key="NSOriginalFont" size="12" name="Helvetica"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                    </buttonConfiguration>
+                                    <connections>
+                                        <action selector="nextButtonClicked:" destination="-1" eventType="touchUpInside" id="pmR-ma-JGI"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="VRA-Fr-IQJ" secondAttribute="trailing" id="7Tv-mF-2Q3"/>
+                                <constraint firstAttribute="bottom" secondItem="VRA-Fr-IQJ" secondAttribute="bottom" id="Tep-wz-udK"/>
+                                <constraint firstItem="VRA-Fr-IQJ" firstAttribute="top" secondItem="auD-OA-PrB" secondAttribute="top" id="gsQ-Ck-RCL"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="TM4-U2-deI" secondAttribute="bottom" constant="30" id="1Mt-tj-CbQ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Nzf-ri-b4p" secondAttribute="bottom" id="44t-pD-Tpg"/>
-                <constraint firstItem="Kx5-7J-cjZ" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="5FW-Cm-JO3"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="TM4-U2-deI" secondAttribute="trailing" constant="20" id="MQK-5R-5Q8"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Nzf-ri-b4p" secondAttribute="trailing" id="Prc-gy-h0b"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Kx5-7J-cjZ" secondAttribute="bottom" constant="30" id="SQb-cO-dEJ"/>
                 <constraint firstItem="Nzf-ri-b4p" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="YNB-Yh-VIR"/>
                 <constraint firstItem="Nzf-ri-b4p" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="dC9-gk-sei"/>
+                <constraint firstItem="TM4-U2-deI" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="xdC-2R-Ymm"/>
             </constraints>
             <point key="canvasLocation" x="27" y="-11"/>
         </view>
