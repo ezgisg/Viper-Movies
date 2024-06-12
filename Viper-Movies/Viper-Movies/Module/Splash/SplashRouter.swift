@@ -14,7 +14,7 @@ protocol SplashRouterProtocol: AnyObject {
 
 enum SplashRoutes {
     case onboarding
-    case mainScreen
+    case tabBar
 }
 
 final class SplashRouter {
@@ -41,12 +41,15 @@ extension SplashRouter: SplashRouterProtocol {
             guard let window = viewController?.view.window else { return }
             let onboardingVC = onboardingRouter.createModule()
             let navigationController = UINavigationController(rootViewController: onboardingVC )
-            window.rootViewController = navigationController
-        case .mainScreen:
+            UIView.transition(with: window, duration: 1, options: .transitionCrossDissolve, animations: {
+                window.rootViewController = navigationController
+            })
+        case .tabBar:
             guard let window = viewController?.view.window else { return }
-            let mainVC = MainScreenRouter.createModule()
-            let navigationController = UINavigationController(rootViewController: mainVC)
-            window.rootViewController = navigationController
+            let tabBarController = TabBarController()
+            UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
+                window.rootViewController = tabBarController
+            })
         }
     }
 

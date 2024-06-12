@@ -54,13 +54,13 @@ extension SplashPresenter: SplashInteractorOutputProtocol {
     func isConnectedOutput(_ status: Bool) {
         switch status {
         case true:
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
                 guard let self else { return }
                 guard let isFirstLaunch = UserDefaults.standard.object(forKey: "isFirstLaunch?") as? Bool,
                       isFirstLaunch == false else {
                 self.router?.navigate(.onboarding)
                     return }
-                self.router?.navigate(.mainScreen)
+                self.router?.navigate(.tabBar)
             }
         case false:
             view?.makeAlert(title: Constans.noConnectionTitle, message: Constans.noConnectionMessage)

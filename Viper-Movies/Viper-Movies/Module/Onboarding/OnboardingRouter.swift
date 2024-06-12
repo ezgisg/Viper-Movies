@@ -13,7 +13,6 @@ protocol onboardingRouterProtocol: AnyObject {
 }
 
 enum onboardingRoutes {
-    case mainScreen
     case tabBar
 }
 
@@ -37,13 +36,12 @@ final class onboardingRouter {
 extension onboardingRouter: onboardingRouterProtocol {
     func navigate(_ route: onboardingRoutes) {
         switch route {
-        case .mainScreen:
-            guard let window = viewController?.view.window else { return }
-            let mainVC = MainScreenRouter.createModule()
-            let navigationController = UINavigationController(rootViewController: mainVC )
-            window.rootViewController = navigationController
         case .tabBar:
-            break
+            guard let window = viewController?.view.window else { return }
+            let tabBarController = TabBarController()
+            UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
+                window.rootViewController = tabBarController
+            })
         }
     }
     

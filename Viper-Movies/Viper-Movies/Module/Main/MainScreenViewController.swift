@@ -27,3 +27,6 @@ class MainScreenViewController: UIViewController {
 extension MainScreenViewController: MainScreenViewControllerProtocol {
     
 }
+
+
+//for image download base url: https://image.tmdb.org/t/p/original/

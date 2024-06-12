@@ -44,7 +44,7 @@ final class OnboardingViewController: BaseViewController {
         let nextIndex = pageController.currentPage + 1
         pageController.currentPage = nextIndex
         guard let nextVC = controllers[safe: nextIndex] else {
-            presenter?.goToMainScreen()
+            presenter?.goToTabBar()
             return
         }
         pageVC.setViewControllers([nextVC], direction: .forward, animated: true)
@@ -53,7 +53,7 @@ final class OnboardingViewController: BaseViewController {
     }
     
     @IBAction func skipButtonClicked(_ sender: Any) {
-        presenter?.goToMainScreen()
+        presenter?.goToTabBar()
     }
 }
 
@@ -133,6 +133,6 @@ extension OnboardingViewController {
 //MARK: SecondPageDelegate
 extension OnboardingViewController: SecondPageDelegate {
     func startButtonClicked() {
-        presenter?.goToMainScreen()
+        presenter?.goToTabBar()
     }
 }

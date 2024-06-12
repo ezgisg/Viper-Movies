@@ -10,7 +10,7 @@ import Foundation
 protocol onboardingPresenterProtocol: AnyObject {
     func viewDidLoad()
     func viewDidAppear()
-    func goToMainScreen()
+    func goToTabBar()
 }
 
 extension onboardingPresenter {
@@ -44,9 +44,9 @@ extension onboardingPresenter: onboardingPresenterProtocol {
         isConnectedToInternet()
     }
     
-    func goToMainScreen() {
+    func goToTabBar() {
         UserDefaults.standard.set(false, forKey: "isFirstLaunch?")
-        router?.navigate(.mainScreen)
+        router?.navigate(.tabBar)
     }
     
     
