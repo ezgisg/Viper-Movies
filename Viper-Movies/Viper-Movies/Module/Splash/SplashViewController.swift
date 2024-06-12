@@ -31,18 +31,20 @@ final class SplashViewController: BaseViewController {
         super.viewDidLoad()
         controllers.append(firstPage)
         controllers.append(secondPage)
+        secondPage.delegate = self
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
-//        presenter?.viewDidAppear()
         setupPageViewController()
+        presenter?.viewDidAppear()
     }
 
     @IBAction func nextButtonClicked(_ sender: Any) {
         let nextIndex = pageController.currentPage + 1
         pageController.currentPage = nextIndex
         guard let nextVC = controllers[safe: nextIndex] else {
-            //TODO: Root to main screen
+            presenter?.goToMainScreen()
             return
         }
         pageVC.setViewControllers([nextVC], direction: .forward, animated: true)
@@ -51,8 +53,7 @@ final class SplashViewController: BaseViewController {
     }
     
     @IBAction func skipButtonClicked(_ sender: Any) {
-        //TODO: root to main screen
-        print("skip button clicked")
+        presenter?.goToMainScreen()
     }
 }
 
@@ -126,5 +127,12 @@ extension SplashViewController {
        }
        skipButton.isHidden = true
        nextButton.setTitle("Start >>", for: .normal)
+    }
+}
+
+//MARK: SecondPageDelegate
+extension SplashViewController: SecondPageDelegate {
+    func startButtonClicked() {
+        presenter?.goToMainScreen()
     }
 }

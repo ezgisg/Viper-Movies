@@ -19,8 +19,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: scene)
         let splash = SplashRouter.createModule()
+        let main = MainScreenRouter.createModule()
         window.makeKeyAndVisible()
-        window.rootViewController = splash
+        let isFirstLaunch = UserDefaults.standard.object(forKey: "isFirstLaunch?")
+        if isFirstLaunch == nil  {
+            window.rootViewController = splash
+        }
+        else {
+            window.rootViewController = main
+        }
         self.window = window
     }
 

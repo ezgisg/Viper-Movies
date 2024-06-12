@@ -10,7 +10,7 @@ import Alamofire
 
 enum Router: URLRequestConvertible {
     
-    static let apiKey = ""
+    static let apiKey = "e6055b472537ec47f98dfc79860288d4"
     
     case nowPlaying(page: Int?)
     case popular(page: Int?)
@@ -63,7 +63,7 @@ enum Router: URLRequestConvertible {
             if let page {
                 params["page"] = page
             }
-        case .details(movieId: let movieId):
+        case .details:
             return nil
         }
         return params

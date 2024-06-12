@@ -6,9 +6,15 @@
 //
 
 import Foundation
+import UIKit.UINavigationBar
 
 protocol SplashRouterProtocol: AnyObject {
-    
+    func navigate(_ route: SplashRoutes)
+}
+
+enum SplashRoutes {
+    case mainScreen
+    case tabBar
 }
 
 final class SplashRouter {
@@ -29,5 +35,16 @@ final class SplashRouter {
 }
 
 extension SplashRouter: SplashRouterProtocol {
+    func navigate(_ route: SplashRoutes) {
+        switch route {
+        case .mainScreen:
+            guard let window = viewController?.view.window else { return }
+            let mainVC = MainScreenRouter.createModule()
+            let navigationController = UINavigationController(rootViewController: mainVC )
+            window.rootViewController = navigationController
+        case .tabBar:
+            break
+        }
+    }
     
 }

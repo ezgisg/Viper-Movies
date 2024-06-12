@@ -37,6 +37,11 @@
 		AB7A6B2C2C18874B00E33A60 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7A6B2B2C18874B00E33A60 /* UIImage+Extensions.swift */; };
 		AB9F72602C1982C7007C321D /* movieGif.gif in Resources */ = {isa = PBXBuildFile; fileRef = AB9F725F2C1982C7007C321D /* movieGif.gif */; };
 		AB9F72622C1997E8007C321D /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9F72612C1997E8007C321D /* Array+Extensions.swift */; };
+		AB9F72652C199B6F007C321D /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9F72632C199B6F007C321D /* MainScreenViewController.swift */; };
+		AB9F72662C199B6F007C321D /* MainScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB9F72642C199B6F007C321D /* MainScreenViewController.xib */; };
+		AB9F72682C199B80007C321D /* MainScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9F72672C199B80007C321D /* MainScreenInteractor.swift */; };
+		AB9F726A2C199B8D007C321D /* MainScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9F72692C199B8D007C321D /* MainScreenPresenter.swift */; };
+		AB9F726C2C199B9D007C321D /* MainScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9F726B2C199B9D007C321D /* MainScreenRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +94,11 @@
 		AB7A6B2B2C18874B00E33A60 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		AB9F725F2C1982C7007C321D /* movieGif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = movieGif.gif; sourceTree = "<group>"; };
 		AB9F72612C1997E8007C321D /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
+		AB9F72632C199B6F007C321D /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
+		AB9F72642C199B6F007C321D /* MainScreenViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainScreenViewController.xib; sourceTree = "<group>"; };
+		AB9F72672C199B80007C321D /* MainScreenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenInteractor.swift; sourceTree = "<group>"; };
+		AB9F72692C199B8D007C321D /* MainScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenPresenter.swift; sourceTree = "<group>"; };
+		AB9F726B2C199B9D007C321D /* MainScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenRouter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -270,6 +280,11 @@
 		AB7A6B122C186E0800E33A60 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				AB9F72632C199B6F007C321D /* MainScreenViewController.swift */,
+				AB9F72642C199B6F007C321D /* MainScreenViewController.xib */,
+				AB9F72672C199B80007C321D /* MainScreenInteractor.swift */,
+				AB9F72692C199B8D007C321D /* MainScreenPresenter.swift */,
+				AB9F726B2C199B9D007C321D /* MainScreenRouter.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -420,6 +435,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB9F72602C1982C7007C321D /* movieGif.gif in Resources */,
+				AB9F72662C199B6F007C321D /* MainScreenViewController.xib in Resources */,
 				AB7A6AD32C1842E900E33A60 /* Assets.xcassets in Resources */,
 				AB7A6AD62C1842E900E33A60 /* Base in Resources */,
 				AB7A6ACE2C1842E700E33A60 /* Base in Resources */,
@@ -452,14 +468,18 @@
 			files = (
 				AB7A6ACB2C1842E700E33A60 /* ViewController.swift in Sources */,
 				AB9F72622C1997E8007C321D /* Array+Extensions.swift in Sources */,
+				AB9F726A2C199B8D007C321D /* MainScreenPresenter.swift in Sources */,
 				AB7A6B2A2C18855000E33A60 /* SecondPageViewController.swift in Sources */,
 				AB7A6B1D2C1871FB00E33A60 /* SplashRouter.swift in Sources */,
 				AB7A6B0A2C1854D600E33A60 /* MoviesResponse.swift in Sources */,
+				AB9F72682C199B80007C321D /* MainScreenInteractor.swift in Sources */,
+				AB9F726C2C199B9D007C321D /* MainScreenRouter.swift in Sources */,
 				AB7A6AD12C1842E700E33A60 /* Viper_Movies.xcdatamodeld in Sources */,
 				AB7A6B0C2C1854E600E33A60 /* MovieDetailsResponse.swift in Sources */,
 				AB7A6B212C187DA200E33A60 /* BaseViewController.swift in Sources */,
 				AB7A6AFF2C18437B00E33A60 /* NetworkManager.swift in Sources */,
 				AB7A6B1B2C1871A500E33A60 /* SplashInteractor.swift in Sources */,
+				AB9F72652C199B6F007C321D /* MainScreenViewController.swift in Sources */,
 				AB7A6B032C18439200E33A60 /* Router.swift in Sources */,
 				AB7A6AC72C1842E700E33A60 /* AppDelegate.swift in Sources */,
 				AB7A6AC92C1842E700E33A60 /* SceneDelegate.swift in Sources */,

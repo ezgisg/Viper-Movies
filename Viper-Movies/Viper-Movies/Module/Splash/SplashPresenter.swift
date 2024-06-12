@@ -10,6 +10,7 @@ import Foundation
 protocol SplashPresenterProtocol: AnyObject {
     func viewDidLoad()
     func viewDidAppear()
+    func goToMainScreen()
 }
 
 extension SplashPresenter {
@@ -33,7 +34,8 @@ final class SplashPresenter {
 
 //MARK: SplashPresenterProtocol
 extension SplashPresenter: SplashPresenterProtocol {
-   
+
+
     func viewDidLoad() {
 
     }
@@ -42,10 +44,17 @@ extension SplashPresenter: SplashPresenterProtocol {
         isConnectedToInternet()
     }
     
+    func goToMainScreen() {
+        UserDefaults.standard.set(false, forKey: "isFirstLaunch?")
+        router?.navigate(.mainScreen)
+    }
+    
     
     private func isConnectedToInternet() {
         interactor?.isConnected()
     }
+    
+    
     
 }
 
@@ -54,11 +63,8 @@ extension SplashPresenter: SplashInteractorOutputProtocol {
     func isConnectedOutput(_ status: Bool) {
         switch status {
         case true:
-            //TODO: Root to main screen
-            view?.makeAlert(title: Constans.noConnectionTitle, message: Constans.noConnectionMessage)
-            print("Bağlantı var")
+            break
         case false:
-            //TODO: No connection alert
             view?.makeAlert(title: Constans.noConnectionTitle, message: Constans.noConnectionMessage)
         }
     }

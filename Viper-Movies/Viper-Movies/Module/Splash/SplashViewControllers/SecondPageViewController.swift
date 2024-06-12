@@ -7,17 +7,25 @@
 
 import UIKit
 
+
+protocol SecondPageDelegate: AnyObject {
+    func startButtonClicked()
+}
+
 class SecondPageViewController: UIViewController {
 
     @IBOutlet weak var imageView: UIImageView!
+    weak var delegate: SecondPageDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         imageView.image = UIImage(named: "cinema")
     }
 
     @IBAction func startButton(_ sender: Any) {
-        //TODO: Root to main screen
+        delegate?.startButtonClicked()
         print("Main screen e gidilecek")
     }
     
 }
+

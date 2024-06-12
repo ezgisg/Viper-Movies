@@ -31,8 +31,8 @@
                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Z9-5T-XA1">
-                    <rect key="frame" x="159" y="109" width="75" height="35"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Z9-5T-XA1">
+                    <rect key="frame" x="84" y="139" width="225" height="44"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain"/>
                     <connections>
@@ -53,7 +53,7 @@
                 <constraint firstItem="7Z9-5T-XA1" firstAttribute="centerY" secondItem="l8K-Jg-32d" secondAttribute="centerY" id="XV7-gN-Tz5"/>
                 <constraint firstItem="7Z9-5T-XA1" firstAttribute="height" secondItem="l8K-Jg-32d" secondAttribute="height" id="bb4-bH-ft5"/>
             </constraints>
-            <point key="canvasLocation" x="132" y="-11"/>
+            <point key="canvasLocation" x="130.53435114503816" y="-11.267605633802818"/>
         </view>
     </objects>
     <resources>
