@@ -1,5 +1,5 @@
 //
-//  SplashPresenter.swift
+//  onboardingPresenter.swift
 //  Viper-Movies
 //
 //  Created by Ezgi Sümer Günaydın on 11.06.2024.
@@ -7,33 +7,33 @@
 
 import Foundation
 
-protocol SplashPresenterProtocol: AnyObject {
+protocol onboardingPresenterProtocol: AnyObject {
     func viewDidLoad()
     func viewDidAppear()
     func goToMainScreen()
 }
 
-extension SplashPresenter {
+extension onboardingPresenter {
     fileprivate enum Constans {
         static let noConnectionTitle = "No Connection"
         static let noConnectionMessage = "Please check your internet connection"
     }
 }
 
-final class SplashPresenter {
-    weak var view: SplashViewControllerProtocol?
-    var interactor: SplashInteractorProtocol?
-    var router: SplashRouterProtocol?
+final class onboardingPresenter {
+    weak var view: OnboardingViewControllerProtocol?
+    var interactor: onboardingInteractorProtocol?
+    var router: onboardingRouterProtocol?
     
-    init(view: SplashViewControllerProtocol, interactor: SplashInteractorProtocol, router: SplashRouterProtocol) {
+    init(view: OnboardingViewControllerProtocol, interactor: onboardingInteractorProtocol, router: onboardingRouterProtocol) {
         self.view = view
         self.interactor = interactor
         self.router = router
     }
 }
 
-//MARK: SplashPresenterProtocol
-extension SplashPresenter: SplashPresenterProtocol {
+//MARK: onboardingPresenterProtocol
+extension onboardingPresenter: onboardingPresenterProtocol {
 
 
     func viewDidLoad() {
@@ -58,8 +58,8 @@ extension SplashPresenter: SplashPresenterProtocol {
     
 }
 
-//MARK: SplashInteractorOutputProtocol
-extension SplashPresenter: SplashInteractorOutputProtocol {
+//MARK: onboardingInteractorOutputProtocol
+extension onboardingPresenter: onboardingInteractorOutputProtocol {
     func isConnectedOutput(_ status: Bool) {
         switch status {
         case true:

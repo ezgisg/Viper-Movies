@@ -24,11 +24,11 @@
 		AB7A6B082C18440900E33A60 /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = AB7A6B072C18440900E33A60 /* AlamofireDynamic */; };
 		AB7A6B0A2C1854D600E33A60 /* MoviesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7A6B092C1854D600E33A60 /* MoviesResponse.swift */; };
 		AB7A6B0C2C1854E600E33A60 /* MovieDetailsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7A6B0B2C1854E600E33A60 /* MovieDetailsResponse.swift */; };
-		AB7A6B182C186F9000E33A60 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7A6B162C186F9000E33A60 /* SplashViewController.swift */; };
-		AB7A6B192C186F9000E33A60 /* SplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB7A6B172C186F9000E33A60 /* SplashViewController.xib */; };
-		AB7A6B1B2C1871A500E33A60 /* SplashInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7A6B1A2C1871A500E33A60 /* SplashInteractor.swift */; };
-		AB7A6B1D2C1871FB00E33A60 /* SplashRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7A6B1C2C1871FB00E33A60 /* SplashRouter.swift */; };
-		AB7A6B1F2C18720700E33A60 /* SplashPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7A6B1E2C18720700E33A60 /* SplashPresenter.swift */; };
+		AB7A6B182C186F9000E33A60 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7A6B162C186F9000E33A60 /* OnboardingViewController.swift */; };
+		AB7A6B192C186F9000E33A60 /* OnboardingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB7A6B172C186F9000E33A60 /* OnboardingViewController.xib */; };
+		AB7A6B1B2C1871A500E33A60 /* OnboardingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7A6B1A2C1871A500E33A60 /* OnboardingInteractor.swift */; };
+		AB7A6B1D2C1871FB00E33A60 /* OnboardingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7A6B1C2C1871FB00E33A60 /* OnboardingRouter.swift */; };
+		AB7A6B1F2C18720700E33A60 /* OnboardingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7A6B1E2C18720700E33A60 /* OnboardingPresenter.swift */; };
 		AB7A6B212C187DA200E33A60 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7A6B202C187DA200E33A60 /* BaseViewController.swift */; };
 		AB7A6B242C18853300E33A60 /* FirstPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB7A6B232C18853300E33A60 /* FirstPageViewController.xib */; };
 		AB7A6B252C18853300E33A60 /* FirstPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7A6B222C18853300E33A60 /* FirstPageViewController.swift */; };
@@ -81,11 +81,11 @@
 		AB7A6B022C18439200E33A60 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		AB7A6B092C1854D600E33A60 /* MoviesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesResponse.swift; sourceTree = "<group>"; };
 		AB7A6B0B2C1854E600E33A60 /* MovieDetailsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsResponse.swift; sourceTree = "<group>"; };
-		AB7A6B162C186F9000E33A60 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
-		AB7A6B172C186F9000E33A60 /* SplashViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashViewController.xib; sourceTree = "<group>"; };
-		AB7A6B1A2C1871A500E33A60 /* SplashInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashInteractor.swift; sourceTree = "<group>"; };
-		AB7A6B1C2C1871FB00E33A60 /* SplashRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashRouter.swift; sourceTree = "<group>"; };
-		AB7A6B1E2C18720700E33A60 /* SplashPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashPresenter.swift; sourceTree = "<group>"; };
+		AB7A6B162C186F9000E33A60 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		AB7A6B172C186F9000E33A60 /* OnboardingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingViewController.xib; sourceTree = "<group>"; };
+		AB7A6B1A2C1871A500E33A60 /* OnboardingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingInteractor.swift; sourceTree = "<group>"; };
+		AB7A6B1C2C1871FB00E33A60 /* OnboardingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRouter.swift; sourceTree = "<group>"; };
+		AB7A6B1E2C18720700E33A60 /* OnboardingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPresenter.swift; sourceTree = "<group>"; };
 		AB7A6B202C187DA200E33A60 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		AB7A6B222C18853300E33A60 /* FirstPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstPageViewController.swift; sourceTree = "<group>"; };
 		AB7A6B232C18853300E33A60 /* FirstPageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirstPageViewController.xib; sourceTree = "<group>"; };
@@ -217,7 +217,7 @@
 				AB7A6B142C186E9400E33A60 /* Detail */,
 				AB7A6B132C186E1400E33A60 /* Specials */,
 				AB7A6B122C186E0800E33A60 /* Main */,
-				AB7A6B112C186DFF00E33A60 /* Splash */,
+				AB7A6B112C186DFF00E33A60 /* Onboarding */,
 			);
 			path = Module;
 			sourceTree = "<group>";
@@ -264,17 +264,17 @@
 			path = Entities;
 			sourceTree = "<group>";
 		};
-		AB7A6B112C186DFF00E33A60 /* Splash */ = {
+		AB7A6B112C186DFF00E33A60 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				AB7A6B262C18853A00E33A60 /* SplashViewControllers */,
-				AB7A6B162C186F9000E33A60 /* SplashViewController.swift */,
-				AB7A6B172C186F9000E33A60 /* SplashViewController.xib */,
-				AB7A6B1A2C1871A500E33A60 /* SplashInteractor.swift */,
-				AB7A6B1E2C18720700E33A60 /* SplashPresenter.swift */,
-				AB7A6B1C2C1871FB00E33A60 /* SplashRouter.swift */,
+				AB7A6B262C18853A00E33A60 /* OnboardingViewControllers */,
+				AB7A6B162C186F9000E33A60 /* OnboardingViewController.swift */,
+				AB7A6B172C186F9000E33A60 /* OnboardingViewController.xib */,
+				AB7A6B1A2C1871A500E33A60 /* OnboardingInteractor.swift */,
+				AB7A6B1E2C18720700E33A60 /* OnboardingPresenter.swift */,
+				AB7A6B1C2C1871FB00E33A60 /* OnboardingRouter.swift */,
 			);
-			path = Splash;
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		AB7A6B122C186E0800E33A60 /* Main */ = {
@@ -312,7 +312,7 @@
 			path = Entity;
 			sourceTree = "<group>";
 		};
-		AB7A6B262C18853A00E33A60 /* SplashViewControllers */ = {
+		AB7A6B262C18853A00E33A60 /* OnboardingViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				AB7A6B222C18853300E33A60 /* FirstPageViewController.swift */,
@@ -320,7 +320,7 @@
 				AB7A6B272C18855000E33A60 /* SecondPageViewController.swift */,
 				AB7A6B282C18855000E33A60 /* SecondPageViewController.xib */,
 			);
-			path = SplashViewControllers;
+			path = OnboardingViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -441,7 +441,7 @@
 				AB7A6ACE2C1842E700E33A60 /* Base in Resources */,
 				AB7A6B292C18855000E33A60 /* SecondPageViewController.xib in Resources */,
 				AB7A6B242C18853300E33A60 /* FirstPageViewController.xib in Resources */,
-				AB7A6B192C186F9000E33A60 /* SplashViewController.xib in Resources */,
+				AB7A6B192C186F9000E33A60 /* OnboardingViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,7 +470,7 @@
 				AB9F72622C1997E8007C321D /* Array+Extensions.swift in Sources */,
 				AB9F726A2C199B8D007C321D /* MainScreenPresenter.swift in Sources */,
 				AB7A6B2A2C18855000E33A60 /* SecondPageViewController.swift in Sources */,
-				AB7A6B1D2C1871FB00E33A60 /* SplashRouter.swift in Sources */,
+				AB7A6B1D2C1871FB00E33A60 /* OnboardingRouter.swift in Sources */,
 				AB7A6B0A2C1854D600E33A60 /* MoviesResponse.swift in Sources */,
 				AB9F72682C199B80007C321D /* MainScreenInteractor.swift in Sources */,
 				AB9F726C2C199B9D007C321D /* MainScreenRouter.swift in Sources */,
@@ -478,7 +478,7 @@
 				AB7A6B0C2C1854E600E33A60 /* MovieDetailsResponse.swift in Sources */,
 				AB7A6B212C187DA200E33A60 /* BaseViewController.swift in Sources */,
 				AB7A6AFF2C18437B00E33A60 /* NetworkManager.swift in Sources */,
-				AB7A6B1B2C1871A500E33A60 /* SplashInteractor.swift in Sources */,
+				AB7A6B1B2C1871A500E33A60 /* OnboardingInteractor.swift in Sources */,
 				AB9F72652C199B6F007C321D /* MainScreenViewController.swift in Sources */,
 				AB7A6B032C18439200E33A60 /* Router.swift in Sources */,
 				AB7A6AC72C1842E700E33A60 /* AppDelegate.swift in Sources */,
@@ -486,8 +486,8 @@
 				AB7A6B012C18438800E33A60 /* ServiceManager.swift in Sources */,
 				AB7A6B252C18853300E33A60 /* FirstPageViewController.swift in Sources */,
 				AB7A6B2C2C18874B00E33A60 /* UIImage+Extensions.swift in Sources */,
-				AB7A6B182C186F9000E33A60 /* SplashViewController.swift in Sources */,
-				AB7A6B1F2C18720700E33A60 /* SplashPresenter.swift in Sources */,
+				AB7A6B182C186F9000E33A60 /* OnboardingViewController.swift in Sources */,
+				AB7A6B1F2C18720700E33A60 /* OnboardingPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

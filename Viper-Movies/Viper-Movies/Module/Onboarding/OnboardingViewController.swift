@@ -1,5 +1,5 @@
 //
-//  SplashViewController.swift
+//  OnboardingViewController.swift
 //  Viper-Movies
 //
 //  Created by Ezgi Sümer Günaydın on 11.06.2024.
@@ -7,20 +7,20 @@
 
 import UIKit
 
-protocol SplashViewControllerProtocol: AnyObject {
+protocol OnboardingViewControllerProtocol: AnyObject {
     func makeAlert(title: String, message: String)
 }
 
-//MARK: SplashViewController
-final class SplashViewController: BaseViewController {
-//TODO: For one time splash screen add userdefaults control
+//MARK: OnboardingViewController
+final class OnboardingViewController: BaseViewController {
+//TODO: For one time onboarding screen add userdefaults control
     
     @IBOutlet weak var pageController: UIPageControl!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var skipButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     
-    var presenter: SplashPresenterProtocol?
+    var presenter: onboardingPresenterProtocol?
     var controllers = [UIViewController]()
     var firstPage = FirstPageViewController()
     var secondPage = SecondPageViewController()
@@ -48,7 +48,7 @@ final class SplashViewController: BaseViewController {
             return
         }
         pageVC.setViewControllers([nextVC], direction: .forward, animated: true)
-        setupLastSplashScreen(index: nextIndex)
+        setupLastonboardingScreen(index: nextIndex)
         
     }
     
@@ -57,29 +57,29 @@ final class SplashViewController: BaseViewController {
     }
 }
 
-//MARK: SplashViewControllerProtocol
-extension SplashViewController: SplashViewControllerProtocol {
+//MARK: OnboardingViewControllerProtocol
+extension OnboardingViewController: OnboardingViewControllerProtocol {
     func makeAlert(title: String, message: String) {
         showAlert(title: title, message: message)
     }
 }
 
 //MARK: UIPageViewControllerDelegate
-extension SplashViewController: UIPageViewControllerDelegate {
+extension OnboardingViewController: UIPageViewControllerDelegate {
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if completed,
         let visibleViewController = pageViewController.viewControllers?.first,
         let index = controllers.firstIndex(of: visibleViewController) {
             pageController.currentPage = index
-            setupLastSplashScreen(index: index)
+            setupLastonboardingScreen(index: index)
         }
     }
     
 }
 
 //MARK: UIPageViewControllerDataSource
-extension SplashViewController: UIPageViewControllerDataSource {
+extension OnboardingViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let index = controllers.firstIndex(of: viewController), index > 0 else {return nil}
         let previous = index - 1
@@ -96,7 +96,7 @@ extension SplashViewController: UIPageViewControllerDataSource {
 
 
 //MARK: PageVC Setups
-extension SplashViewController {
+extension OnboardingViewController {
     
     func setupPageViewController() {
         guard let first = controllers.first else { return }
@@ -119,7 +119,7 @@ extension SplashViewController {
         pageController.currentPage = 0
     }
     
-   private final func setupLastSplashScreen(index: Int) {
+   private final func setupLastonboardingScreen(index: Int) {
        guard index == controllers.count - 1 else {
            skipButton.isHidden = false
            nextButton.setTitle("Next", for: .normal)
@@ -131,7 +131,7 @@ extension SplashViewController {
 }
 
 //MARK: SecondPageDelegate
-extension SplashViewController: SecondPageDelegate {
+extension OnboardingViewController: SecondPageDelegate {
     func startButtonClicked() {
         presenter?.goToMainScreen()
     }

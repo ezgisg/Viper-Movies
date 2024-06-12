@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SplashViewController" customModule="Viper_Movies" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OnboardingViewController" customModule="Viper_Movies" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="Nzf-ri-b4p" id="y7b-Pl-VPE"/>
                 <outlet property="nextButton" destination="VRA-Fr-IQJ" id="kjG-5j-NMJ"/>

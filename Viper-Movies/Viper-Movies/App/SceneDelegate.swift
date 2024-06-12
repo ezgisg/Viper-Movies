@@ -18,12 +18,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let scene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: scene)
-        let splash = SplashRouter.createModule()
+        let onboarding = onboardingRouter.createModule()
         let main = MainScreenRouter.createModule()
         window.makeKeyAndVisible()
         let isFirstLaunch = UserDefaults.standard.object(forKey: "isFirstLaunch?")
         if isFirstLaunch == nil  {
-            window.rootViewController = splash
+            window.rootViewController = onboarding
         }
         else {
             window.rootViewController = main

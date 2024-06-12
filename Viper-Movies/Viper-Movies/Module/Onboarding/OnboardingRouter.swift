@@ -1,5 +1,5 @@
 //
-//  SplashRouter.swift
+//  onboardingRouter.swift
 //  Viper-Movies
 //
 //  Created by Ezgi Sümer Günaydın on 11.06.2024.
@@ -8,24 +8,24 @@
 import Foundation
 import UIKit.UINavigationBar
 
-protocol SplashRouterProtocol: AnyObject {
-    func navigate(_ route: SplashRoutes)
+protocol onboardingRouterProtocol: AnyObject {
+    func navigate(_ route: onboardingRoutes)
 }
 
-enum SplashRoutes {
+enum onboardingRoutes {
     case mainScreen
     case tabBar
 }
 
-final class SplashRouter {
+final class onboardingRouter {
     
-    weak var viewController: SplashViewController?
+    weak var viewController: OnboardingViewController?
     
-    static func createModule() -> SplashViewController {
-        let view = SplashViewController()
-        let interactor = SplashInteractor()
-        let router = SplashRouter()
-        let presenter = SplashPresenter(view: view, interactor: interactor, router: router)
+    static func createModule() -> OnboardingViewController {
+        let view = OnboardingViewController()
+        let interactor = onboardingInteractor()
+        let router = onboardingRouter()
+        let presenter = onboardingPresenter(view: view, interactor: interactor, router: router)
         view.presenter = presenter
         interactor.output = presenter
         router.viewController = view
@@ -34,8 +34,8 @@ final class SplashRouter {
     
 }
 
-extension SplashRouter: SplashRouterProtocol {
-    func navigate(_ route: SplashRoutes) {
+extension onboardingRouter: onboardingRouterProtocol {
+    func navigate(_ route: onboardingRoutes) {
         switch route {
         case .mainScreen:
             guard let window = viewController?.view.window else { return }
