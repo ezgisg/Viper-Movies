@@ -49,6 +49,14 @@
 		AB9F72772C19BF75007C321D /* SplashRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9F72762C19BF75007C321D /* SplashRouter.swift */; };
 		AB9F727A2C19D3CC007C321D /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9F72792C19D3CC007C321D /* TabBarVC.swift */; };
 		AB9F727C2C19EFBC007C321D /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9F727B2C19EFBC007C321D /* UIColor+Extensions.swift */; };
+		AB9F72822C1AD2F7007C321D /* BannerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB9F72812C1AD2F7007C321D /* BannerCell.xib */; };
+		AB9F72832C1AD2F7007C321D /* BannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9F72802C1AD2F7007C321D /* BannerCell.swift */; };
+		AB9F72862C1AD30D007C321D /* MovieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB9F72852C1AD30D007C321D /* MovieCell.xib */; };
+		AB9F72872C1AD30D007C321D /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9F72842C1AD30D007C321D /* MovieCell.swift */; };
+		AB9F72892C1AD392007C321D /* BannerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9F72882C1AD392007C321D /* BannerPresenter.swift */; };
+		AB9F728B2C1AD3A0007C321D /* MoviePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9F728A2C1AD3A0007C321D /* MoviePresenter.swift */; };
+		AB9F728E2C1AD61B007C321D /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = AB9F728D2C1AD61B007C321D /* Kingfisher */; };
+		AB9F72902C1AFCE7007C321D /* CollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9F728F2C1AFCE7007C321D /* CollectionView+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +121,13 @@
 		AB9F72762C19BF75007C321D /* SplashRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashRouter.swift; sourceTree = "<group>"; };
 		AB9F72792C19D3CC007C321D /* TabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
 		AB9F727B2C19EFBC007C321D /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		AB9F72802C1AD2F7007C321D /* BannerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerCell.swift; sourceTree = "<group>"; };
+		AB9F72812C1AD2F7007C321D /* BannerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BannerCell.xib; sourceTree = "<group>"; };
+		AB9F72842C1AD30D007C321D /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
+		AB9F72852C1AD30D007C321D /* MovieCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieCell.xib; sourceTree = "<group>"; };
+		AB9F72882C1AD392007C321D /* BannerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerPresenter.swift; sourceTree = "<group>"; };
+		AB9F728A2C1AD3A0007C321D /* MoviePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviePresenter.swift; sourceTree = "<group>"; };
+		AB9F728F2C1AFCE7007C321D /* CollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionView+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB9F728E2C1AD61B007C321D /* Kingfisher in Frameworks */,
 				AB7A6B062C1843FC00E33A60 /* Alamofire in Frameworks */,
 				AB7A6B082C18440900E33A60 /* AlamofireDynamic in Frameworks */,
 			);
@@ -269,6 +285,7 @@
 				AB7A6B2B2C18874B00E33A60 /* UIImage+Extensions.swift */,
 				AB9F72612C1997E8007C321D /* Array+Extensions.swift */,
 				AB9F727B2C19EFBC007C321D /* UIColor+Extensions.swift */,
+				AB9F728F2C1AFCE7007C321D /* CollectionView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -297,6 +314,7 @@
 		AB7A6B122C186E0800E33A60 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				AB9F727D2C1AD2B8007C321D /* Views */,
 				AB9F72632C199B6F007C321D /* MainScreenViewController.swift */,
 				AB9F72642C199B6F007C321D /* MainScreenViewController.xib */,
 				AB9F72672C199B80007C321D /* MainScreenInteractor.swift */,
@@ -360,6 +378,19 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
+		AB9F727D2C1AD2B8007C321D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AB9F72882C1AD392007C321D /* BannerPresenter.swift */,
+				AB9F72802C1AD2F7007C321D /* BannerCell.swift */,
+				AB9F72812C1AD2F7007C321D /* BannerCell.xib */,
+				AB9F728A2C1AD3A0007C321D /* MoviePresenter.swift */,
+				AB9F72842C1AD30D007C321D /* MovieCell.swift */,
+				AB9F72852C1AD30D007C321D /* MovieCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -379,6 +410,7 @@
 			packageProductDependencies = (
 				AB7A6B052C1843FC00E33A60 /* Alamofire */,
 				AB7A6B072C18440900E33A60 /* AlamofireDynamic */,
+				AB9F728D2C1AD61B007C321D /* Kingfisher */,
 			);
 			productName = "Viper-Movies";
 			productReference = AB7A6AC32C1842E700E33A60 /* Viper-Movies.app */;
@@ -454,6 +486,7 @@
 			mainGroup = AB7A6ABA2C1842E700E33A60;
 			packageReferences = (
 				AB7A6B042C1843FC00E33A60 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				AB9F728C2C1AD61B007C321D /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = AB7A6AC42C1842E700E33A60 /* Products */;
 			projectDirPath = "";
@@ -477,9 +510,11 @@
 				AB7A6AD32C1842E900E33A60 /* Assets.xcassets in Resources */,
 				AB7A6AD62C1842E900E33A60 /* Base in Resources */,
 				AB7A6ACE2C1842E700E33A60 /* Base in Resources */,
+				AB9F72862C1AD30D007C321D /* MovieCell.xib in Resources */,
 				AB7A6B292C18855000E33A60 /* SecondPageViewController.xib in Resources */,
 				AB7A6B242C18853300E33A60 /* FirstPageViewController.xib in Resources */,
 				AB7A6B192C186F9000E33A60 /* OnboardingViewController.xib in Resources */,
+				AB9F72822C1AD2F7007C321D /* BannerCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -508,11 +543,15 @@
 				AB9F72622C1997E8007C321D /* Array+Extensions.swift in Sources */,
 				AB9F726A2C199B8D007C321D /* MainScreenPresenter.swift in Sources */,
 				AB7A6B2A2C18855000E33A60 /* SecondPageViewController.swift in Sources */,
+				AB9F72902C1AFCE7007C321D /* CollectionView+Extensions.swift in Sources */,
 				AB7A6B1D2C1871FB00E33A60 /* OnboardingRouter.swift in Sources */,
 				AB9F72702C19BF52007C321D /* SplashViewController.swift in Sources */,
 				AB7A6B0A2C1854D600E33A60 /* MoviesResponse.swift in Sources */,
+				AB9F728B2C1AD3A0007C321D /* MoviePresenter.swift in Sources */,
 				AB9F72732C19BF62007C321D /* SplashInteractor.swift in Sources */,
+				AB9F72872C1AD30D007C321D /* MovieCell.swift in Sources */,
 				AB9F72682C199B80007C321D /* MainScreenInteractor.swift in Sources */,
+				AB9F72892C1AD392007C321D /* BannerPresenter.swift in Sources */,
 				AB9F726C2C199B9D007C321D /* MainScreenRouter.swift in Sources */,
 				AB7A6AD12C1842E700E33A60 /* Viper_Movies.xcdatamodeld in Sources */,
 				AB9F727C2C19EFBC007C321D /* UIColor+Extensions.swift in Sources */,
@@ -530,6 +569,7 @@
 				AB9F727A2C19D3CC007C321D /* TabBarVC.swift in Sources */,
 				AB7A6B252C18853300E33A60 /* FirstPageViewController.swift in Sources */,
 				AB7A6B2C2C18874B00E33A60 /* UIImage+Extensions.swift in Sources */,
+				AB9F72832C1AD2F7007C321D /* BannerCell.swift in Sources */,
 				AB7A6B182C186F9000E33A60 /* OnboardingViewController.swift in Sources */,
 				AB7A6B1F2C18720700E33A60 /* OnboardingPresenter.swift in Sources */,
 			);
@@ -882,6 +922,14 @@
 				minimumVersion = 5.9.1;
 			};
 		};
+		AB9F728C2C1AD61B007C321D /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.12.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -894,6 +942,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AB7A6B042C1843FC00E33A60 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = AlamofireDynamic;
+		};
+		AB9F728D2C1AD61B007C321D /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AB9F728C2C1AD61B007C321D /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 

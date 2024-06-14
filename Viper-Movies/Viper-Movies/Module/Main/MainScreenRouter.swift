@@ -8,7 +8,7 @@
 import Foundation
 
 protocol MainScreenRouterProtocol: AnyObject {
-    
+
 }
 
 final class MainScreenRouter {
@@ -28,5 +28,7 @@ final class MainScreenRouter {
 }
 
 extension MainScreenRouter: MainScreenRouterProtocol {
+
+    
     
 }

@@ -8,18 +8,23 @@
 import Foundation
 
 protocol MainScreenInteractorProtocol: AnyObject {
-    
+    func fetchNowPlayingMovies(page: Int?)
 }
 
 protocol MainScreenInteractorOutputProtocol: AnyObject {
-    
+    func fetchNowPlayingMoviesOutput(result: MoviesResult)
 }
 
 final class MainScreenInteractor {
     var presenter: MainScreenPresenterProtocol?
     var output: MainScreenInteractorOutputProtocol?
+    private var service = MoviesService()
 }
 
 extension MainScreenInteractor: MainScreenInteractorProtocol {
-    
+    func fetchNowPlayingMovies(page: Int?) {
+        service.fetchNowPlayingMovies(page: page) { MoviesResult in
+            self.output?.fetchNowPlayingMoviesOutput(result: MoviesResult)
+        }
+    }
 }

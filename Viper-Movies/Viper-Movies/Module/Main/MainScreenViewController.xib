@@ -10,6 +10,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainScreenViewController" customModule="Viper_Movies" customModuleProvider="target">
             <connections>
+                <outlet property="collectionView" destination="cjj-uo-lPT" id="41S-vA-Yjv"/>
+                <outlet property="searchBar" destination="qOF-Wl-h9M" id="UYn-qr-p80"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,18 +20,60 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Main" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5TA-vb-4zd">
-                    <rect key="frame" x="178" y="428" width="37" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="1" green="0.67019807919999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zvt-q7-kxe">
+                    <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="asK-3n-JhO">
+                            <rect key="frame" x="5" y="5" width="383" height="749"/>
+                            <subviews>
+                                <searchBar contentMode="redraw" placeholder="Ara..." translatesAutoresizingMaskIntoConstraints="NO" id="qOF-Wl-h9M">
+                                    <rect key="frame" x="0.0" y="0.0" width="383" height="70"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="70" id="kwF-K3-bhO"/>
+                                    </constraints>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="z40-s4-MVb"/>
+                                    </connections>
+                                </searchBar>
+                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="cjj-uo-lPT">
+                                    <rect key="frame" x="0.0" y="70" width="383" height="679"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="4si-Dy-Ejh">
+                                        <size key="itemSize" width="128" height="128"/>
+                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    </collectionViewFlowLayout>
+                                </collectionView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="qOF-Wl-h9M" secondAttribute="trailing" id="2HL-i0-jze"/>
+                                <constraint firstItem="qOF-Wl-h9M" firstAttribute="leading" secondItem="asK-3n-JhO" secondAttribute="leading" id="5LU-ed-QSC"/>
+                                <constraint firstAttribute="bottom" secondItem="cjj-uo-lPT" secondAttribute="bottom" id="Ev5-xf-nDf"/>
+                                <constraint firstItem="cjj-uo-lPT" firstAttribute="top" secondItem="qOF-Wl-h9M" secondAttribute="bottom" id="JHN-Wx-fSD"/>
+                                <constraint firstItem="qOF-Wl-h9M" firstAttribute="top" secondItem="asK-3n-JhO" secondAttribute="top" id="hb1-vg-5x9"/>
+                                <constraint firstItem="cjj-uo-lPT" firstAttribute="leading" secondItem="asK-3n-JhO" secondAttribute="leading" id="kNG-Ex-yuo"/>
+                                <constraint firstAttribute="trailing" secondItem="cjj-uo-lPT" secondAttribute="trailing" id="ui0-jk-pgu"/>
+                            </constraints>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="asK-3n-JhO" firstAttribute="leading" secondItem="Zvt-q7-kxe" secondAttribute="leading" constant="5" id="Ldd-3t-fv3"/>
+                        <constraint firstAttribute="trailing" secondItem="asK-3n-JhO" secondAttribute="trailing" constant="5" id="Luo-Aq-zzq"/>
+                        <constraint firstItem="asK-3n-JhO" firstAttribute="top" secondItem="Zvt-q7-kxe" secondAttribute="top" constant="5" id="Y4d-yU-i99"/>
+                        <constraint firstAttribute="bottom" secondItem="asK-3n-JhO" secondAttribute="bottom" constant="5" id="vj5-np-pOj"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="5TA-vb-4zd" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="jJ5-Rm-9oT"/>
-                <constraint firstItem="5TA-vb-4zd" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="oMc-R2-LSt"/>
+                <constraint firstItem="Zvt-q7-kxe" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Fpp-IJ-OQq"/>
+                <constraint firstItem="Zvt-q7-kxe" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="bVk-dq-yfk"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Zvt-q7-kxe" secondAttribute="bottom" id="gEx-sn-Jr8"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Zvt-q7-kxe" secondAttribute="trailing" id="lSZ-Mw-5ny"/>
             </constraints>
             <point key="canvasLocation" x="132" y="-11"/>
         </view>

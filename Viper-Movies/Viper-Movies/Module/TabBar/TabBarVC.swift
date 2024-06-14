@@ -56,8 +56,8 @@ class TabBarController: UITabBarController {
 
         tabBarAppearance.stackedLayoutAppearance = tabBarItemAppearance
 
-        tabBar.standardAppearance = tabBarAppearance
-        tabBar.scrollEdgeAppearance = tabBarAppearance
+//        tabBar.standardAppearance = tabBarAppearance
+//        tabBar.scrollEdgeAppearance = tabBarAppearance
         
        }
 }
