@@ -13,7 +13,7 @@ struct MoviesResponse: Decodable {
     let dates: Dates?
     let page: Int?
     let results: [MovResult]?
-    let totalPages, totalResults: Int?
+    let total_pages, total_results: Int?
 }
 
 // MARK: - Dates
@@ -78,6 +78,7 @@ struct MovResult: Decodable, Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(identifier)
     }
+    
 }
 
 enum OriginalLanguage: String, Decodable {

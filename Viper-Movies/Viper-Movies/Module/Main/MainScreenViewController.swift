@@ -7,16 +7,17 @@
 
 import UIKit
 
-enum MainScreenSectionType: Int {
+enum MainScreenSectionType: Int, CaseIterable {
     case banner = 0
     case movieList = 1
 }
 
 protocol MainScreenViewControllerProtocol: AnyObject {
     func reloadData()
+  
 }
 
-class MainScreenViewController: UIViewController, UICollectionViewDelegate {
+class MainScreenViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -25,26 +26,14 @@ class MainScreenViewController: UIViewController, UICollectionViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter?.viewDidLoad()
+        presenter?.fetchInitialData()
         setupCollectionView()
+        setupSearchBar()
     }
 }
 
-//MARK: Collection view setups
+//MARK:  Setups
 extension MainScreenViewController {
-    private func configure<T: UICollectionViewCell>(_ cellType: T.Type, with source: MovResult, for indexPath: IndexPath) -> T {
-        let cell = collectionView.dequeueReusableCell(with: cellType, for: indexPath)
-
-        if let bannerCell = cell as? BannerCell {
-            let presenter = BannerPresenter(view: bannerCell, movieResult: source)
-            bannerCell.cellPresenter = presenter
-        } else if let movieCell = cell as? MovieCell {
-            let presenter = MoviePresenter(view: movieCell, movieResult: source)
-            movieCell.cellPresenter = presenter
-        }
-        return cell
-    }
-    
     private func setupCollectionView() {
         collectionView.delegate = self
         collectionView.register(cellType: BannerCell.self)
@@ -52,6 +41,10 @@ extension MainScreenViewController {
         configureDataSource()
         applySnapshot()
         collectionView.collectionViewLayout = createCompositionalLayout()
+    }
+    
+    private func setupSearchBar() {
+        searchBar.delegate = self
     }
 }
 
@@ -62,16 +55,23 @@ extension MainScreenViewController {
             guard let sectionType = MainScreenSectionType(rawValue: indexPath.section) else { return UICollectionViewCell() }
             switch sectionType {
             case .banner:
-               return self.configure(BannerCell.self, with: movResult, for: indexPath)
+                let cell = collectionView.dequeueReusableCell(with: BannerCell.self, for: indexPath)
+                let presenter = BannerPresenter(view: cell, movieResult: movResult)
+                cell.cellPresenter = presenter
+                return cell
             case .movieList:
-                return self.configure(MovieCell.self, with: movResult, for: indexPath)
+                let cell = collectionView.dequeueReusableCell(with: MovieCell.self, for: indexPath)
+                let presenter = MoviePresenter(view: cell, movieResult: movResult)
+                cell.cellPresenter = presenter
+                return cell
             }
         })
     }
     
     private func applySnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<MainScreenSectionType, MovResult>()
-        snapshot.appendSections([.banner, .movieList])
+        for section in MainScreenSectionType.allCases {
+            snapshot.appendSections([section]) }
         if let movies = presenter?.getMovies() {
             snapshot.appendItems(movies, toSection: .movieList)
         }
@@ -119,8 +119,41 @@ extension MainScreenViewController {
 }
 
 
+//MARK: UICollectionViewDelegate
+extension MainScreenViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard indexPath.section == 1 else { return }
+        guard let movResult = dataSource?.itemIdentifier(for: indexPath) else { return }
+        //TODO: Go to detail page with selected movie
+        print("Selected Movie ID: \(String(describing: movResult.id))")
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let height = scrollView.frame.size.height
+        ///To prevent load more date when search is active
+        guard searchBar.text?.count == 0 else { return }
+        if offsetY > contentHeight - height {
+            presenter?.loadMoreData()
+        }
+    }
+}
+
+//MARK: UISearchBarDelegate
+extension MainScreenViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        presenter?.search(text: searchText)
+      }
+}
+
+
+//MARK: MainScreenViewControllerProtocol
 extension MainScreenViewController: MainScreenViewControllerProtocol {
+
     func reloadData() {
         applySnapshot()
     }
 }
+
+
