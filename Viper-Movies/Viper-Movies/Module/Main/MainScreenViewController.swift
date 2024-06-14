@@ -38,8 +38,9 @@ extension MainScreenViewController {
         collectionView.delegate = self
         collectionView.register(cellType: BannerCell.self)
         collectionView.register(cellType: MovieCell.self)
+        collectionView.registerReusableView(nibWithViewClass: SectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader)
+        
         configureDataSource()
-        applySnapshot()
         collectionView.collectionViewLayout = createCompositionalLayout()
     }
     
@@ -66,6 +67,26 @@ extension MainScreenViewController {
                 return cell
             }
         })
+        addSupplementaryViews()
+    }
+    
+    private func addSupplementaryViews() {
+        dataSource?.supplementaryViewProvider = { collectionView, kind, indexPath in
+            guard let sectionType = MainScreenSectionType(rawValue: indexPath.section) else { return UICollectionReusableView() }
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withClass: SectionHeader.self, for: indexPath)
+            switch sectionType {
+            case .banner:
+                guard let minDate = self.presenter?.getDates().0,
+                      let maxDate = self.presenter?.getDates().1 else {
+                    headerView.configure(with: "")
+                    return headerView
+                }
+                headerView.configure(with: "\(minDate) / \(maxDate) Posters")
+            case .movieList:
+                headerView.configure(with: "Upcoming Movies")
+            }
+            return headerView
+        }
     }
     
     private func applySnapshot() {
@@ -104,6 +125,12 @@ extension MainScreenViewController {
             let section = NSCollectionLayoutSection(group: group)
             section.orthogonalScrollingBehavior = .continuous
             section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
+            
+            let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(50))
+            let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+
+            section.boundarySupplementaryItems = [header]
+            
             return section
         }
         
@@ -114,6 +141,11 @@ extension MainScreenViewController {
             let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
             let section = NSCollectionLayoutSection(group: group)
             section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
+            
+            let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(50))
+            let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+            section.boundarySupplementaryItems = [header]
+            
             return section
         }
 }

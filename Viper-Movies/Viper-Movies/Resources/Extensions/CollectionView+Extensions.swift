@@ -42,7 +42,33 @@ public extension UICollectionView {
     func dequeueReusableCell<T: UICollectionViewCell>(with type: T.Type, for indexPath: IndexPath) -> T {
         guard let cell = self.dequeueReusableCell(withReuseIdentifier: type.className, for: indexPath) as? T else { fatalError("can not dequeue cell \(type)") }
         return cell
-        
     }
+    
+    func registerReusableView<T: UICollectionReusableView>(nibWithViewClass name: T.Type, forSupplementaryViewOfKind kind: String, at bundle: Bundle? = nil) {
+            let identifier = String(describing: name)
+            register(
+                UINib(nibName: identifier, bundle: bundle),
+                forSupplementaryViewOfKind: kind,
+                withReuseIdentifier: identifier
+            )
+        }
+    
+    func dequeueReusableSupplementaryView<T: UICollectionReusableView>(
+            ofKind kind: String,
+            withClass name: T.Type,
+            for indexPath: IndexPath
+        ) -> T {
+            guard let cell = dequeueReusableSupplementaryView(
+                ofKind: kind,
+                withReuseIdentifier: String(describing: name),
+                for: indexPath) as? T else {
+                fatalError(
+                    """
+                    Couldn't find UICollectionReusableView for \(String(describing: name)),
+                    make sure the view is registered with collection view
+                    """)
+            }
+            return cell
+        }
 }
 

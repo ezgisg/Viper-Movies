@@ -13,6 +13,7 @@ protocol MainScreenPresenterProtocol: AnyObject {
     func fetchInitialData()
     func search(text: String)
     func loadMoreData()
+    func getDates() -> (String?, String?)
 }
 
 protocol MainScreenPresenterDelegate: AnyObject {
@@ -29,6 +30,8 @@ final class MainScreenPresenter {
     var banners: [MovResult] = []
     var pageCount : Int?
     var currentPage = 1
+    var minDate: String?
+    var maxDate: String?
     
     init(view: MainScreenViewControllerProtocol, interactor: MainScreenInteractorProtocol, router: MainScreenRouterProtocol) {
         self.view = view
@@ -39,6 +42,10 @@ final class MainScreenPresenter {
 
 //MARK: MainScreenPresenterProtocol
 extension MainScreenPresenter: MainScreenPresenterProtocol {
+    func getDates() -> (String?, String?) {
+        return (minDate, maxDate)
+    }
+    
     func getMovies() -> [MovResult] {
         return filteredMovies
     }
@@ -76,6 +83,7 @@ extension MainScreenPresenter: MainScreenPresenterProtocol {
     }
 }
 
+//TODO: date type which is used for bottom of cell will change
 //MARK: MainScreenInteractorOutputProtocol
 extension MainScreenPresenter: MainScreenInteractorOutputProtocol {
     //TODO: fetch other pages with scrool
@@ -84,6 +92,8 @@ extension MainScreenPresenter: MainScreenInteractorOutputProtocol {
         case .success(let movies):
             self.movies.append(contentsOf: movies.results ?? [])
             pageCount = movies.total_pages ?? 1
+            minDate = movies.dates?.minimum ?? ""
+            maxDate = movies.dates?.maximum ?? ""
             filteredMovies = self.movies
             view?.reloadData()
         case .failure(let error):

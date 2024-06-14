@@ -57,6 +57,8 @@
 		AB9F728B2C1AD3A0007C321D /* MoviePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9F728A2C1AD3A0007C321D /* MoviePresenter.swift */; };
 		AB9F728E2C1AD61B007C321D /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = AB9F728D2C1AD61B007C321D /* Kingfisher */; };
 		AB9F72902C1AFCE7007C321D /* CollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9F728F2C1AFCE7007C321D /* CollectionView+Extensions.swift */; };
+		ABA79FB82C1C881800441357 /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA79FB62C1C881800441357 /* SectionHeader.swift */; };
+		ABA79FB92C1C881800441357 /* SectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABA79FB72C1C881800441357 /* SectionHeader.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,6 +130,8 @@
 		AB9F72882C1AD392007C321D /* BannerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerPresenter.swift; sourceTree = "<group>"; };
 		AB9F728A2C1AD3A0007C321D /* MoviePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviePresenter.swift; sourceTree = "<group>"; };
 		AB9F728F2C1AFCE7007C321D /* CollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionView+Extensions.swift"; sourceTree = "<group>"; };
+		ABA79FB62C1C881800441357 /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
+		ABA79FB72C1C881800441357 /* SectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionHeader.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -387,6 +391,8 @@
 				AB9F728A2C1AD3A0007C321D /* MoviePresenter.swift */,
 				AB9F72842C1AD30D007C321D /* MovieCell.swift */,
 				AB9F72852C1AD30D007C321D /* MovieCell.xib */,
+				ABA79FB62C1C881800441357 /* SectionHeader.swift */,
+				ABA79FB72C1C881800441357 /* SectionHeader.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -512,6 +518,7 @@
 				AB7A6ACE2C1842E700E33A60 /* Base in Resources */,
 				AB9F72862C1AD30D007C321D /* MovieCell.xib in Resources */,
 				AB7A6B292C18855000E33A60 /* SecondPageViewController.xib in Resources */,
+				ABA79FB92C1C881800441357 /* SectionHeader.xib in Resources */,
 				AB7A6B242C18853300E33A60 /* FirstPageViewController.xib in Resources */,
 				AB7A6B192C186F9000E33A60 /* OnboardingViewController.xib in Resources */,
 				AB9F72822C1AD2F7007C321D /* BannerCell.xib in Resources */,
@@ -551,6 +558,7 @@
 				AB9F72732C19BF62007C321D /* SplashInteractor.swift in Sources */,
 				AB9F72872C1AD30D007C321D /* MovieCell.swift in Sources */,
 				AB9F72682C199B80007C321D /* MainScreenInteractor.swift in Sources */,
+				ABA79FB82C1C881800441357 /* SectionHeader.swift in Sources */,
 				AB9F72892C1AD392007C321D /* BannerPresenter.swift in Sources */,
 				AB9F726C2C199B9D007C321D /* MainScreenRouter.swift in Sources */,
 				AB7A6AD12C1842E700E33A60 /* Viper_Movies.xcdatamodeld in Sources */,
