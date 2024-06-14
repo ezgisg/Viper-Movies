@@ -37,7 +37,7 @@ extension BannerCell: BannerCellProtocol {
     func setImage(imageUrlString: String) {
         let url = URL(string: imageUrlString)
         imageView.kf.indicatorType = .activity
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleToFill
         imageView.layer.cornerRadius = 10
         imageView.kf.setImage(with: url) { result in
             switch result {

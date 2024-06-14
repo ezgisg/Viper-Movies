@@ -17,9 +17,6 @@ protocol MainScreenViewControllerProtocol: AnyObject {
 }
 
 class MainScreenViewController: UIViewController, UICollectionViewDelegate {
-    
-
-
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -28,86 +25,16 @@ class MainScreenViewController: UIViewController, UICollectionViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         presenter?.viewDidLoad()
         setupCollectionView()
-        configureDataSource()
-        applySnapshot()
-        configureCollectionViewLayout()
-    
-    }
-    
-    private func configureCollectionViewLayout() {
-        collectionView.collectionViewLayout = createCompositionalLayout()
-    }
-    
-    private func setupCollectionView() {
-        collectionView.delegate = self
-        collectionView.register(cellType: BannerCell.self)
-        collectionView.register(cellType: MovieCell.self)
-    }
-    
-    private func createCompositionalLayout() -> UICollectionViewCompositionalLayout {
-            return UICollectionViewCompositionalLayout { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
-                guard let sectionType = MainScreenSectionType(rawValue: sectionIndex) else { return nil }
-                
-                switch sectionType {
-                case .banner:
-                    return self.createBannerSection()
-                case .movieList:
-                    return self.createMovieListSection()
-                }
-            }
-        }
-        
-        private func createBannerSection() -> NSCollectionLayoutSection {
-            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                  heightDimension: .fractionalHeight(1.0))
-            let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            
-            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9),
-                                                   heightDimension: .fractionalHeight(0.3))
-            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-            
-            let section = NSCollectionLayoutSection(group: group)
-            section.orthogonalScrollingBehavior = .groupPaging
-            section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
-            
-            return section
-        }
-        
-        private func createMovieListSection() -> NSCollectionLayoutSection {
-            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                  heightDimension: .fractionalHeight(1.0))
-            let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            
-            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                   heightDimension: .absolute(150))
-            let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
-            
-            let section = NSCollectionLayoutSection(group: group)
-            section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
-            
-            return section
-        }
-}
-
-extension MainScreenViewController: MainScreenViewControllerProtocol {
-    func reloadData() {
-        applySnapshot()
     }
 }
 
-
-//TODO: comp layout
-//MARK: Collection view functions
-
+//MARK: Collection view setups
 extension MainScreenViewController {
-    
-    //MARK: configure method
     private func configure<T: UICollectionViewCell>(_ cellType: T.Type, with source: MovResult, for indexPath: IndexPath) -> T {
         let cell = collectionView.dequeueReusableCell(with: cellType, for: indexPath)
-        
+
         if let bannerCell = cell as? BannerCell {
             let presenter = BannerPresenter(view: bannerCell, movieResult: source)
             bannerCell.cellPresenter = presenter
@@ -118,9 +45,18 @@ extension MainScreenViewController {
         return cell
     }
     
+    private func setupCollectionView() {
+        collectionView.delegate = self
+        collectionView.register(cellType: BannerCell.self)
+        collectionView.register(cellType: MovieCell.self)
+        configureDataSource()
+        applySnapshot()
+        collectionView.collectionViewLayout = createCompositionalLayout()
+    }
+}
 
-    
-    
+//MARK: Diffable Data Source
+extension MainScreenViewController {
     private func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, movResult in
             guard let sectionType = MainScreenSectionType(rawValue: indexPath.section) else { return UICollectionViewCell() }
@@ -139,12 +75,52 @@ extension MainScreenViewController {
         if let movies = presenter?.getMovies() {
             snapshot.appendItems(movies, toSection: .movieList)
         }
-        
         if let banners = presenter?.getBanners() {
             snapshot.appendItems(banners, toSection: .banner)
         }
         dataSource?.apply(snapshot, animatingDifferences: true)
      }
-     
 }
 
+//MARK: Compositional Layout
+extension MainScreenViewController {
+    private func createCompositionalLayout() -> UICollectionViewCompositionalLayout {
+            return UICollectionViewCompositionalLayout { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
+                guard let sectionType = MainScreenSectionType(rawValue: sectionIndex) else { return nil }
+                switch sectionType {
+                case .banner:
+                    return self.createBannerSection()
+                case .movieList:
+                    return self.createMovieListSection()
+                }
+            }
+        }
+        
+        private func createBannerSection() -> NSCollectionLayoutSection {
+            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(1.5))
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4),  heightDimension: .estimated(100))
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+            let section = NSCollectionLayoutSection(group: group)
+            section.orthogonalScrollingBehavior = .continuous
+            section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
+            return section
+        }
+        
+        private func createMovieListSection() -> NSCollectionLayoutSection {
+            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(160))
+            let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+            let section = NSCollectionLayoutSection(group: group)
+            section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
+            return section
+        }
+}
+
+
+extension MainScreenViewController: MainScreenViewControllerProtocol {
+    func reloadData() {
+        applySnapshot()
+    }
+}
