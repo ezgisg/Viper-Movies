@@ -17,6 +17,7 @@ enum Router: URLRequestConvertible {
     case topRated(page: Int?)
     case upcoming(page: Int?)
     case details(movieId: Int32)
+    case similar(page: Int?, movieId: Int32)
     //TODO: add search service
     
     var baseURL: URL? {
@@ -35,12 +36,14 @@ enum Router: URLRequestConvertible {
             return "upcoming"
         case .details(let movieId):
             return "\(movieId))"
+        case .similar(movieId: let movieId):
+            return "\(movieId))/similar"
         }
     }
     
     var method: HTTPMethod {
         switch self {
-        case .nowPlaying, .popular,.topRated, .upcoming, .details:
+        case .nowPlaying, .popular,.topRated, .upcoming, .details, .similar:
             return .get
         }
     }
@@ -66,6 +69,10 @@ enum Router: URLRequestConvertible {
             }
         case .details:
             return nil
+        case .similar(page: let page, movieId: let movieId):
+            if let page {
+                params["page"] = page
+            }
         }
         return params
     }

@@ -14,11 +14,9 @@ protocol MainScreenPresenterProtocol: AnyObject {
     func search(text: String)
     func loadMoreData()
     func getDates() -> (String?, String?)
+    func didSelect(movieId: Int)
 }
 
-protocol MainScreenPresenterDelegate: AnyObject {
-    func sendMovies() -> [MovResult]
-}
 
 final class MainScreenPresenter {
     weak var view: MainScreenViewControllerProtocol?
@@ -42,6 +40,8 @@ final class MainScreenPresenter {
 
 //MARK: MainScreenPresenterProtocol
 extension MainScreenPresenter: MainScreenPresenterProtocol {
+  
+    
     func getDates() -> (String?, String?) {
         return (minDate, maxDate)
     }
@@ -70,9 +70,14 @@ extension MainScreenPresenter: MainScreenPresenterProtocol {
         guard text.count != 0 else {
             filteredMovies = movies
             view?.reloadData()
-            return }
+            return
+        }
+        
+        let modifiedText = text.replacingOccurrences(of: "İ", with: "I").uppercased()
         filteredMovies = movies.filter {
-            $0.title?.lowercased().contains(text.lowercased()) ?? false }
+            let modifiedTitle = $0.title?.replacingOccurrences(of: "i", with: "I").uppercased()
+            return modifiedTitle?.contains(modifiedText) ?? false
+        }
         view?.reloadData()
     }
 
@@ -81,9 +86,13 @@ extension MainScreenPresenter: MainScreenPresenterProtocol {
         currentPage += 1
         interactor?.fetchNowPlayingMovies(page: currentPage)
     }
+    
+    func didSelect(movieId: Int) {
+        router?.navigate(.detail, movieId: movieId)
+    }
 }
 
-//TODO: date type which is used for bottom of cell will change
+//TODO: date type which is used for bottom of cell and min-maxdate will change
 //MARK: MainScreenInteractorOutputProtocol
 extension MainScreenPresenter: MainScreenInteractorOutputProtocol {
     //TODO: fetch other pages with scrool

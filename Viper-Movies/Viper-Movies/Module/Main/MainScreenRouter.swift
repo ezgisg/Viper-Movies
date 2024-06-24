@@ -6,10 +6,16 @@
 //
 
 import Foundation
+import UIKit.UINavigationBar
 
 protocol MainScreenRouterProtocol: AnyObject {
-
+    func navigate(_ route: MainRoutes, movieId: Int)
 }
+
+enum MainRoutes {
+    case detail
+}
+
 
 final class MainScreenRouter {
     weak var viewController: MainScreenViewController?
@@ -28,7 +34,13 @@ final class MainScreenRouter {
 }
 
 extension MainScreenRouter: MainScreenRouterProtocol {
-
-    
-    
+    func navigate(_ route: MainRoutes, movieId: Int) {
+        switch route {
+        case .detail:
+            
+            guard let navigationController = viewController?.navigationController else { return }
+            let detailVC = DetailRouter.createModule(movieId: movieId)
+            navigationController.pushViewController(detailVC, animated: true)
+        }
+    }
 }

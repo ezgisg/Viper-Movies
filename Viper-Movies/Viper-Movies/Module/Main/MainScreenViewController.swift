@@ -67,21 +67,19 @@ extension MainScreenViewController {
                 return cell
             }
         })
-        addSupplementaryViews()
+        supplementaryViewsDataSource()
     }
     
-    private func addSupplementaryViews() {
+    private func supplementaryViewsDataSource() {
         dataSource?.supplementaryViewProvider = { collectionView, kind, indexPath in
             guard let sectionType = MainScreenSectionType(rawValue: indexPath.section) else { return UICollectionReusableView() }
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withClass: SectionHeader.self, for: indexPath)
             switch sectionType {
             case .banner:
-                guard let minDate = self.presenter?.getDates().0,
-                      let maxDate = self.presenter?.getDates().1 else {
-                    headerView.configure(with: "")
-                    return headerView
+                if let minDate = self.presenter?.getDates().0,
+                   let maxDate = self.presenter?.getDates().1 {
+                    headerView.configure(with: "\(minDate) / \(maxDate) Posters")
                 }
-                headerView.configure(with: "\(minDate) / \(maxDate) Posters")
             case .movieList:
                 headerView.configure(with: "Upcoming Movies")
             }
@@ -128,7 +126,6 @@ extension MainScreenViewController {
             
             let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(50))
             let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
-
             section.boundarySupplementaryItems = [header]
             
             return section
@@ -156,6 +153,8 @@ extension MainScreenViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard indexPath.section == 1 else { return }
         guard let movResult = dataSource?.itemIdentifier(for: indexPath) else { return }
+        guard let movieId = movResult.id else { return }
+        presenter?.didSelect(movieId: movieId)
         //TODO: Go to detail page with selected movie
         print("Selected Movie ID: \(String(describing: movResult.id))")
     }
@@ -182,7 +181,6 @@ extension MainScreenViewController: UISearchBarDelegate {
 
 //MARK: MainScreenViewControllerProtocol
 extension MainScreenViewController: MainScreenViewControllerProtocol {
-
     func reloadData() {
         applySnapshot()
     }
