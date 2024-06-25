@@ -155,8 +155,7 @@ extension MainScreenViewController: UICollectionViewDelegate {
         guard let movResult = dataSource?.itemIdentifier(for: indexPath) else { return }
         guard let movieId = movResult.id else { return }
         presenter?.didSelect(movieId: movieId)
-        //TODO: Go to detail page with selected movie
-        print("Selected Movie ID: \(String(describing: movResult.id))")
+   
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

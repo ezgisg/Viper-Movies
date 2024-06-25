@@ -35,6 +35,7 @@
 		AB7A6B292C18855000E33A60 /* SecondPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB7A6B282C18855000E33A60 /* SecondPageViewController.xib */; };
 		AB7A6B2A2C18855000E33A60 /* SecondPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7A6B272C18855000E33A60 /* SecondPageViewController.swift */; };
 		AB7A6B2C2C18874B00E33A60 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7A6B2B2C18874B00E33A60 /* UIImage+Extensions.swift */; };
+		AB9B25D12C2AEE170045BFCF /* SimilarMoviePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9B25D02C2AEE170045BFCF /* SimilarMoviePresenter.swift */; };
 		AB9F72602C1982C7007C321D /* movieGif.gif in Resources */ = {isa = PBXBuildFile; fileRef = AB9F725F2C1982C7007C321D /* movieGif.gif */; };
 		AB9F72622C1997E8007C321D /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9F72612C1997E8007C321D /* Array+Extensions.swift */; };
 		AB9F72652C199B6F007C321D /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9F72632C199B6F007C321D /* MainScreenViewController.swift */; };
@@ -116,6 +117,7 @@
 		AB7A6B272C18855000E33A60 /* SecondPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondPageViewController.swift; sourceTree = "<group>"; };
 		AB7A6B282C18855000E33A60 /* SecondPageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SecondPageViewController.xib; sourceTree = "<group>"; };
 		AB7A6B2B2C18874B00E33A60 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		AB9B25D02C2AEE170045BFCF /* SimilarMoviePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarMoviePresenter.swift; sourceTree = "<group>"; };
 		AB9F725F2C1982C7007C321D /* movieGif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = movieGif.gif; sourceTree = "<group>"; };
 		AB9F72612C1997E8007C321D /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		AB9F72632C199B6F007C321D /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
@@ -422,6 +424,7 @@
 			children = (
 				ABE7B21E2C299C06003176A5 /* SimilarMovieCell.swift */,
 				ABE7B21F2C299C06003176A5 /* SimilarMovieCell.xib */,
+				AB9B25D02C2AEE170045BFCF /* SimilarMoviePresenter.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -592,6 +595,7 @@
 				AB9F72732C19BF62007C321D /* SplashInteractor.swift in Sources */,
 				AB9F72872C1AD30D007C321D /* MovieCell.swift in Sources */,
 				AB9F72682C199B80007C321D /* MainScreenInteractor.swift in Sources */,
+				AB9B25D12C2AEE170045BFCF /* SimilarMoviePresenter.swift in Sources */,
 				ABA79FB82C1C881800441357 /* SectionHeader.swift in Sources */,
 				AB9F72892C1AD392007C321D /* BannerPresenter.swift in Sources */,
 				AB9F726C2C199B9D007C321D /* MainScreenRouter.swift in Sources */,

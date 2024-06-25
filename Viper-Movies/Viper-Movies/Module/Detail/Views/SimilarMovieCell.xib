@@ -11,39 +11,51 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="SimilarMovieCell" customModule="Viper_Movies" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="200" height="193"/>
+            <rect key="frame" x="0.0" y="0.0" width="140" height="220"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="200" height="193"/>
+                <rect key="frame" x="0.0" y="0.0" width="140" height="220"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zp2-rw-4qd">
-                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="140" height="1496"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oLc-6d-RAq">
-                                <rect key="frame" x="25" y="5" width="150" height="120"/>
+                                <rect key="frame" x="10" y="20" width="120" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="Pqh-zR-dmA"/>
-                                    <constraint firstAttribute="width" constant="150" id="Zen-wy-bCd"/>
+                                    <constraint firstAttribute="width" constant="120" id="Zen-wy-bCd"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="labellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabel" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="83P-lJ-KcF">
-                                <rect key="frame" x="25" y="130" width="150" height="65"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fmc-HD-mct">
+                                <rect key="frame" x="10" y="150" width="120" height="36"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LabelLabelLabelLabelLabelLabelLabelLabelLabelLabel" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="muC-fy-sNK">
+                                        <rect key="frame" x="0.0" y="0.0" width="120" height="36"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="muC-fy-sNK" firstAttribute="width" secondItem="fmc-HD-mct" secondAttribute="width" id="4Gu-aH-8L1"/>
+                                    <constraint firstItem="muC-fy-sNK" firstAttribute="leading" secondItem="fmc-HD-mct" secondAttribute="leading" id="6cy-0e-bJn"/>
+                                    <constraint firstItem="muC-fy-sNK" firstAttribute="height" relation="lessThanOrEqual" secondItem="fmc-HD-mct" secondAttribute="height" id="QdD-iN-qsc"/>
+                                    <constraint firstItem="muC-fy-sNK" firstAttribute="top" secondItem="fmc-HD-mct" secondAttribute="top" id="Uh9-BT-oq2"/>
+                                    <constraint firstAttribute="height" constant="36" id="tVj-YB-xOF"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="83P-lJ-KcF" firstAttribute="leading" secondItem="oLc-6d-RAq" secondAttribute="leading" id="035-Qf-peg"/>
-                            <constraint firstItem="oLc-6d-RAq" firstAttribute="top" secondItem="Zp2-rw-4qd" secondAttribute="top" constant="5" id="6Bc-wD-Wck"/>
-                            <constraint firstItem="83P-lJ-KcF" firstAttribute="top" secondItem="oLc-6d-RAq" secondAttribute="bottom" constant="5" id="K5W-aI-W95"/>
-                            <constraint firstAttribute="height" constant="200" id="LPM-w9-lKQ"/>
-                            <constraint firstAttribute="width" constant="200" id="SMm-0c-fJg"/>
+                            <constraint firstItem="oLc-6d-RAq" firstAttribute="top" secondItem="Zp2-rw-4qd" secondAttribute="top" constant="20" id="6Bc-wD-Wck"/>
+                            <constraint firstItem="fmc-HD-mct" firstAttribute="leading" secondItem="oLc-6d-RAq" secondAttribute="leading" id="J4E-Kt-Jlq"/>
+                            <constraint firstAttribute="bottom" secondItem="fmc-HD-mct" secondAttribute="bottom" constant="1310" id="PhB-W7-544"/>
+                            <constraint firstAttribute="width" constant="140" id="SMm-0c-fJg"/>
+                            <constraint firstItem="fmc-HD-mct" firstAttribute="trailing" secondItem="oLc-6d-RAq" secondAttribute="trailing" id="cD6-4l-cLz"/>
+                            <constraint firstItem="fmc-HD-mct" firstAttribute="top" secondItem="oLc-6d-RAq" secondAttribute="bottom" constant="10" id="lIs-eP-8tg"/>
                             <constraint firstItem="oLc-6d-RAq" firstAttribute="centerX" secondItem="Zp2-rw-4qd" secondAttribute="centerX" id="oii-gv-Syt"/>
-                            <constraint firstAttribute="bottom" secondItem="83P-lJ-KcF" secondAttribute="bottom" constant="5" id="wwv-hu-R2G"/>
-                            <constraint firstItem="83P-lJ-KcF" firstAttribute="trailing" secondItem="oLc-6d-RAq" secondAttribute="trailing" id="zdc-h3-UNx"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -53,12 +65,12 @@
                 <constraint firstItem="Zp2-rw-4qd" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="pyR-Zt-UBe"/>
                 <constraint firstItem="Zp2-rw-4qd" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="qfH-pU-cbY"/>
             </constraints>
-            <size key="customSize" width="200" height="193"/>
+            <size key="customSize" width="140" height="220"/>
             <connections>
                 <outlet property="similarImageView" destination="oLc-6d-RAq" id="ZrJ-0l-IhJ"/>
-                <outlet property="similarNameLabel" destination="83P-lJ-KcF" id="ZrO-C6-1Ou"/>
+                <outlet property="similarNameLabel" destination="muC-fy-sNK" id="ASj-sb-2Sg"/>
             </connections>
-            <point key="canvasLocation" x="-33.587786259541986" y="38.380281690140848"/>
+            <point key="canvasLocation" x="-79.389312977099237" y="47.887323943661976"/>
         </collectionViewCell>
     </objects>
     <resources>

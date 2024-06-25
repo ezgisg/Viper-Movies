@@ -35,9 +35,9 @@ enum Router: URLRequestConvertible {
         case .upcoming:
             return "upcoming"
         case .details(let movieId):
-            return "\(movieId))"
-        case .similar(movieId: let movieId):
-            return "\(movieId))/similar"
+            return "\(movieId)"
+        case .similar(page: _, movieId: let movieId):
+            return "\(movieId)/similar"
         }
     }
     
@@ -69,7 +69,7 @@ enum Router: URLRequestConvertible {
             }
         case .details:
             return nil
-        case .similar(page: let page, movieId: let movieId):
+        case .similar(page: let page, movieId: _):
             if let page {
                 params["page"] = page
             }
