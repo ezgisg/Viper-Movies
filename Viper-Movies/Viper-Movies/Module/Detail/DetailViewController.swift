@@ -38,6 +38,8 @@ class DetailViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             self.descriptionTextView.flashScrollIndicators()
         }
+        setupImdbButton()
+        setupFavoriteButton()
 
         
     }
@@ -54,7 +56,18 @@ class DetailViewController: UIViewController {
         
     }
     
- 
+    @IBAction func addToFavoriteTapped(_ sender: Any) {
+        guard let movieId = presenter?.movieId else { return }
+        var favorites = UserDefaults.standard.array(forKey: "favorites") as? [Int] ?? []
+        if let index = favorites.firstIndex(of: movieId) {
+            favorites.remove(at: index)
+        } else {
+            favorites.append(movieId)
+        }
+        UserDefaults.standard.set(favorites, forKey: "favorites")
+        setupFavoriteButton()
+    }
+    
 }
     
 extension DetailViewController: DetailViewControllerProtocol {
@@ -78,7 +91,6 @@ extension DetailViewController: DetailViewControllerProtocol {
 
 extension DetailViewController: DetailPresenterDelegate {
     func fetchedSimilars() {
-        let similars = presenter?.getSimilars()
         collectionView.reloadData()
     }
     
@@ -141,8 +153,8 @@ extension DetailViewController: UICollectionViewDelegate {
                 }, completion: { _ in
                     UIView.animate(withDuration: 0.2) {
                         cell.transform = CGAffineTransform.identity
-                        let transition = self.createFadeTransition()
-                        self.view.layer.add(transition, forKey: nil)
+//                        let transition = self.createFadeTransition()
+//                        self.view.layer.add(transition, forKey: nil)
                         ///for disabling go back can be change movieID
 //                        self.presenter?.loadDatas()
                         self.presenter?.didSelect(movieId: movieId)
@@ -161,5 +173,31 @@ extension DetailViewController {
         transition.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
         transition.type = .fade
         return transition
+    }
+}
+
+extension DetailViewController {
+    private func setupImdbButton() {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imdbImageTapped(_:)))
+            imdbImage.isUserInteractionEnabled = true
+            imdbImage.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    @objc private func imdbImageTapped(_ sender: UITapGestureRecognizer) {
+        guard let imdbID = presenter?.getDetails()?.imdb_id else { return }
+        let imdbUrlString = "https://www.imdb.com/title/\(imdbID)/"
+        guard let imdbUrl = URL(string: imdbUrlString) else { return }
+        UIApplication.shared.open(imdbUrl)
+    }
+    
+    private func setupFavoriteButton() {
+        guard let movieId = presenter?.movieId else { return }
+        var favorites = UserDefaults.standard.array(forKey: "favorites") as? [Int] ?? []
+        if favorites.contains(movieId) {
+            addToFavoriteButton.setTitle("Remove From Favorites", for: .normal)
+        } else {
+            addToFavoriteButton.setTitle("Add to Favorites", for: .normal)
+        }
+ 
     }
 }

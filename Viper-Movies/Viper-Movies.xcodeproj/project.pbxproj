@@ -264,6 +264,7 @@
 		AB7A6AFC2C18434100E33A60 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				AB98F3342C2C565400D4FE3D /* Favorites */,
 				AB9F726D2C19BF39007C321D /* Splash */,
 				AB7A6B112C186DFF00E33A60 /* Onboarding */,
 				AB9F72782C19CEE7007C321D /* TabBar */,
@@ -382,6 +383,13 @@
 				AB7A6B282C18855000E33A60 /* SecondPageViewController.xib */,
 			);
 			path = OnboardingViewControllers;
+			sourceTree = "<group>";
+		};
+		AB98F3342C2C565400D4FE3D /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Favorites;
 			sourceTree = "<group>";
 		};
 		AB9F726D2C19BF39007C321D /* Splash */ = {

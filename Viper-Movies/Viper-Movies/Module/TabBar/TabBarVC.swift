@@ -40,7 +40,19 @@ class TabBarController: UITabBarController {
             specialsNavigationController.tabBarItem = UITabBarItem(title: "Special Lists", image: resizedListImage, tag: 1)
             
         }
-        viewControllers = [mainNavigationController, specialsNavigationController]
+        
+        // Favorites
+        //TODO: will edit when favorites screen is ready
+        let favoritesVC = MainScreenRouter.createModule()
+        let favoritesNavigationController = UINavigationController(rootViewController: favoritesVC)
+        let favoritesImage = UIImage(named: "favorites")
+        if let favoritesImage {
+            let resizedMainImage = UIImage.resizeImage(image: favoritesImage, targetSize:  CGSize(width: 35, height: 35))?.withRenderingMode(.alwaysOriginal)
+            favoritesNavigationController.tabBarItem = UITabBarItem(title: "Favorites", image: resizedMainImage, tag: 0)
+            
+        }
+        
+        viewControllers = [mainNavigationController, specialsNavigationController, favoritesNavigationController]
         
         customizeTabBarAppearance()
         
