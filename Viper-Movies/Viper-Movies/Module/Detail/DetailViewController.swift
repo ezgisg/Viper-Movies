@@ -10,12 +10,11 @@ import Kingfisher
 
 protocol DetailViewControllerProtocol: AnyObject {
     func setImage(imageUrlString: String)
+    func reloadData()
 }
 
 class DetailViewController: UIViewController {
 
-    
-    //TODO: Butonlara işlev eklenecek
     @IBOutlet weak var bannerImage: UIImageView!
     @IBOutlet weak var movieName: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
@@ -26,51 +25,22 @@ class DetailViewController: UIViewController {
     
     var presenter: DetailPresenterProtocol?
  
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let presenter = presenter as? DetailPresenter {
-              presenter.delegate = self
-          }
+        presenter?.delegate = self
         presenter?.loadDatas()
-        setupCollectionView()
-        imdbImage.image = UIImage(named: "imdb")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            self.descriptionTextView.flashScrollIndicators()
-        }
-        setupImdbButton()
-        setupFavoriteButton()
-
-        
+        setupViews()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         descriptionTextView.flashScrollIndicators()
     }
     
-    private func setupCollectionView() {
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.register(cellType: SimilarMovieCell.self)
-        collectionView.collectionViewLayout = createCompositionalLayout()
-        
-    }
-    
-    @IBAction func addToFavoriteTapped(_ sender: Any) {
-        guard let movieId = presenter?.movieId else { return }
-        var favorites = UserDefaults.standard.array(forKey: "favorites") as? [Int] ?? []
-        if let index = favorites.firstIndex(of: movieId) {
-            favorites.remove(at: index)
-        } else {
-            favorites.append(movieId)
-        }
-        UserDefaults.standard.set(favorites, forKey: "favorites")
-        setupFavoriteButton()
-    }
-    
 }
-    
+
+//MARK: DetailViewControllerProtocol
 extension DetailViewController: DetailViewControllerProtocol {
+    
     func setImage(imageUrlString: String) {
         let url = URL(string: imageUrlString)
         bannerImage.kf.indicatorType = .activity
@@ -86,30 +56,27 @@ extension DetailViewController: DetailViewControllerProtocol {
         }
     }
     
-    
-}
-
-extension DetailViewController: DetailPresenterDelegate {
-    func fetchedSimilars() {
+    func reloadData() {
         collectionView.reloadData()
     }
     
+}
+
+//MARK: DetailPresenterDelegate
+extension DetailViewController: DetailPresenterDelegate {
     func fetchedDetails() {
         let details = presenter?.getDetails()
         descriptionTextView.text = details?.overview ?? "No Info"
         movieName.text = details?.original_title ?? "Unknown"
         detailLabel.text = String(format: "🌟 Rating: %.1f", details?.vote_average ?? 0)
     }
-    
-    
 }
 
-
+//MARK: CollectionViewDataSource
 extension DetailViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return presenter?.getSimilars().count ?? 0
     }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let similars = presenter?.getSimilars() else { return UICollectionViewCell()}
         let cell = collectionView.dequeueReusableCell(with: SimilarMovieCell.self, for: indexPath)
@@ -117,7 +84,6 @@ extension DetailViewController: UICollectionViewDataSource {
         cell.cellPresenter = presenter
         return cell
     }
-    
 }
 
 //MARK: Compositional Layout
@@ -139,13 +105,13 @@ extension DetailViewController {
         }
 }
 
+
+//MARK: CollectionViewDelegate
 extension DetailViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let similars = presenter?.getSimilars() else { return }
-        guard let movieId = similars[indexPath.row].id else { return }
-        ///for disabling go back can be change movieID
-//        presenter?.movieId = movieId
-        
+        guard let similars = presenter?.getSimilars(),
+              let movieId = similars[indexPath.row].id else { return }
+
         if let cell = collectionView.cellForItem(at: indexPath) {
                 UIView.animate(withDuration: 0.2,
                                animations: {
@@ -153,10 +119,6 @@ extension DetailViewController: UICollectionViewDelegate {
                 }, completion: { _ in
                     UIView.animate(withDuration: 0.2) {
                         cell.transform = CGAffineTransform.identity
-//                        let transition = self.createFadeTransition()
-//                        self.view.layer.add(transition, forKey: nil)
-                        ///for disabling go back can be change movieID
-//                        self.presenter?.loadDatas()
                         self.presenter?.didSelect(movieId: movieId)
 
                     }
@@ -165,17 +127,7 @@ extension DetailViewController: UICollectionViewDelegate {
     }
 }
 
-//Helpers
-extension DetailViewController {
-    private func createFadeTransition() -> CATransition {
-        let transition: CATransition = CATransition()
-        transition.duration = 0.5
-        transition.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
-        transition.type = .fade
-        return transition
-    }
-}
-
+//MARK: View functions
 extension DetailViewController {
     private func setupImdbButton() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imdbImageTapped(_:)))
@@ -191,13 +143,35 @@ extension DetailViewController {
     }
     
     private func setupFavoriteButton() {
-        guard let movieId = presenter?.movieId else { return }
-        var favorites = UserDefaults.standard.array(forKey: "favorites") as? [Int] ?? []
-        if favorites.contains(movieId) {
+        guard let movieId = presenter?.movieId,
+              let decoded = presenter?.getFromUserDefaults() else { return }
+        if decoded.contains(where: { $0.id == movieId }) {
             addToFavoriteButton.setTitle("Remove From Favorites", for: .normal)
         } else {
             addToFavoriteButton.setTitle("Add to Favorites", for: .normal)
         }
- 
+    }
+    
+    private func setupCollectionView() {
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(cellType: SimilarMovieCell.self)
+        collectionView.collectionViewLayout = createCompositionalLayout()
+        
+    }
+    
+    @IBAction func addToFavoriteTapped(_ sender: Any) {
+        presenter?.saveToUserDefaults()
+        setupFavoriteButton()
+    }
+    
+    private func setupViews() {
+        imdbImage.image = UIImage(named: "imdb")
+        setupCollectionView()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.descriptionTextView.flashScrollIndicators()
+        }
+        setupImdbButton()
+        setupFavoriteButton()
     }
 }

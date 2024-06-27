@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FavoritesViewController" customModule="Viper_Movies" customModuleProvider="target">
+            <connections>
+                <outlet property="searchBar" destination="3NN-Jx-j2j" id="M2v-5n-Mo5"/>
+                <outlet property="tableView" destination="wJ3-RA-k82" id="hO0-tT-d4p"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="3NN-Jx-j2j">
+                    <rect key="frame" x="0.0" y="47" width="390" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="osu-eA-i0W"/>
+                    </constraints>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="JXQ-57-Gx6"/>
+                    </connections>
+                </searchBar>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="wJ3-RA-k82">
+                    <rect key="frame" x="0.0" y="91" width="390" height="719"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="wJ3-RA-k82" secondAttribute="trailing" id="6Eh-FT-aGm"/>
+                <constraint firstItem="wJ3-RA-k82" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="6UP-89-S6O"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="wJ3-RA-k82" secondAttribute="bottom" id="7pR-Qf-aGS"/>
+                <constraint firstItem="3NN-Jx-j2j" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="JcP-xN-kgC"/>
+                <constraint firstItem="3NN-Jx-j2j" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="TCf-tz-dk6"/>
+                <constraint firstItem="3NN-Jx-j2j" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="ihJ-LL-R0H"/>
+                <constraint firstItem="wJ3-RA-k82" firstAttribute="top" secondItem="3NN-Jx-j2j" secondAttribute="bottom" id="inf-Ms-xfw"/>
+            </constraints>
+            <point key="canvasLocation" x="-327" y="96"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

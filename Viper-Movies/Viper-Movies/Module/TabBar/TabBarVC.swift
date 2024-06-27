@@ -42,8 +42,7 @@ class TabBarController: UITabBarController {
         }
         
         // Favorites
-        //TODO: will edit when favorites screen is ready
-        let favoritesVC = MainScreenRouter.createModule()
+        let favoritesVC = FavoritesRouter.createModule()
         let favoritesNavigationController = UINavigationController(rootViewController: favoritesVC)
         let favoritesImage = UIImage(named: "favorites")
         if let favoritesImage {
