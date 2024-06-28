@@ -21,6 +21,7 @@ class TabBarController: UITabBarController {
     private func setupTabbar() {
         // MainViewController
         let mainVC = MainScreenRouter.createModule()
+        mainVC.title = "In Theaters"
         let mainNavigationController = UINavigationController(rootViewController: mainVC)
         let mainImage = UIImage(named: "main")
         if let mainImage {
@@ -32,6 +33,7 @@ class TabBarController: UITabBarController {
         // SpecialViewController
         //TODO: will edit when special screen is ready
         let specialsVC = MainScreenRouter.createModule()
+        specialsVC.title = "Special Lists"
         let specialsNavigationController = UINavigationController(rootViewController: specialsVC)
         
         let listImage = UIImage(named: "list")
@@ -43,6 +45,7 @@ class TabBarController: UITabBarController {
         
         // Favorites
         let favoritesVC = FavoritesRouter.createModule()
+        favoritesVC.title = "Favorites"
         let favoritesNavigationController = UINavigationController(rootViewController: favoritesVC)
         let favoritesImage = UIImage(named: "favorites")
         if let favoritesImage {
@@ -50,6 +53,7 @@ class TabBarController: UITabBarController {
             favoritesNavigationController.tabBarItem = UITabBarItem(title: "Favorites", image: resizedMainImage, tag: 0)
             
         }
+        
         
         viewControllers = [mainNavigationController, specialsNavigationController, favoritesNavigationController]
         

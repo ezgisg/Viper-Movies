@@ -10,7 +10,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FavoritesViewController" customModule="Viper_Movies" customModuleProvider="target">
             <connections>
+                <outlet property="mainEmptyView" destination="gwr-2C-zeF" id="tz0-3O-WUg"/>
                 <outlet property="searchBar" destination="3NN-Jx-j2j" id="M2v-5n-Mo5"/>
+                <outlet property="searchEmptyView" destination="SN9-KA-Vvl" id="XYc-wT-1yb"/>
                 <outlet property="tableView" destination="wJ3-RA-k82" id="hO0-tT-d4p"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -20,6 +22,14 @@
             <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gwr-2C-zeF" customClass="EmptyView" customModule="Viper_Movies" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="91" width="390" height="719"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SN9-KA-Vvl" customClass="EmptyView" customModule="Viper_Movies" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="91" width="390" height="719"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
                 <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="3NN-Jx-j2j">
                     <rect key="frame" x="0.0" y="47" width="390" height="44"/>
                     <constraints>
@@ -41,10 +51,18 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="wJ3-RA-k82" secondAttribute="trailing" id="6Eh-FT-aGm"/>
                 <constraint firstItem="wJ3-RA-k82" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="6UP-89-S6O"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="wJ3-RA-k82" secondAttribute="bottom" id="7pR-Qf-aGS"/>
+                <constraint firstItem="gwr-2C-zeF" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="7vI-LE-Pxb"/>
+                <constraint firstItem="SN9-KA-Vvl" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="9PN-kk-ada"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="gwr-2C-zeF" secondAttribute="trailing" id="E8X-Q2-edO"/>
+                <constraint firstItem="gwr-2C-zeF" firstAttribute="top" secondItem="3NN-Jx-j2j" secondAttribute="bottom" id="GYe-It-Dln"/>
                 <constraint firstItem="3NN-Jx-j2j" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="JcP-xN-kgC"/>
                 <constraint firstItem="3NN-Jx-j2j" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="TCf-tz-dk6"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="gwr-2C-zeF" secondAttribute="bottom" id="TM9-VB-O8d"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="SN9-KA-Vvl" secondAttribute="bottom" id="YOw-hn-iLL"/>
                 <constraint firstItem="3NN-Jx-j2j" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="ihJ-LL-R0H"/>
                 <constraint firstItem="wJ3-RA-k82" firstAttribute="top" secondItem="3NN-Jx-j2j" secondAttribute="bottom" id="inf-Ms-xfw"/>
+                <constraint firstItem="SN9-KA-Vvl" firstAttribute="top" secondItem="3NN-Jx-j2j" secondAttribute="bottom" id="pfa-Y3-ttx"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="SN9-KA-Vvl" secondAttribute="trailing" id="psO-Cd-EpQ"/>
             </constraints>
             <point key="canvasLocation" x="-327" y="96"/>
         </view>

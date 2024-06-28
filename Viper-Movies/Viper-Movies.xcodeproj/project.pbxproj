@@ -67,6 +67,11 @@
 		AB9F728B2C1AD3A0007C321D /* MoviePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9F728A2C1AD3A0007C321D /* MoviePresenter.swift */; };
 		AB9F728E2C1AD61B007C321D /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = AB9F728D2C1AD61B007C321D /* Kingfisher */; };
 		AB9F72902C1AFCE7007C321D /* CollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9F728F2C1AFCE7007C321D /* CollectionView+Extensions.swift */; };
+		ABA20F522C2EA12300EE2DC3 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA20F512C2EA12300EE2DC3 /* EmptyView.swift */; };
+		ABA20F542C2EACF400EE2DC3 /* EmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABA20F532C2EACF400EE2DC3 /* EmptyView.xib */; };
+		ABA20F562C2EB6DE00EE2DC3 /* NibOwnerLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA20F552C2EB6DE00EE2DC3 /* NibOwnerLoadable.swift */; };
+		ABA20F582C2EB72D00EE2DC3 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA20F572C2EB72D00EE2DC3 /* NibLoadable.swift */; };
+		ABA20F5A2C2F159A00EE2DC3 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA20F592C2F159A00EE2DC3 /* String+Extensions.swift */; };
 		ABA79FB82C1C881800441357 /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA79FB62C1C881800441357 /* SectionHeader.swift */; };
 		ABA79FB92C1C881800441357 /* SectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABA79FB72C1C881800441357 /* SectionHeader.xib */; };
 		ABE7B2132C2999B6003176A5 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABE7B2122C2999B6003176A5 /* DetailViewController.xib */; };
@@ -157,6 +162,11 @@
 		AB9F72882C1AD392007C321D /* BannerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerPresenter.swift; sourceTree = "<group>"; };
 		AB9F728A2C1AD3A0007C321D /* MoviePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviePresenter.swift; sourceTree = "<group>"; };
 		AB9F728F2C1AFCE7007C321D /* CollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionView+Extensions.swift"; sourceTree = "<group>"; };
+		ABA20F512C2EA12300EE2DC3 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
+		ABA20F532C2EACF400EE2DC3 /* EmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyView.xib; sourceTree = "<group>"; };
+		ABA20F552C2EB6DE00EE2DC3 /* NibOwnerLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibOwnerLoadable.swift; sourceTree = "<group>"; };
+		ABA20F572C2EB72D00EE2DC3 /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
+		ABA20F592C2F159A00EE2DC3 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		ABA79FB62C1C881800441357 /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		ABA79FB72C1C881800441357 /* SectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionHeader.xib; sourceTree = "<group>"; };
 		ABE7B2112C2999B6003176A5 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -265,6 +275,8 @@
 			isa = PBXGroup;
 			children = (
 				AB7A6B202C187DA200E33A60 /* BaseViewController.swift */,
+				ABA20F512C2EA12300EE2DC3 /* EmptyView.swift */,
+				ABA20F532C2EACF400EE2DC3 /* EmptyView.xib */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -326,6 +338,9 @@
 				AB9F727B2C19EFBC007C321D /* UIColor+Extensions.swift */,
 				AB9F728F2C1AFCE7007C321D /* CollectionView+Extensions.swift */,
 				AB95F2992C2DBC10007D6BE4 /* TableView+Extensions.swift */,
+				ABA20F552C2EB6DE00EE2DC3 /* NibOwnerLoadable.swift */,
+				ABA20F572C2EB72D00EE2DC3 /* NibLoadable.swift */,
+				ABA20F592C2F159A00EE2DC3 /* String+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -593,6 +608,7 @@
 				AB7A6AD32C1842E900E33A60 /* Assets.xcassets in Resources */,
 				AB7A6AD62C1842E900E33A60 /* Base in Resources */,
 				AB7A6ACE2C1842E700E33A60 /* Base in Resources */,
+				ABA20F542C2EACF400EE2DC3 /* EmptyView.xib in Resources */,
 				AB9F72862C1AD30D007C321D /* MovieCell.xib in Resources */,
 				AB7A6B292C18855000E33A60 /* SecondPageViewController.xib in Resources */,
 				ABA79FB92C1C881800441357 /* SectionHeader.xib in Resources */,
@@ -629,6 +645,8 @@
 				AB9F72622C1997E8007C321D /* Array+Extensions.swift in Sources */,
 				AB9F726A2C199B8D007C321D /* MainScreenPresenter.swift in Sources */,
 				ABE7B21A2C299B69003176A5 /* DetailRouter.swift in Sources */,
+				ABA20F562C2EB6DE00EE2DC3 /* NibOwnerLoadable.swift in Sources */,
+				ABA20F522C2EA12300EE2DC3 /* EmptyView.swift in Sources */,
 				ABE7B2162C299B4D003176A5 /* DetailInteractor.swift in Sources */,
 				AB7A6B2A2C18855000E33A60 /* SecondPageViewController.swift in Sources */,
 				AB95F2982C2DA169007D6BE4 /* FavoritesCellPresenter.swift in Sources */,
@@ -666,8 +684,10 @@
 				ABE7B2142C2999B6003176A5 /* DetailViewController.swift in Sources */,
 				AB7A6B012C18438800E33A60 /* ServiceManager.swift in Sources */,
 				AB9F727A2C19D3CC007C321D /* TabBarVC.swift in Sources */,
+				ABA20F582C2EB72D00EE2DC3 /* NibLoadable.swift in Sources */,
 				AB7A6B252C18853300E33A60 /* FirstPageViewController.swift in Sources */,
 				AB7A6B2C2C18874B00E33A60 /* UIImage+Extensions.swift in Sources */,
+				ABA20F5A2C2F159A00EE2DC3 /* String+Extensions.swift in Sources */,
 				AB9F72832C1AD2F7007C321D /* BannerCell.swift in Sources */,
 				AB7A6B182C186F9000E33A60 /* OnboardingViewController.swift in Sources */,
 				AB7A6B1F2C18720700E33A60 /* OnboardingPresenter.swift in Sources */,

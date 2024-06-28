@@ -13,8 +13,7 @@ protocol OnboardingViewControllerProtocol: AnyObject {
 
 //MARK: OnboardingViewController
 final class OnboardingViewController: BaseViewController {
-//TODO: For one time onboarding screen add userdefaults control
-    
+
     @IBOutlet weak var pageController: UIPageControl!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var skipButton: UIButton!

@@ -92,7 +92,7 @@ extension MainScreenPresenter: MainScreenPresenterProtocol {
     }
 }
 
-//TODO: date type which is used for bottom of cell and min-maxdate will change
+
 //MARK: MainScreenInteractorOutputProtocol
 extension MainScreenPresenter: MainScreenInteractorOutputProtocol {
     //TODO: fetch other pages with scrool
@@ -101,8 +101,8 @@ extension MainScreenPresenter: MainScreenInteractorOutputProtocol {
         case .success(let movies):
             self.movies.append(contentsOf: movies.results ?? [])
             pageCount = movies.total_pages ?? 1
-            minDate = movies.dates?.minimum ?? ""
-            maxDate = movies.dates?.maximum ?? ""
+            minDate = movies.dates?.minimum?.formatDate(from: "yyyy-MM-dd", to: "dd-MM-yyyy") ?? ""
+            maxDate = movies.dates?.maximum?.formatDate(from: "yyyy-MM-dd", to: "dd-MM-yyyy") ?? ""
             filteredMovies = self.movies
             view?.reloadData()
         case .failure(let error):

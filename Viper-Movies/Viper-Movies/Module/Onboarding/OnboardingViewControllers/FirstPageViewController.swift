@@ -16,9 +16,4 @@ class FirstPageViewController: UIViewController {
         self.imageView.image = videoGif
     }
     
-    @IBAction func skipButton(_ sender: Any) {
-        //TODO: Root to main view
-        print("Skip butonuna basıldı")
-    }
-    
 }

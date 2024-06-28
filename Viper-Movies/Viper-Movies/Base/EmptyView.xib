@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EmptyView" customModule="Viper_Movies" customModuleProvider="target">
+            <connections>
+                <outlet property="addImage" destination="ZQ0-gW-yVK" id="paI-5Q-l4H"/>
+                <outlet property="addText" destination="757-p2-sFr" id="1YP-OC-IjS"/>
+                <outlet property="noMoviesText" destination="Q0s-BB-ywB" id="pzV-PP-RAk"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No movies to list" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q0s-BB-ywB">
+                    <rect key="frame" x="106.66666666666669" y="109" width="180" height="31.333333333333343"/>
+                    <fontDescription key="fontDescription" name="BradleyHandITCTT-Bold" family="Bradley Hand" pointSize="25"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addFavorite" translatesAutoresizingMaskIntoConstraints="NO" id="ZQ0-gW-yVK">
+                    <rect key="frame" x="40" y="231.66666666666669" width="313" height="230.66666666666669"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="ZQ0-gW-yVK" secondAttribute="height" multiplier="262:193" id="V0z-3y-d3M"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's add!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="757-p2-sFr">
+                    <rect key="frame" x="143.33333333333334" y="160.33333333333334" width="106.33333333333334" height="31.333333333333343"/>
+                    <fontDescription key="fontDescription" name="BradleyHandITCTT-Bold" family="Bradley Hand" pointSize="25"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="tableBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="ZQ0-gW-yVK" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="40" id="0QL-DA-UBE"/>
+                <constraint firstItem="ZQ0-gW-yVK" firstAttribute="centerX" secondItem="757-p2-sFr" secondAttribute="centerX" id="NEW-sm-zE2"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ZQ0-gW-yVK" secondAttribute="trailing" constant="40" id="TOW-fm-YPw"/>
+                <constraint firstItem="757-p2-sFr" firstAttribute="centerX" secondItem="Q0s-BB-ywB" secondAttribute="centerX" id="aQg-lE-gtR"/>
+                <constraint firstItem="Q0s-BB-ywB" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="50" id="dVm-c1-tPh"/>
+                <constraint firstItem="757-p2-sFr" firstAttribute="top" secondItem="Q0s-BB-ywB" secondAttribute="bottom" constant="20" id="eTf-uN-YGT"/>
+                <constraint firstItem="Q0s-BB-ywB" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="lSp-aa-4IT"/>
+                <constraint firstItem="ZQ0-gW-yVK" firstAttribute="top" secondItem="757-p2-sFr" secondAttribute="bottom" constant="40" id="uVP-T2-DRh"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-115.26717557251908" y="-12.67605633802817"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="addFavorite" width="512" height="512"/>
+        <systemColor name="tableBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

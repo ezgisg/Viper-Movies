@@ -34,6 +34,7 @@ class DetailViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         descriptionTextView.flashScrollIndicators()
+        setupFavoriteButton()
     }
     
 }
@@ -67,7 +68,7 @@ extension DetailViewController: DetailPresenterDelegate {
     func fetchedDetails() {
         let details = presenter?.getDetails()
         descriptionTextView.text = details?.overview ?? "No Info"
-        movieName.text = details?.original_title ?? "Unknown"
+        movieName.text = details?.title ?? "Unknown"
         detailLabel.text = String(format: "🌟 Rating: %.1f", details?.vote_average ?? 0)
     }
 }
@@ -174,4 +175,5 @@ extension DetailViewController {
         setupImdbButton()
         setupFavoriteButton()
     }
+
 }
