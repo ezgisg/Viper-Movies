@@ -8,7 +8,11 @@
 import Foundation
 
 protocol SpecialsRouterProtocol: AnyObject {
-    
+    func navigate(_ route: SpecialsRoutes, movieId: Int)
+}
+
+enum SpecialsRoutes {
+    case detail
 }
 
 final class SpecialsRouter {
@@ -28,5 +32,13 @@ final class SpecialsRouter {
 }
 
 extension SpecialsRouter: SpecialsRouterProtocol {
-    
+    func navigate(_ route: SpecialsRoutes, movieId: Int) {
+        switch route {
+        case .detail:
+            
+            guard let navigationController = viewController?.navigationController else { return }
+            let detailVC = DetailRouter.createModule(movieId: movieId)
+            navigationController.pushViewController(detailVC, animated: true)
+        }
+    }
 }

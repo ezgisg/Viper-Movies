@@ -101,8 +101,8 @@ extension MainScreenPresenter: MainScreenInteractorOutputProtocol {
         case .success(let movies):
             self.movies.append(contentsOf: movies.results ?? [])
             pageCount = movies.total_pages ?? 1
-            minDate = movies.dates?.minimum?.formatDate(from: "yyyy-MM-dd", to: "dd-MM-yyyy") ?? ""
-            maxDate =       movies.dates?.maximum?.formatDate(from: "yyyy-MM-dd", to: "dd-MM-yyyy") ?? ""
+            minDate = movies.dates?.minimum?.formatDate(from: "yyyy-MM-dd", to: "dd.MM.yyyy") ?? ""
+            maxDate =       movies.dates?.maximum?.formatDate(from: "yyyy-MM-dd", to: "dd.MM.yyyy") ?? ""
             filteredMovies = self.movies
             view?.reloadData()
         case .failure(let error):

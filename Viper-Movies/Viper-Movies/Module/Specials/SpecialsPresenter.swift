@@ -10,7 +10,9 @@ import Foundation
 protocol SpecialsPresenterProtocol: AnyObject {
     var fetchedMovies: [MovResult]? { get }
     func getOptions() -> ([SelectedType])
-    func fetchInitialData(selectedType: String)
+    func fetchData(selectedType: String)
+    func didSelect(movieId: Int)
+    func loadMoreData(selectedType: String)
 }
 
 final class SpecialsPresenter {
@@ -19,6 +21,8 @@ final class SpecialsPresenter {
     var router: SpecialsRouterProtocol?
     
     var movies: [MovResult] = []
+    var pageCount : Int?
+    var currentPage = 1
     
     init(view: SpecialsViewControllerProtocol, interactor: SpecialsInteractorProtocol, router: SpecialsRouterProtocol) {
         self.view = view
@@ -29,8 +33,12 @@ final class SpecialsPresenter {
 
 extension SpecialsPresenter: SpecialsInteractorOutputProtocol {
     func fetchSelectedTypeMoviesOutput(result: MoviesResult) {
+        view?.hideLoadingView()
         switch result {
         case .success(let movies):
+            //TODO: load more olduğunda removeall yapmadan tip değiştiğinde removeall yaparak ilerlemek gerek
+            pageCount = movies.total_pages ?? 1
+            self.movies.removeAll(keepingCapacity: false)
             self.movies.append(contentsOf: movies.results ?? [])
             view?.reloadData()
         case .failure(let error):
@@ -49,16 +57,29 @@ extension SpecialsPresenter: SpecialsPresenterProtocol {
         }
     }
     
-    func fetchInitialData(selectedType: String) {
+    func fetchData(selectedType: String) {
         guard let selectedEnumType = SelectedType(rawValue: selectedType) else {
-            interactor?.fetchSelectedTypeMovies(selectedType: .nowPlaying, page: nil)
+            interactor?.fetchSelectedTypeMovies(selectedType: .popular, page: nil)
             return
         }
+        view?.showLoadingView()
         interactor?.fetchSelectedTypeMovies(selectedType: selectedEnumType, page: nil)
     }
     
     func getOptions() -> ([SelectedType]) {
-        return [.nowPlaying, .topRated, .upcoming]
+        return [.popular, .topRated, .upcoming]
+    }
+    
+    func didSelect(movieId: Int) {
+        router?.navigate(.detail, movieId: movieId)
+    }
+    
+    //TODO: tip değişimine göre currentpage vs. sıfırlanması gerekecek?
+    func loadMoreData(selectedType: String) {
+        guard let selectedEnumType = SelectedType(rawValue: selectedType),
+              currentPage != pageCount ?? 1 else { return }
+        currentPage += 1
+        interactor?.fetchSelectedTypeMovies(selectedType: selectedEnumType , page: currentPage)
     }
     
 }

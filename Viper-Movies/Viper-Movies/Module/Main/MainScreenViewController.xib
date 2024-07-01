@@ -26,7 +26,7 @@
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="asK-3n-JhO">
                             <rect key="frame" x="5" y="5" width="383" height="749"/>
                             <subviews>
-                                <searchBar contentMode="redraw" placeholder="Ara..." translatesAutoresizingMaskIntoConstraints="NO" id="qOF-Wl-h9M">
+                                <searchBar contentMode="redraw" placeholder="Search..." translatesAutoresizingMaskIntoConstraints="NO" id="qOF-Wl-h9M">
                                     <rect key="frame" x="0.0" y="0.0" width="383" height="70"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="70" id="kwF-K3-bhO"/>

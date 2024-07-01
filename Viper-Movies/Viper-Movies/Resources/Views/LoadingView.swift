@@ -25,6 +25,7 @@ class LoadingView {
         activityIndicator.center = blurView.center
         activityIndicator.hidesWhenStopped = true
         activityIndicator.style = .large
+        activityIndicator.color = .white
         blurView.contentView.addSubview(activityIndicator)
     }
     

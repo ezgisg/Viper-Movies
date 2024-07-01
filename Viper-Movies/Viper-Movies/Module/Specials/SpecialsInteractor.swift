@@ -8,14 +8,14 @@
 import Foundation
 
 enum SelectedType: String {
-    case nowPlaying = "Now Playing"
+    case popular = "Popular"
     case topRated = "Top Rated"
     case upcoming = "Upcoming"
     
     init?(rawValue: String) {
         switch rawValue {
-        case "Now Playing":
-            self = .nowPlaying
+        case "Popular":
+            self = .popular
         case "Top Rated":
             self = .topRated
         case "Upcoming":
@@ -44,8 +44,8 @@ final class SpecialsInteractor {
 extension SpecialsInteractor: SpecialsInteractorProtocol {
     func fetchSelectedTypeMovies(selectedType: SelectedType, page: Int?) {
         switch selectedType {
-        case .nowPlaying:
-            service.fetchNowPlayingMovies(page: page) { MoviesResult in
+        case .popular:
+            service.fetchPopularMovies(page: page) { MoviesResult in
                 self.output?.fetchSelectedTypeMoviesOutput(result: MoviesResult)
             }
         case .topRated:

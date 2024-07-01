@@ -45,7 +45,7 @@ extension MovieCell: MovieCellProtocol {
     }
     
     func setDetail(detail: String) {
-        detailLabel.text = detail.formatDate(from: "yyyy-MM-dd", to: "dd-MM-yyyy")
+        detailLabel.text = detail.formatDate(from: "yyyy-MM-dd", to: "dd/MM/yyyy")
     }
     
     func setImage(imageUrlString: String) {

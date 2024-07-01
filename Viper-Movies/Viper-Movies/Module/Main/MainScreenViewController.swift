@@ -79,7 +79,7 @@ extension MainScreenViewController {
             case .banner:
                 if let minDate = self.presenter?.getDates().0,
                    let maxDate = self.presenter?.getDates().1 {
-                    headerView.configure(with: "\(minDate) / \(maxDate) Posters")
+                    headerView.configure(with: "\(minDate) - \(maxDate) Posters")
                 }
             case .movieList:
                 headerView.configure(with: "Upcoming Movies")

@@ -7,14 +7,13 @@
 
 import UIKit
 
-
-//TODO: Öncelikli! layout ve seçime göre data yüklenmesi
-//TODO: 2.öncelik loading view + 1.page'in çekilip scroll ettikçe diğerlerinin çekilmesi
 protocol SpecialsViewControllerProtocol: AnyObject {
     func reloadData()
+    func showLoadingView()
+    func hideLoadingView()
 }
 
-class SpecialsViewController: UIViewController {
+class SpecialsViewController: UIViewController, LoadingShowable{
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var changeButton: UIButton!
@@ -25,18 +24,21 @@ class SpecialsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initialSetup()
-        presenter?.fetchInitialData(selectedType: pickerLabel.text ?? "")
+        presenter?.fetchData(selectedType: pickerLabel.text ?? "")
       
     }
 
-
     @IBAction func changeButtonClicked(_ sender: Any) {
+        let previousText = pickerLabel.text
         let bottomSheetVC = BottomSheetViewController(
             data: presenter?.getOptions().map({$0.rawValue}) ?? [],
             selectedOption: pickerLabel.text,
             optionSelected: { [weak self] selectedOption in
                 guard let self else { return }
-                self.pickerLabel.text = selectedOption
+                pickerLabel.text = selectedOption
+                if previousText != selectedOption {
+                    presenter?.fetchData(selectedType: selectedOption)
+                }
             }
         )
         bottomSheetVC.modalPresentationStyle = .overFullScreen
@@ -46,23 +48,32 @@ class SpecialsViewController: UIViewController {
     
 }
 
-
 extension SpecialsViewController: SpecialsViewControllerProtocol {
+    func showLoadingView() {
+        showLoading()
+    }
+    func hideLoadingView() {
+        ///For demo added 0.3 second delay
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.hideLoading()
+        }
+ 
+    }
     func reloadData() {
         collectionView.reloadData()
     }
-    
-    
+
 }
 
 private extension SpecialsViewController {
     final func initialSetup() {
-        pickerLabel.text = presenter?.getOptions()[1].rawValue
+        pickerLabel.text = presenter?.getOptions()[0].rawValue
         labelContainer.layer.cornerRadius = 10
         labelContainer.backgroundColor = .systemGray5
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(cellType: MovieCell.self)
+        collectionView.collectionViewLayout = createCompositionalLayout()
     }
 }
 
@@ -72,7 +83,6 @@ extension SpecialsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return presenter?.fetchedMovies?.count ?? 0
     }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(with: MovieCell.self, for: indexPath)
         guard let movieResult = presenter?.fetchedMovies?[indexPath.row] else { return UICollectionViewCell()}
@@ -84,5 +94,28 @@ extension SpecialsViewController: UICollectionViewDataSource {
 
 
 extension SpecialsViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let movieId = presenter?.fetchedMovies?[indexPath.row].id else { return }
+        presenter?.didSelect(movieId: movieId)
+    }
     
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        
+    }
+}
+
+extension SpecialsViewController {
+    private func createCompositionalLayout() -> UICollectionViewCompositionalLayout {
+        return UICollectionViewCompositionalLayout { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
+            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(160))
+            let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+            let section = NSCollectionLayoutSection(group: group)
+            section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
+        
+            
+            return section
+        }
+    }
 }
