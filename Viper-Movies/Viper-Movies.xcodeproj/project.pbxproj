@@ -72,6 +72,15 @@
 		ABA20F562C2EB6DE00EE2DC3 /* NibOwnerLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA20F552C2EB6DE00EE2DC3 /* NibOwnerLoadable.swift */; };
 		ABA20F582C2EB72D00EE2DC3 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA20F572C2EB72D00EE2DC3 /* NibLoadable.swift */; };
 		ABA20F5A2C2F159A00EE2DC3 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA20F592C2F159A00EE2DC3 /* String+Extensions.swift */; };
+		ABA20F5E2C32A00200EE2DC3 /* SpecialsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABA20F5D2C32A00200EE2DC3 /* SpecialsViewController.xib */; };
+		ABA20F5F2C32A00200EE2DC3 /* SpecialsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA20F5C2C32A00200EE2DC3 /* SpecialsViewController.swift */; };
+		ABA20F612C32A02E00EE2DC3 /* SpecialsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA20F602C32A02E00EE2DC3 /* SpecialsInteractor.swift */; };
+		ABA20F632C32A04300EE2DC3 /* SpecialsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA20F622C32A04300EE2DC3 /* SpecialsPresenter.swift */; };
+		ABA20F652C32A05200EE2DC3 /* SpecialsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA20F642C32A05200EE2DC3 /* SpecialsRouter.swift */; };
+		ABA20F682C32AA3600EE2DC3 /* BottomSheetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABA20F672C32AA3600EE2DC3 /* BottomSheetViewController.xib */; };
+		ABA20F692C32AA3600EE2DC3 /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA20F662C32AA3600EE2DC3 /* BottomSheetViewController.swift */; };
+		ABA20F6D2C32FB5D00EE2DC3 /* LoadingShowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA20F6C2C32FB5D00EE2DC3 /* LoadingShowable.swift */; };
+		ABA20F6F2C32FB7300EE2DC3 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA20F6E2C32FB7300EE2DC3 /* LoadingView.swift */; };
 		ABA79FB82C1C881800441357 /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA79FB62C1C881800441357 /* SectionHeader.swift */; };
 		ABA79FB92C1C881800441357 /* SectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABA79FB72C1C881800441357 /* SectionHeader.xib */; };
 		ABE7B2132C2999B6003176A5 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABE7B2122C2999B6003176A5 /* DetailViewController.xib */; };
@@ -167,6 +176,15 @@
 		ABA20F552C2EB6DE00EE2DC3 /* NibOwnerLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibOwnerLoadable.swift; sourceTree = "<group>"; };
 		ABA20F572C2EB72D00EE2DC3 /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
 		ABA20F592C2F159A00EE2DC3 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		ABA20F5C2C32A00200EE2DC3 /* SpecialsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialsViewController.swift; sourceTree = "<group>"; };
+		ABA20F5D2C32A00200EE2DC3 /* SpecialsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpecialsViewController.xib; sourceTree = "<group>"; };
+		ABA20F602C32A02E00EE2DC3 /* SpecialsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialsInteractor.swift; sourceTree = "<group>"; };
+		ABA20F622C32A04300EE2DC3 /* SpecialsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialsPresenter.swift; sourceTree = "<group>"; };
+		ABA20F642C32A05200EE2DC3 /* SpecialsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialsRouter.swift; sourceTree = "<group>"; };
+		ABA20F662C32AA3600EE2DC3 /* BottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
+		ABA20F672C32AA3600EE2DC3 /* BottomSheetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomSheetViewController.xib; sourceTree = "<group>"; };
+		ABA20F6C2C32FB5D00EE2DC3 /* LoadingShowable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingShowable.swift; sourceTree = "<group>"; };
+		ABA20F6E2C32FB7300EE2DC3 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		ABA79FB62C1C881800441357 /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		ABA79FB72C1C881800441357 /* SectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionHeader.xib; sourceTree = "<group>"; };
 		ABE7B2112C2999B6003176A5 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -319,6 +337,7 @@
 			isa = PBXGroup;
 			children = (
 				AB7A6B102C186DE800E33A60 /* Entities */,
+				ABA20F6C2C32FB5D00EE2DC3 /* LoadingShowable.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -326,6 +345,7 @@
 		AB7A6B0E2C186DC300E33A60 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				ABA20F6E2C32FB7300EE2DC3 /* LoadingView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -382,6 +402,12 @@
 		AB7A6B132C186E1400E33A60 /* Specials */ = {
 			isa = PBXGroup;
 			children = (
+				ABA20F5B2C329FDB00EE2DC3 /* Views */,
+				ABA20F5C2C32A00200EE2DC3 /* SpecialsViewController.swift */,
+				ABA20F5D2C32A00200EE2DC3 /* SpecialsViewController.xib */,
+				ABA20F602C32A02E00EE2DC3 /* SpecialsInteractor.swift */,
+				ABA20F622C32A04300EE2DC3 /* SpecialsPresenter.swift */,
+				ABA20F642C32A05200EE2DC3 /* SpecialsRouter.swift */,
 			);
 			path = Specials;
 			sourceTree = "<group>";
@@ -473,6 +499,15 @@
 				AB9F72852C1AD30D007C321D /* MovieCell.xib */,
 				ABA79FB62C1C881800441357 /* SectionHeader.swift */,
 				ABA79FB72C1C881800441357 /* SectionHeader.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		ABA20F5B2C329FDB00EE2DC3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				ABA20F662C32AA3600EE2DC3 /* BottomSheetViewController.swift */,
+				ABA20F672C32AA3600EE2DC3 /* BottomSheetViewController.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -607,6 +642,7 @@
 				AB9F72662C199B6F007C321D /* MainScreenViewController.xib in Resources */,
 				AB7A6AD32C1842E900E33A60 /* Assets.xcassets in Resources */,
 				AB7A6AD62C1842E900E33A60 /* Base in Resources */,
+				ABA20F682C32AA3600EE2DC3 /* BottomSheetViewController.xib in Resources */,
 				AB7A6ACE2C1842E700E33A60 /* Base in Resources */,
 				ABA20F542C2EACF400EE2DC3 /* EmptyView.xib in Resources */,
 				AB9F72862C1AD30D007C321D /* MovieCell.xib in Resources */,
@@ -614,6 +650,7 @@
 				ABA79FB92C1C881800441357 /* SectionHeader.xib in Resources */,
 				AB7A6B242C18853300E33A60 /* FirstPageViewController.xib in Resources */,
 				AB7A6B192C186F9000E33A60 /* OnboardingViewController.xib in Resources */,
+				ABA20F5E2C32A00200EE2DC3 /* SpecialsViewController.xib in Resources */,
 				ABE7B2202C299C06003176A5 /* SimilarMovieCell.xib in Resources */,
 				AB95F28B2C2D9D49007D6BE4 /* FavoritesViewController.xib in Resources */,
 				AB9F72822C1AD2F7007C321D /* BannerCell.xib in Resources */,
@@ -650,11 +687,13 @@
 				ABE7B2162C299B4D003176A5 /* DetailInteractor.swift in Sources */,
 				AB7A6B2A2C18855000E33A60 /* SecondPageViewController.swift in Sources */,
 				AB95F2982C2DA169007D6BE4 /* FavoritesCellPresenter.swift in Sources */,
+				ABA20F612C32A02E00EE2DC3 /* SpecialsInteractor.swift in Sources */,
 				AB9F72902C1AFCE7007C321D /* CollectionView+Extensions.swift in Sources */,
 				AB7A6B1D2C1871FB00E33A60 /* OnboardingRouter.swift in Sources */,
 				AB95F29A2C2DBC10007D6BE4 /* TableView+Extensions.swift in Sources */,
 				ABE7B2182C299B5B003176A5 /* DetailPresenter.swift in Sources */,
 				AB9F72702C19BF52007C321D /* SplashViewController.swift in Sources */,
+				ABA20F692C32AA3600EE2DC3 /* BottomSheetViewController.swift in Sources */,
 				AB95F2952C2D9DAB007D6BE4 /* FavoritesTableViewCell.swift in Sources */,
 				AB7A6B0A2C1854D600E33A60 /* MoviesResponse.swift in Sources */,
 				AB9F728B2C1AD3A0007C321D /* MoviePresenter.swift in Sources */,
@@ -662,7 +701,9 @@
 				AB9F72872C1AD30D007C321D /* MovieCell.swift in Sources */,
 				AB9F72682C199B80007C321D /* MainScreenInteractor.swift in Sources */,
 				AB9B25D12C2AEE170045BFCF /* SimilarMoviePresenter.swift in Sources */,
+				ABA20F652C32A05200EE2DC3 /* SpecialsRouter.swift in Sources */,
 				ABA79FB82C1C881800441357 /* SectionHeader.swift in Sources */,
+				ABA20F6F2C32FB7300EE2DC3 /* LoadingView.swift in Sources */,
 				AB95F28A2C2D9D49007D6BE4 /* FavoritesViewController.swift in Sources */,
 				AB9F72892C1AD392007C321D /* BannerPresenter.swift in Sources */,
 				AB9F726C2C199B9D007C321D /* MainScreenRouter.swift in Sources */,
@@ -688,9 +729,12 @@
 				AB7A6B252C18853300E33A60 /* FirstPageViewController.swift in Sources */,
 				AB7A6B2C2C18874B00E33A60 /* UIImage+Extensions.swift in Sources */,
 				ABA20F5A2C2F159A00EE2DC3 /* String+Extensions.swift in Sources */,
+				ABA20F632C32A04300EE2DC3 /* SpecialsPresenter.swift in Sources */,
+				ABA20F6D2C32FB5D00EE2DC3 /* LoadingShowable.swift in Sources */,
 				AB9F72832C1AD2F7007C321D /* BannerCell.swift in Sources */,
 				AB7A6B182C186F9000E33A60 /* OnboardingViewController.swift in Sources */,
 				AB7A6B1F2C18720700E33A60 /* OnboardingPresenter.swift in Sources */,
+				ABA20F5F2C32A00200EE2DC3 /* SpecialsViewController.swift in Sources */,
 				ABE7B2212C299C06003176A5 /* SimilarMovieCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
