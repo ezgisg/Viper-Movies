@@ -13,7 +13,7 @@ protocol SpecialsViewControllerProtocol: AnyObject {
     func hideLoadingView()
 }
 
-class SpecialsViewController: UIViewController, LoadingShowable{
+class SpecialsViewController: UIViewController, LoadingShowable {
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var changeButton: UIButton!
@@ -37,7 +37,13 @@ class SpecialsViewController: UIViewController, LoadingShowable{
                 guard let self else { return }
                 pickerLabel.text = selectedOption
                 if previousText != selectedOption {
+    
+                    collectionView.scrollToItem(at: [0,0], at: .top, animated: false)
+                    presenter?.removeAllMovies()
+                    ///To change currentPage value when type is changed
+                    presenter?.currentPage = 1
                     presenter?.fetchData(selectedType: selectedOption)
+            
                 }
             }
         )
@@ -52,17 +58,14 @@ extension SpecialsViewController: SpecialsViewControllerProtocol {
     func showLoadingView() {
         showLoading()
     }
+    
     func hideLoadingView() {
-        ///For demo added 0.3 second delay
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            self.hideLoading()
-        }
- 
+        self.hideLoading()
     }
+    
     func reloadData() {
         collectionView.reloadData()
     }
-
 }
 
 private extension SpecialsViewController {
@@ -85,7 +88,7 @@ extension SpecialsViewController: UICollectionViewDataSource {
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(with: MovieCell.self, for: indexPath)
-        guard let movieResult = presenter?.fetchedMovies?[indexPath.row] else { return UICollectionViewCell()}
+        guard let movieResult = presenter?.fetchedMovies?[safe: indexPath.row] else { return UICollectionViewCell()}
         let presenter = MoviePresenter(view: cell, movieResult: movieResult)
         cell.cellPresenter = presenter
         return cell
@@ -100,7 +103,9 @@ extension SpecialsViewController: UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        
+        if presenter?.fetchedMovies?.count == indexPath.row + 1 {
+            presenter?.loadMoreData(selectedType: pickerLabel.text ?? "")
+        }
     }
 }
 

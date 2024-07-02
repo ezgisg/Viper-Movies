@@ -46,6 +46,7 @@ final class DetailPresenter {
 extension DetailPresenter: DetailInteractorOutputProtocol {
     func fetchSimilarMoviesOutput(result: MoviesResult) {
         similarMovies.removeAll(keepingCapacity: true)
+        view?.hideLoadingView()
         switch result {
         case .success(let movies):
             self.similarMovies.append(contentsOf: movies.results ?? [])

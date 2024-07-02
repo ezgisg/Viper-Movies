@@ -9,15 +9,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="282" id="KGk-i7-Jjw" customClass="FavoritesTableViewCell" customModule="Viper_Movies" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="405" height="282"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="134" id="KGk-i7-Jjw" customClass="FavoritesTableViewCell" customModule="Viper_Movies" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="405" height="134"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="405" height="282"/>
+                <rect key="frame" x="0.0" y="0.0" width="405" height="134"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I4x-Ri-oXu">
-                        <rect key="frame" x="0.0" y="0.0" width="405" height="282"/>
+                        <rect key="frame" x="0.0" y="0.0" width="405" height="120"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="H4J-ll-Yc4">
                                 <rect key="frame" x="30" y="10" width="100" height="100"/>
@@ -27,7 +27,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t7b-Dg-R9p">
-                                <rect key="frame" x="160" y="10" width="215" height="262"/>
+                                <rect key="frame" x="160" y="10" width="215" height="100"/>
                                 <string key="text">labellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabellabel</string>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="19"/>
                                 <nil key="textColor"/>
@@ -38,11 +38,11 @@
                         <constraints>
                             <constraint firstItem="t7b-Dg-R9p" firstAttribute="leading" secondItem="H4J-ll-Yc4" secondAttribute="trailing" constant="30" id="A2p-oD-ekW"/>
                             <constraint firstItem="H4J-ll-Yc4" firstAttribute="leading" secondItem="I4x-Ri-oXu" secondAttribute="leading" constant="30" id="DFh-vO-y0D"/>
-                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="t7b-Dg-R9p" secondAttribute="bottom" constant="10" id="FhF-Xj-o6U"/>
-                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="H4J-ll-Yc4" secondAttribute="bottom" constant="10" id="ZpF-oe-Vtg"/>
-                            <constraint firstItem="t7b-Dg-R9p" firstAttribute="height" relation="greaterThanOrEqual" secondItem="H4J-ll-Yc4" secondAttribute="height" id="dyf-BB-1bp"/>
+                            <constraint firstItem="t7b-Dg-R9p" firstAttribute="bottom" secondItem="H4J-ll-Yc4" secondAttribute="bottom" id="O0K-oR-3Fc"/>
+                            <constraint firstAttribute="bottom" secondItem="H4J-ll-Yc4" secondAttribute="bottom" constant="10" id="ZpF-oe-Vtg"/>
+                            <constraint firstItem="t7b-Dg-R9p" firstAttribute="height" secondItem="H4J-ll-Yc4" secondAttribute="height" id="dyf-BB-1bp"/>
                             <constraint firstAttribute="trailing" secondItem="t7b-Dg-R9p" secondAttribute="trailing" constant="30" id="fMb-nV-Ulj"/>
-                            <constraint firstItem="t7b-Dg-R9p" firstAttribute="top" secondItem="H4J-ll-Yc4" secondAttribute="top" id="muJ-d8-ex5"/>
+                            <constraint firstItem="t7b-Dg-R9p" firstAttribute="top" secondItem="H4J-ll-Yc4" secondAttribute="top" id="gcq-IG-WGN"/>
                             <constraint firstItem="H4J-ll-Yc4" firstAttribute="top" secondItem="I4x-Ri-oXu" secondAttribute="top" constant="10" id="rWj-fi-w2H"/>
                         </constraints>
                     </view>
@@ -51,7 +51,6 @@
                     <constraint firstItem="I4x-Ri-oXu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="UTt-ro-ebp"/>
                     <constraint firstItem="I4x-Ri-oXu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="qEf-0o-Chl"/>
                     <constraint firstAttribute="trailing" secondItem="I4x-Ri-oXu" secondAttribute="trailing" id="vg2-bw-UL7"/>
-                    <constraint firstAttribute="bottom" secondItem="I4x-Ri-oXu" secondAttribute="bottom" id="yIK-0N-KJV"/>
                 </constraints>
             </tableViewCellContentView>
             <constraints>
@@ -64,7 +63,7 @@
                 <outlet property="movieImage" destination="H4J-ll-Yc4" id="CCH-nQ-Vwj"/>
                 <outlet property="movieTitleLabel" destination="t7b-Dg-R9p" id="GzA-dL-rF5"/>
             </connections>
-            <point key="canvasLocation" x="194.6564885496183" y="71.126760563380287"/>
+            <point key="canvasLocation" x="194.6564885496183" y="19.014084507042256"/>
         </tableViewCell>
     </objects>
     <resources>

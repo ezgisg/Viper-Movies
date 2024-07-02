@@ -9,10 +9,12 @@ import Foundation
 
 protocol SpecialsPresenterProtocol: AnyObject {
     var fetchedMovies: [MovResult]? { get }
+    var currentPage: Int { get set }
     func getOptions() -> ([SelectedType])
     func fetchData(selectedType: String)
     func didSelect(movieId: Int)
     func loadMoreData(selectedType: String)
+    func removeAllMovies()
 }
 
 final class SpecialsPresenter {
@@ -36,9 +38,7 @@ extension SpecialsPresenter: SpecialsInteractorOutputProtocol {
         view?.hideLoadingView()
         switch result {
         case .success(let movies):
-            //TODO: load more olduğunda removeall yapmadan tip değiştiğinde removeall yaparak ilerlemek gerek
             pageCount = movies.total_pages ?? 1
-            self.movies.removeAll(keepingCapacity: false)
             self.movies.append(contentsOf: movies.results ?? [])
             view?.reloadData()
         case .failure(let error):
@@ -50,7 +50,7 @@ extension SpecialsPresenter: SpecialsInteractorOutputProtocol {
 }
 
 extension SpecialsPresenter: SpecialsPresenterProtocol {
-
+ 
     var fetchedMovies: [MovResult]? {
         get {
             return movies
@@ -67,19 +67,25 @@ extension SpecialsPresenter: SpecialsPresenterProtocol {
     }
     
     func getOptions() -> ([SelectedType]) {
-        return [.popular, .topRated, .upcoming]
+        return [.topRated, .upcoming, .popular,]
     }
     
     func didSelect(movieId: Int) {
         router?.navigate(.detail, movieId: movieId)
     }
     
-    //TODO: tip değişimine göre currentpage vs. sıfırlanması gerekecek?
+
     func loadMoreData(selectedType: String) {
         guard let selectedEnumType = SelectedType(rawValue: selectedType),
               currentPage != pageCount ?? 1 else { return }
         currentPage += 1
+//        view?.showLoadingView()
         interactor?.fetchSelectedTypeMovies(selectedType: selectedEnumType , page: currentPage)
+    }
+    
+    func removeAllMovies() {
+        movies.removeAll(keepingCapacity: false)
+        view?.reloadData()
     }
     
 }

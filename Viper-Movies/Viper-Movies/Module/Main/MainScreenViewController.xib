@@ -12,6 +12,7 @@
             <connections>
                 <outlet property="collectionView" destination="cjj-uo-lPT" id="41S-vA-Yjv"/>
                 <outlet property="searchBar" destination="qOF-Wl-h9M" id="UYn-qr-p80"/>
+                <outlet property="searchChangeButton" destination="Ra5-gB-abu" id="gSV-EW-L7P"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -23,21 +24,38 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zvt-q7-kxe">
                     <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="asK-3n-JhO">
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="asK-3n-JhO">
                             <rect key="frame" x="5" y="5" width="383" height="749"/>
                             <subviews>
-                                <searchBar contentMode="redraw" placeholder="Search..." translatesAutoresizingMaskIntoConstraints="NO" id="qOF-Wl-h9M">
-                                    <rect key="frame" x="0.0" y="0.0" width="383" height="70"/>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6NI-Oe-lnT">
+                                    <rect key="frame" x="0.0" y="0.0" width="383" height="60"/>
+                                    <subviews>
+                                        <searchBar contentMode="redraw" placeholder="Search..." translatesAutoresizingMaskIntoConstraints="NO" id="qOF-Wl-h9M">
+                                            <rect key="frame" x="10" y="0.0" width="363" height="60"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="-1" id="z40-s4-MVb"/>
+                                            </connections>
+                                        </searchBar>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ra5-gB-abu">
+                                            <rect key="frame" x="328.66666666666669" y="13" width="34.333333333333314" height="34.333333333333336"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" title="≡"/>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="70" id="kwF-K3-bhO"/>
+                                        <constraint firstAttribute="height" constant="60" id="4uJ-gq-GQL"/>
+                                        <constraint firstAttribute="trailing" secondItem="Ra5-gB-abu" secondAttribute="trailing" constant="20" id="9g5-pb-4Mz"/>
+                                        <constraint firstItem="qOF-Wl-h9M" firstAttribute="leading" secondItem="6NI-Oe-lnT" secondAttribute="leading" constant="10" id="ETQ-hN-r44"/>
+                                        <constraint firstAttribute="trailing" secondItem="qOF-Wl-h9M" secondAttribute="trailing" constant="10" id="MMp-7q-92w"/>
+                                        <constraint firstAttribute="bottom" secondItem="qOF-Wl-h9M" secondAttribute="bottom" id="RZg-Bm-CPa"/>
+                                        <constraint firstItem="Ra5-gB-abu" firstAttribute="centerY" secondItem="qOF-Wl-h9M" secondAttribute="centerY" id="dMc-lG-CHf"/>
+                                        <constraint firstItem="qOF-Wl-h9M" firstAttribute="top" secondItem="6NI-Oe-lnT" secondAttribute="top" id="qc7-oc-sLG"/>
                                     </constraints>
-                                    <textInputTraits key="textInputTraits"/>
-                                    <connections>
-                                        <outlet property="delegate" destination="-1" id="z40-s4-MVb"/>
-                                    </connections>
-                                </searchBar>
+                                </view>
                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="cjj-uo-lPT">
-                                    <rect key="frame" x="0.0" y="70" width="383" height="679"/>
+                                    <rect key="frame" x="0.0" y="65" width="383" height="684"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="4si-Dy-Ejh">
                                         <size key="itemSize" width="128" height="128"/>
@@ -48,12 +66,9 @@
                                 </collectionView>
                             </subviews>
                             <constraints>
-                                <constraint firstAttribute="trailing" secondItem="qOF-Wl-h9M" secondAttribute="trailing" id="2HL-i0-jze"/>
-                                <constraint firstItem="qOF-Wl-h9M" firstAttribute="leading" secondItem="asK-3n-JhO" secondAttribute="leading" id="5LU-ed-QSC"/>
                                 <constraint firstAttribute="bottom" secondItem="cjj-uo-lPT" secondAttribute="bottom" id="Ev5-xf-nDf"/>
-                                <constraint firstItem="cjj-uo-lPT" firstAttribute="top" secondItem="qOF-Wl-h9M" secondAttribute="bottom" id="JHN-Wx-fSD"/>
-                                <constraint firstItem="qOF-Wl-h9M" firstAttribute="top" secondItem="asK-3n-JhO" secondAttribute="top" id="hb1-vg-5x9"/>
                                 <constraint firstItem="cjj-uo-lPT" firstAttribute="leading" secondItem="asK-3n-JhO" secondAttribute="leading" id="kNG-Ex-yuo"/>
+                                <constraint firstItem="6NI-Oe-lnT" firstAttribute="top" secondItem="asK-3n-JhO" secondAttribute="top" id="qq2-Ok-fao"/>
                                 <constraint firstAttribute="trailing" secondItem="cjj-uo-lPT" secondAttribute="trailing" id="ui0-jk-pgu"/>
                             </constraints>
                         </stackView>
@@ -75,7 +90,7 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Zvt-q7-kxe" secondAttribute="bottom" id="gEx-sn-Jr8"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Zvt-q7-kxe" secondAttribute="trailing" id="lSZ-Mw-5ny"/>
             </constraints>
-            <point key="canvasLocation" x="132" y="-11"/>
+            <point key="canvasLocation" x="130.53435114503816" y="-11.267605633802818"/>
         </view>
     </objects>
     <resources>

@@ -95,8 +95,8 @@ extension MainScreenPresenter: MainScreenPresenterProtocol {
 
 //MARK: MainScreenInteractorOutputProtocol
 extension MainScreenPresenter: MainScreenInteractorOutputProtocol {
-    //TODO: fetch other pages with scrool
     func fetchNowPlayingMoviesOutput(result: MoviesResult) {
+        view?.hideLoadingView()
         switch result {
         case .success(let movies):
             self.movies.append(contentsOf: movies.results ?? [])

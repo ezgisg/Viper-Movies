@@ -45,7 +45,9 @@ class FavoritesViewController: UIViewController {
 extension FavoritesViewController: FavoritesViewControllerProtocol {
 
     func reloadData() {
-        tableView.reloadData()
+        UIView.transition(with: tableView, duration: 0.5, options: .transitionCrossDissolve) {
+            self.tableView.reloadData()
+        }
         checkForEmptyViews()
     }
 }
@@ -82,9 +84,11 @@ extension FavoritesViewController: UITableViewDelegate {
                tableView.deleteRows(at: [indexPath], with: .fade)
                tableView.endUpdates()
            }
-       
         checkForEmptyViews()
-
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 120
     }
 }
 

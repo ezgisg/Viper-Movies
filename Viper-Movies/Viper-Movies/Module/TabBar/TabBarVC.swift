@@ -31,7 +31,6 @@ class TabBarController: UITabBarController {
         }
         
         // SpecialViewController
-        //TODO: will edit when special screen is ready
         let specialsVC = SpecialsRouter.createModule()
         specialsVC.title = "Special Lists"
         let specialsNavigationController = UINavigationController(rootViewController: specialsVC)

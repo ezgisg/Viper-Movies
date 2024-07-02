@@ -11,9 +11,11 @@ import Kingfisher
 protocol DetailViewControllerProtocol: AnyObject {
     func setImage(imageUrlString: String)
     func reloadData()
+    func showLoadingView()
+    func hideLoadingView()
 }
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, LoadingShowable {
 
     @IBOutlet weak var bannerImage: UIImageView!
     @IBOutlet weak var movieName: UILabel!
@@ -30,6 +32,7 @@ class DetailViewController: UIViewController {
         presenter?.delegate = self
         presenter?.loadDatas()
         setupViews()
+        showLoadingView()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -61,6 +64,13 @@ extension DetailViewController: DetailViewControllerProtocol {
         collectionView.reloadData()
     }
     
+    func showLoadingView() {
+        showLoading()
+    }
+    
+    func hideLoadingView() {
+        self.hideLoading()
+    }
 }
 
 //MARK: DetailPresenterDelegate

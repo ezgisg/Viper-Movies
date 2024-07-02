@@ -12,24 +12,44 @@ enum MainScreenSectionType: Int, CaseIterable {
     case movieList = 1
 }
 
-protocol MainScreenViewControllerProtocol: AnyObject {
-    func reloadData()
+enum SearchType: String {
+    case local = "Search in theaters"
+    case service = "Search in all"
 }
 
-class MainScreenViewController: UIViewController {
+protocol MainScreenViewControllerProtocol: AnyObject {
+    func reloadData()
+    func showLoadingView()
+    func hideLoadingView()
+}
+
+class MainScreenViewController: UIViewController, LoadingShowable {
+        
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var searchChangeButton: UIButton!
     
-    var presenter: MainScreenPresenterProtocol?
     private var dataSource: UICollectionViewDiffableDataSource<MainScreenSectionType, MovResult>?
     private var tapGesture: UITapGestureRecognizer!
+    private var localSearchAction: UIAction!
+    private var serviceSearchAction: UIAction!
+    
+    private var isLocalSearch = true {
+        didSet {
+            setupSearchChangeButton()
+        }
+    }
+    
+    var presenter: MainScreenPresenterProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        showLoadingView()
         presenter?.fetchInitialData()
         setupCollectionView()
         setupSearchBar()
         setupKeyboardObservers()
+        setupSearchChangeButton()
     }
 }
 
@@ -47,6 +67,28 @@ extension MainScreenViewController {
     
     private func setupSearchBar() {
         searchBar.delegate = self
+        searchBar.placeholder = "\(SearchType.local.rawValue)..."
+    }
+    
+    private func setupSearchChangeButton() {
+        let localSearchActionState: UIMenuElement.State = isLocalSearch ? .on : .off
+        let serviceSearchActionState: UIMenuElement.State = isLocalSearch ? .off : .on
+        
+        self.localSearchAction = UIAction(title: SearchType.local.rawValue, image: UIImage(systemName: "pencil.circle"), attributes: [], state: localSearchActionState) { action in
+            self.searchBar.placeholder = "\(SearchType.local.rawValue)..."
+            self.isLocalSearch = true
+        }
+        
+        self.serviceSearchAction = UIAction(title: SearchType.service.rawValue, image: UIImage(systemName: "pencil.circle"), attributes: [], state: serviceSearchActionState) { action in
+            self.searchBar.placeholder = "\(SearchType.service.rawValue)..."
+            self.isLocalSearch = false
+        }
+        
+        lazy var elements: [UIAction] = [localSearchAction, serviceSearchAction]
+        lazy var menu = UIMenu(title: "Chose search type..", children: elements)
+        
+        searchChangeButton.showsMenuAsPrimaryAction = true
+        searchChangeButton.menu = menu
     }
 }
 
@@ -148,7 +190,6 @@ extension MainScreenViewController {
         }
 }
 
-
 //MARK: UICollectionViewDelegate
 extension MainScreenViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -166,12 +207,14 @@ extension MainScreenViewController: UICollectionViewDelegate {
         ///To prevent load more date when search is active
         guard searchBar.text?.count == 0 else { return }
         if offsetY > contentHeight - height {
+            showLoadingView()
             presenter?.loadMoreData()
         }
     }
 }
 
 //MARK: UISearchBarDelegate
+//TODO: Search işlemi seçime göre ayrıştırılacak
 extension MainScreenViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         presenter?.search(text: searchText)
@@ -183,6 +226,14 @@ extension MainScreenViewController: UISearchBarDelegate {
 extension MainScreenViewController: MainScreenViewControllerProtocol {
     func reloadData() {
         applySnapshot()
+    }
+    
+    func showLoadingView() {
+        showLoading()
+    }
+    
+    func hideLoadingView() {
+        self.hideLoading()
     }
 }
 
