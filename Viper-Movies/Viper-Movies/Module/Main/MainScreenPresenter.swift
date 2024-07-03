@@ -71,7 +71,7 @@ extension MainScreenPresenter: MainScreenPresenterProtocol {
     func searchLocal(text: String) {
         guard text.count != 0 else {
             filteredMovies = movies
-            view?.reloadData()
+            view?.reloadCollectionViewData()
             return
         }
         
@@ -80,7 +80,7 @@ extension MainScreenPresenter: MainScreenPresenterProtocol {
             let modifiedTitle = $0.title?.replacingOccurrences(of: "i", with: "I").uppercased()
             return modifiedTitle?.contains(modifiedText) ?? false
         }
-        view?.reloadData()
+        view?.reloadCollectionViewData()
     }
     
     func searchService(text: String) {
@@ -106,7 +106,7 @@ extension MainScreenPresenter: MainScreenInteractorOutputProtocol {
         switch result {
         case .success(let movies):
             self.searchResult = movies.results ?? []
-            view?.reloadTableView()
+            view?.reloadTableViewData(data: movies.results ?? [])
         case .failure(let error):
             //TODO: alert
             print("***Detay datayı çekerken hata oluştu \(error)")
@@ -122,7 +122,7 @@ extension MainScreenPresenter: MainScreenInteractorOutputProtocol {
             minDate = movies.dates?.minimum?.formatDate(from: "yyyy-MM-dd", to: "dd.MM.yyyy") ?? ""
             maxDate =       movies.dates?.maximum?.formatDate(from: "yyyy-MM-dd", to: "dd.MM.yyyy") ?? ""
             filteredMovies = self.movies
-            view?.reloadData()
+            view?.reloadCollectionViewData()
         case .failure(let error):
             //TODO: alert
             print("***Detay datayı çekerken hata oluştu \(error)")

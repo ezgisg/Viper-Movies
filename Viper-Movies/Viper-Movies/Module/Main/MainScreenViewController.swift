@@ -18,8 +18,8 @@ enum SearchType: String {
 }
 
 protocol MainScreenViewControllerProtocol: AnyObject {
-    func reloadData()
-    func reloadTableView()
+    func reloadCollectionViewData()
+    func reloadTableViewData(data: [MovResult])
     func showLoadingView()
     func hideLoadingView()
 }
@@ -29,18 +29,14 @@ class MainScreenViewController: UIViewController, LoadingShowable {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var searchChangeButton: UIButton!
-    @IBOutlet weak var serviceSearchView: UIView!
-    @IBOutlet weak var serviceSearchTableView: UITableView!
-    @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
-    @IBOutlet weak var seeMoreButton: UIButton!
-    
+    @IBOutlet weak var searchMainView: SearchMainView!
     private var dataSource: UICollectionViewDiffableDataSource<MainScreenSectionType, MovResult>?
+    
     private var tapGesture: UITapGestureRecognizer!
     private var localSearchAction: UIAction!
     private var serviceSearchAction: UIAction!
     private var searchWorkItem: DispatchWorkItem?
 
-    
     private var isLocalSearch = true {
         didSet {
             setupSearchChangeButton()
@@ -54,14 +50,9 @@ class MainScreenViewController: UIViewController, LoadingShowable {
         showLoadingView()
         presenter?.fetchInitialData()
         setupCollectionView()
-        setupSearchTableView()
         setupSearchBar()
         setupKeyboardObservers()
-        setupSearchViewUI()
-        
     }
-    
-  
 }
 
 //MARK:  Setups
@@ -108,10 +99,10 @@ private extension MainScreenViewController {
     final func controlSearchChangeButton(text: String) {
         if text.count == 0 {
             searchChangeButton.isHidden = false
-            seeMoreButton.isHidden = true
+            searchMainView.changeSeeMoreButtonVisibility(isHidden: true)
         } else {
             searchChangeButton.isHidden = true
-            seeMoreButton.isHidden = false
+            searchMainView.changeSeeMoreButtonVisibility(isHidden: false)
         }
     }
 }
@@ -165,6 +156,7 @@ extension MainScreenViewController {
             snapshot.appendItems(banners, toSection: .banner)
         }
         dataSource?.apply(snapshot, animatingDifferences: true)
+        
      }
 }
 
@@ -259,17 +251,12 @@ extension MainScreenViewController: UISearchBarDelegate {
 
 //MARK: MainScreenViewControllerProtocol
 extension MainScreenViewController: MainScreenViewControllerProtocol {
-
-    func reloadData() {
-        applySnapshot()
+    func reloadTableViewData(data: [MovResult]) {
+        searchMainView.loadData(data: data)
     }
     
-    func reloadTableView() {
-        serviceSearchTableView.reloadData {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                self.updateTableViewHeight()
-            }
-        }
+    func reloadCollectionViewData() {
+        applySnapshot()
     }
     
     func showLoadingView() {
@@ -309,48 +296,13 @@ private extension MainScreenViewController {
 
 //MARK: Control Operations of ServiceSearchView
 private extension MainScreenViewController {
-    final func setupSearchTableView() {
-        serviceSearchTableView.dataSource = self
-        serviceSearchTableView.delegate = self
-        serviceSearchTableView.register(nibWithCellClass: SearchCell.self)
-    }
-    
     final func controlSearchView() {
         guard isLocalSearch == false else {
-            serviceSearchView.isHidden = true
+            searchMainView.isHidden = true
             return }
-        serviceSearchView.isHidden = false
-    }
-    
-    final func updateTableViewHeight() {
-        let height = serviceSearchTableView.contentSize.height
-        tableViewHeight.constant = height
-        self.serviceSearchTableView.layoutIfNeeded()
-    }
-    
-    final func setupSearchViewUI () {
-        seeMoreButton.isHidden = true
-        serviceSearchView.backgroundColor = .systemGray5
-        serviceSearchView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
-        serviceSearchView.layer.cornerRadius = 20
-    }
-}
-
-extension MainScreenViewController : UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return min(presenter?.searchResult.count ?? 0, 6)
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withClass: SearchCell.self)
-        if let movie = presenter?.searchResult[indexPath.row] {
-            cell.configure(with: movie)
-        }
-        return cell
+        searchMainView.isHidden = false
     }
 }
 
 
-extension MainScreenViewController : UITableViewDelegate {
-    
-}
 
