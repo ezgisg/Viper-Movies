@@ -13,6 +13,10 @@
                 <outlet property="collectionView" destination="cjj-uo-lPT" id="41S-vA-Yjv"/>
                 <outlet property="searchBar" destination="qOF-Wl-h9M" id="UYn-qr-p80"/>
                 <outlet property="searchChangeButton" destination="Ra5-gB-abu" id="gSV-EW-L7P"/>
+                <outlet property="seeMoreButton" destination="9Pw-mp-ycw" id="1x0-o4-fQz"/>
+                <outlet property="serviceSearchTableView" destination="0LL-rX-Bg7" id="DYu-sC-cbL"/>
+                <outlet property="serviceSearchView" destination="Wop-nr-CCD" id="sLP-8x-oBa"/>
+                <outlet property="tableViewHeight" destination="mM7-It-ZfF" id="YHV-na-Hf4"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -81,13 +85,44 @@
                         <constraint firstAttribute="bottom" secondItem="asK-3n-JhO" secondAttribute="bottom" constant="5" id="vj5-np-pOj"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wop-nr-CCD">
+                    <rect key="frame" x="0.0" y="123.99999999999999" width="393" height="34.333333333333329"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Qs0-pe-0zX">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="34.333333333333336"/>
+                            <subviews>
+                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="4" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="0LL-rX-Bg7">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="0.0"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" id="mM7-It-ZfF"/>
+                                    </constraints>
+                                </tableView>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Pw-mp-ycw">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="34.333333333333343"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="See more.."/>
+                                </button>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="tertiaryLabelColor"/>
+                    <constraints>
+                        <constraint firstItem="Qs0-pe-0zX" firstAttribute="top" secondItem="Wop-nr-CCD" secondAttribute="top" id="3of-qq-LMl"/>
+                        <constraint firstItem="Qs0-pe-0zX" firstAttribute="leading" secondItem="Wop-nr-CCD" secondAttribute="leading" id="Kdy-Vv-yrn"/>
+                        <constraint firstAttribute="trailing" secondItem="Qs0-pe-0zX" secondAttribute="trailing" id="d1z-v2-RFq"/>
+                        <constraint firstAttribute="bottom" secondItem="Qs0-pe-0zX" secondAttribute="bottom" id="hy5-Kr-l0t"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="Zvt-q7-kxe" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Fpp-IJ-OQq"/>
+                <constraint firstItem="Wop-nr-CCD" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="V95-qn-YBx"/>
                 <constraint firstItem="Zvt-q7-kxe" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="bVk-dq-yfk"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Zvt-q7-kxe" secondAttribute="bottom" id="gEx-sn-Jr8"/>
+                <constraint firstAttribute="trailing" secondItem="Wop-nr-CCD" secondAttribute="trailing" id="k0Q-ts-9s8"/>
+                <constraint firstItem="Wop-nr-CCD" firstAttribute="top" secondItem="qOF-Wl-h9M" secondAttribute="bottom" id="lNh-Rq-gqa"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Zvt-q7-kxe" secondAttribute="trailing" id="lSZ-Mw-5ny"/>
             </constraints>
             <point key="canvasLocation" x="130.53435114503816" y="-11.267605633802818"/>
@@ -96,6 +131,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="tertiaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29803921568627451" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

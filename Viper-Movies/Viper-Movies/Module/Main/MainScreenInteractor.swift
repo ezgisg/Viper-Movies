@@ -9,10 +9,12 @@ import Foundation
 
 protocol MainScreenInteractorProtocol: AnyObject {
     func fetchNowPlayingMovies(page: Int?)
+    func searchWithQuery(query: String, year: String?, page: String?)
 }
 
 protocol MainScreenInteractorOutputProtocol: AnyObject {
     func fetchNowPlayingMoviesOutput(result: MoviesResult)
+    func searchWithQueryOutput(result: MoviesResult)
 }
 
 final class MainScreenInteractor {
@@ -27,4 +29,11 @@ extension MainScreenInteractor: MainScreenInteractorProtocol {
             self.output?.fetchNowPlayingMoviesOutput(result: MoviesResult)
         }
     }
+    
+    func searchWithQuery(query: String, year: String?, page: String?) {
+        service.fetchQuerySearch(query: query, primary_release_year: year, page: page) { MoviesResult in
+            self.output?.searchWithQueryOutput(result: MoviesResult)
+        }
+    }
+    
 }

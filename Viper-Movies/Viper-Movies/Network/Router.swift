@@ -18,32 +18,35 @@ enum Router: URLRequestConvertible {
     case upcoming(page: Int?)
     case details(movieId: Int32)
     case similar(page: Int?, movieId: Int32)
-    //TODO: add search service
+    case search(query: String, primary_release_year: String?, page: String?)
+  
     
     var baseURL: URL? {
-        return URL(string: "https://api.themoviedb.org/3/movie/")
+        return URL(string: "https://api.themoviedb.org/3/")
     }
     
     var path: String {
         switch self {
         case .nowPlaying:
-            return "now_playing"
+            return "movie/now_playing"
         case .popular:
-            return "popular"
+            return "movie/popular"
         case .topRated:
-            return "top_rated"
+            return "movie/top_rated"
         case .upcoming:
-            return "upcoming"
+            return "movie/upcoming"
         case .details(let movieId):
-            return "\(movieId)"
+            return "movie/\(movieId)"
         case .similar(page: _, movieId: let movieId):
-            return "\(movieId)/similar"
+            return "movie/\(movieId)/similar"
+        case .search(query: let query, primary_release_year: let primary_release_year, page: let page):
+            return "search/movie"
         }
     }
     
     var method: HTTPMethod {
         switch self {
-        case .nowPlaying, .popular,.topRated, .upcoming, .details, .similar:
+        case .nowPlaying, .popular,.topRated, .upcoming, .details, .similar, .search:
             return .get
         }
     }
@@ -72,6 +75,14 @@ enum Router: URLRequestConvertible {
         case .similar(page: let page, movieId: _):
             if let page {
                 params["page"] = page
+            }
+        case .search(query: let query, primary_release_year: let primary_release_year, page: let page):
+            params["query"] = query
+            if let page {
+                params["page"] = page
+            }
+            if let primary_release_year {
+                params["primary_release_year"] = primary_release_year
             }
         }
         return params

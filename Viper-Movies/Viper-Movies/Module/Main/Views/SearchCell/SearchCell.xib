@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="60" id="KGk-i7-Jjw" customClass="SearchCell" customModule="Viper_Movies" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="347" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="347" height="60"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lyl-6T-qcD">
+                        <rect key="frame" x="0.0" y="0.0" width="347" height="60"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="LabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabel" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7hz-yk-ske">
+                                <rect key="frame" x="10" y="8.0000000000000018" width="327" height="24.666666666666671"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LabelLabelLabel" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eeB-4f-NaY">
+                                <rect key="frame" x="10" y="37.666666666666664" width="327" height="14.333333333333336"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="eeB-4f-NaY" secondAttribute="bottom" constant="8" id="2vp-kn-7oD"/>
+                            <constraint firstItem="7hz-yk-ske" firstAttribute="trailing" secondItem="eeB-4f-NaY" secondAttribute="trailing" id="7ZI-jJ-J2i"/>
+                            <constraint firstItem="eeB-4f-NaY" firstAttribute="top" secondItem="7hz-yk-ske" secondAttribute="bottom" constant="5" id="8Ch-oP-ZOG"/>
+                            <constraint firstItem="eeB-4f-NaY" firstAttribute="leading" secondItem="7hz-yk-ske" secondAttribute="leading" id="CjU-n4-rNf"/>
+                            <constraint firstAttribute="trailing" secondItem="7hz-yk-ske" secondAttribute="trailing" constant="10" id="Khp-fO-xpq"/>
+                            <constraint firstItem="7hz-yk-ske" firstAttribute="top" secondItem="Lyl-6T-qcD" secondAttribute="top" constant="8" id="X9x-Ff-pL3"/>
+                            <constraint firstAttribute="trailing" secondItem="eeB-4f-NaY" secondAttribute="trailing" constant="10" id="YeG-5J-DqG"/>
+                            <constraint firstItem="7hz-yk-ske" firstAttribute="leading" secondItem="Lyl-6T-qcD" secondAttribute="leading" constant="10" id="vb3-cm-hzW"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="Lyl-6T-qcD" secondAttribute="bottom" id="1Yj-9i-ocI"/>
+                    <constraint firstItem="Lyl-6T-qcD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="R2V-h8-ow3"/>
+                    <constraint firstAttribute="trailing" secondItem="Lyl-6T-qcD" secondAttribute="trailing" id="a7f-R5-hee"/>
+                    <constraint firstItem="Lyl-6T-qcD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="mlz-Nc-MDg"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="movieNameLabel" destination="7hz-yk-ske" id="Sy7-Mu-lCM"/>
+                <outlet property="yearLabel" destination="eeB-4f-NaY" id="aal-CE-EXa"/>
+            </connections>
+            <point key="canvasLocation" x="148.85496183206106" y="-7.042253521126761"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

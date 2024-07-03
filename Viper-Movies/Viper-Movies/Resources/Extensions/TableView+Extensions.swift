@@ -77,4 +77,12 @@ extension UITableView {
             register(nibWithCellClass: cell)
         }
     }
+    
+    func reloadData(_ completion: @escaping () -> ()) {
+        UIView.animate(withDuration: 0) {
+            self.reloadData()
+        } completion: { _ in
+            completion()
+        }
+    }
 }

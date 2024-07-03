@@ -11,10 +11,12 @@ protocol MainScreenPresenterProtocol: AnyObject {
     func getMovies() -> [MovResult]
     func getBanners() -> [MovResult]
     func fetchInitialData()
-    func search(text: String)
+    func searchLocal(text: String)
+    func searchService(text: String)
     func loadMoreData()
     func getDates() -> (String?, String?)
     func didSelect(movieId: Int)
+    var searchResult: [MovResult] { get set }
 }
 
 
@@ -30,6 +32,7 @@ final class MainScreenPresenter {
     var currentPage = 1
     var minDate: String?
     var maxDate: String?
+    var searchResult: [MovResult] = []
     
     init(view: MainScreenViewControllerProtocol, interactor: MainScreenInteractorProtocol, router: MainScreenRouterProtocol) {
         self.view = view
@@ -40,8 +43,7 @@ final class MainScreenPresenter {
 
 //MARK: MainScreenPresenterProtocol
 extension MainScreenPresenter: MainScreenPresenterProtocol {
-  
-    
+
     func getDates() -> (String?, String?) {
         return (minDate, maxDate)
     }
@@ -66,7 +68,7 @@ extension MainScreenPresenter: MainScreenPresenterProtocol {
         interactor?.fetchNowPlayingMovies(page: nil)
     }
     
-    func search(text: String) {
+    func searchLocal(text: String) {
         guard text.count != 0 else {
             filteredMovies = movies
             view?.reloadData()
@@ -80,7 +82,11 @@ extension MainScreenPresenter: MainScreenPresenterProtocol {
         }
         view?.reloadData()
     }
-
+    
+    func searchService(text: String) {
+        interactor?.searchWithQuery(query: text, year: nil, page: nil)
+    }
+    
     func loadMoreData() {
         guard currentPage != pageCount ?? 1 else { return }
         currentPage += 1
@@ -95,6 +101,18 @@ extension MainScreenPresenter: MainScreenPresenterProtocol {
 
 //MARK: MainScreenInteractorOutputProtocol
 extension MainScreenPresenter: MainScreenInteractorOutputProtocol {
+    func searchWithQueryOutput(result: MoviesResult) {
+        view?.hideLoadingView()
+        switch result {
+        case .success(let movies):
+            self.searchResult = movies.results ?? []
+            view?.reloadTableView()
+        case .failure(let error):
+            //TODO: alert
+            print("***Detay datayı çekerken hata oluştu \(error)")
+        }
+    }
+    
     func fetchNowPlayingMoviesOutput(result: MoviesResult) {
         view?.hideLoadingView()
         switch result {
