@@ -70,6 +70,7 @@ extension MainScreenPresenter: MainScreenPresenterProtocol {
     
     func searchLocal(text: String) {
         guard text.count != 0 else {
+            view?.movieListHeaderTitle = "Upcoming Movies"
             filteredMovies = movies
             view?.reloadCollectionViewData()
             return
@@ -79,6 +80,11 @@ extension MainScreenPresenter: MainScreenPresenterProtocol {
         filteredMovies = movies.filter {
             let modifiedTitle = $0.title?.replacingOccurrences(of: "i", with: "I").uppercased()
             return modifiedTitle?.contains(modifiedText) ?? false
+        }
+        if filteredMovies.count == 0 {
+            view?.movieListHeaderTitle = "No result"
+        } else {
+            view?.movieListHeaderTitle = "Upcoming Movies"
         }
         view?.reloadCollectionViewData()
     }

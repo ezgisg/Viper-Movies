@@ -9,6 +9,10 @@ import UIKit
 
 //TODO: Viper mimarisine uygun olarak düzenlenecek
 
+protocol SearchMainViewDelegate {
+    func didSelect(movieId: Int)
+}
+
 class SearchMainView: UIView, NibOwnerLoadable {
     
     @IBOutlet weak var containerView: UIView!
@@ -20,6 +24,7 @@ class SearchMainView: UIView, NibOwnerLoadable {
 
     @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
     var movies: [MovResult] = []
+    var delegate: SearchMainViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -40,9 +45,10 @@ class SearchMainView: UIView, NibOwnerLoadable {
 
 extension SearchMainView {
     
-    final func checkVisibilityOfViews(isSearchActive: Bool, isResultExist: Bool) {
+    final func checkVisibilityOfViews(isSearchActive: Bool, isResultExist: Bool, resultCount: Int) {
+        let isMoreThanShow = resultCount > 3
         let isNoResultActive = isSearchActive && !isResultExist
-        let isSeeMoreActive = isSearchActive && isResultExist
+        let isSeeMoreActive = isSearchActive && isResultExist && isMoreThanShow
         noResultView.isHidden = !isNoResultActive
         seeMoreButton.isHidden = !isSeeMoreActive
     }
@@ -80,7 +86,9 @@ extension SearchMainView {
         containerView.layer.cornerRadius = 20
         noResultView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
         noResultView.layer.cornerRadius = 20
-        noResultView.backgroundColor = .systemGray5
+        noResultView.backgroundColor = .systemGray6
+        noResultView.layer.borderWidth = 0.2
+   
     }
 }
     
@@ -106,4 +114,13 @@ extension SearchMainView: UITableViewDelegate {
             self.updateTableViewHeight()
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let movieId = movies[indexPath.row].id else { return }
+        delegate?.didSelect(movieId: movieId)
+    }
+  
 }
+
+
+

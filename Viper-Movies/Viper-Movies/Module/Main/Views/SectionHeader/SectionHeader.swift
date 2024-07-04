@@ -17,10 +17,13 @@ class SectionHeader: UICollectionReusableView {
     }
     
     func configure(with title: String?) {
+        if title == "No result" {
+            sectionHeaderLabel.textAlignment = .center
+        } else {
+            sectionHeaderLabel.textAlignment = .left
+        }
         sectionHeaderLabel.text = title ?? ""
     }
     
 }
-
-
 

@@ -25,6 +25,7 @@ protocol MainScreenViewControllerProtocol: AnyObject {
     func reloadTableViewData(data: [MovResult])
     func showLoadingView()
     func hideLoadingView()
+    var movieListHeaderTitle:  String  { get set }
 }
 
 class MainScreenViewController: UIViewController, LoadingShowable {
@@ -34,6 +35,8 @@ class MainScreenViewController: UIViewController, LoadingShowable {
     @IBOutlet weak var searchChangeButton: UIButton!
     @IBOutlet weak var searchMainView: SearchMainView!
     private var dataSource: UICollectionViewDiffableDataSource<MainScreenSectionType, MovResult>?
+    
+  
     
     private var tapGesture: UITapGestureRecognizer!
     private var localSearchAction: UIAction!
@@ -47,6 +50,12 @@ class MainScreenViewController: UIViewController, LoadingShowable {
     }
     
     var presenter: MainScreenPresenterProtocol?
+    var movieListHeaderTitle: String = "Upcoming Movies" {
+        didSet {
+            collectionView.collectionViewLayout.invalidateLayout()
+            collectionView.reloadData()
+           }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +64,7 @@ class MainScreenViewController: UIViewController, LoadingShowable {
         setupCollectionView()
         setupSearchBar()
         setupKeyboardObservers()
+        searchMainView.delegate = self
     }
 }
 
@@ -65,6 +75,7 @@ private extension MainScreenViewController {
         collectionView.register(cellType: BannerCell.self)
         collectionView.register(cellType: MovieCell.self)
         collectionView.registerReusableView(nibWithViewClass: SectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader)
+
         
         configureDataSource()
         collectionView.collectionViewLayout = createCompositionalLayout()
@@ -137,11 +148,13 @@ extension MainScreenViewController {
                     headerView.configure(with: "\(minDate) - \(maxDate) Posters")
                 }
             case .movieList:
-                headerView.configure(with: "Upcoming Movies")
+                headerView.configure(with: self.movieListHeaderTitle)
             }
             return headerView
         }
     }
+    
+
     
     private func applySnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<MainScreenSectionType, MovResult>()
@@ -154,7 +167,7 @@ extension MainScreenViewController {
             snapshot.appendItems(banners, toSection: .banner)
         }
         dataSource?.apply(snapshot, animatingDifferences: true)
-        
+    
      }
 }
 
@@ -184,7 +197,6 @@ extension MainScreenViewController {
             let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(50))
             let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
             section.boundarySupplementaryItems = [header]
-            
             return section
         }
         
@@ -199,7 +211,6 @@ extension MainScreenViewController {
             let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(50))
             let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
             section.boundarySupplementaryItems = [header]
-            
             return section
         }
 }
@@ -253,7 +264,7 @@ extension MainScreenViewController: MainScreenViewControllerProtocol {
     func reloadTableViewData(data: [MovResult]) {
         let isResultExist = data.count != 0
         let isSearchActive = searchBar.text?.count != 0
-        searchMainView.checkVisibilityOfViews(isSearchActive: isSearchActive, isResultExist: isResultExist)
+        searchMainView.checkVisibilityOfViews(isSearchActive: isSearchActive, isResultExist: isResultExist, resultCount: data.count)
         searchMainView.loadData(data: data)
         searchMainView.isUserInteractionEnabled = true
     }
@@ -309,4 +320,8 @@ private extension MainScreenViewController {
 }
 
 
-
+extension MainScreenViewController: SearchMainViewDelegate {
+    func didSelect(movieId: Int) {
+        presenter?.didSelect(movieId: movieId)
+    }
+}
