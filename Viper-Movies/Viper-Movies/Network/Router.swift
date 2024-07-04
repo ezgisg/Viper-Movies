@@ -18,7 +18,7 @@ enum Router: URLRequestConvertible {
     case upcoming(page: Int?)
     case details(movieId: Int32)
     case similar(page: Int?, movieId: Int32)
-    case search(query: String, primary_release_year: String?, page: String?)
+    case search(query: String, primary_release_year: String?, page: Int?)
   
     
     var baseURL: URL? {

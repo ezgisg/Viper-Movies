@@ -11,19 +11,19 @@ import UIKit
 
 protocol SearchMainViewDelegate {
     func didSelect(movieId: Int)
+    func tappedSeeMore(movies: [MovResult])
 }
 
 class SearchMainView: UIView, NibOwnerLoadable {
     
     @IBOutlet weak var containerView: UIView!
-    //TODO: resultview gösterim durumu yönetilecek
     @IBOutlet weak var noResultView: UIView!
     @IBOutlet weak var tableView: UITableView!
-    //TODO: seemore buton gösterim durumu yönetilecek
     @IBOutlet weak var seeMoreButton: UIButton!
 
     @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
     var movies: [MovResult] = []
+    var query: String = ""
     var delegate: SearchMainViewDelegate?
     
     override init(frame: CGRect) {
@@ -40,7 +40,9 @@ class SearchMainView: UIView, NibOwnerLoadable {
         setupInitialSettingsTableView()
     }
 
-
+    @IBAction func seeMoreButtonTapped(_ sender: Any) {
+        delegate?.tappedSeeMore(movies: self.movies)
+    }
 }
 
 extension SearchMainView {

@@ -10,6 +10,7 @@ import UIKit.UINavigationBar
 
 protocol MainScreenRouterProtocol: AnyObject {
     func navigate(_ route: MainRoutes, movieId: Int)
+    func navigateToList(query: String , movies: [MovResult], totalPage: Int)
 }
 
 enum MainRoutes {
@@ -34,6 +35,7 @@ final class MainScreenRouter {
 }
 
 extension MainScreenRouter: MainScreenRouterProtocol {
+ 
     func navigate(_ route: MainRoutes, movieId: Int) {
         switch route {
         case .detail:
@@ -42,5 +44,11 @@ extension MainScreenRouter: MainScreenRouterProtocol {
             let detailVC = DetailRouter.createModule(movieId: movieId)
             navigationController.pushViewController(detailVC, animated: true)
         }
+    }
+    
+    func navigateToList(query: String, movies: [MovResult], totalPage: Int) {
+        guard let navigationController = viewController?.navigationController else { return }
+        let searchResultListVC = SearchResultRouter.createModule(query: query, movies: movies, totalPage: totalPage)
+        navigationController.pushViewController(searchResultListVC, animated: true)
     }
 }

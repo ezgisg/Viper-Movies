@@ -8,6 +8,8 @@
 import Foundation
 
 protocol MainScreenPresenterProtocol: AnyObject {
+    var searchResult: [MovResult] { get set }
+    var searchResultPageCount: Int? { get }
     func getMovies() -> [MovResult]
     func getBanners() -> [MovResult]
     func fetchInitialData()
@@ -16,7 +18,7 @@ protocol MainScreenPresenterProtocol: AnyObject {
     func loadMoreData()
     func getDates() -> (String?, String?)
     func didSelect(movieId: Int)
-    var searchResult: [MovResult] { get set }
+    func seeMoreSelected(query: String, movies: [MovResult], totalPage: Int)
 }
 
 
@@ -29,6 +31,7 @@ final class MainScreenPresenter {
     var filteredMovies: [MovResult] = []
     var banners: [MovResult] = []
     var pageCount : Int?
+    var searchResultPageCount: Int?
     var currentPage = 1
     var minDate: String?
     var maxDate: String?
@@ -102,6 +105,11 @@ extension MainScreenPresenter: MainScreenPresenterProtocol {
     func didSelect(movieId: Int) {
         router?.navigate(.detail, movieId: movieId)
     }
+    
+    func seeMoreSelected(query: String, movies: [MovResult], totalPage: Int) {
+        router?.navigateToList(query: query, movies: movies, totalPage: totalPage)
+    }
+    
 }
 
 
@@ -112,6 +120,7 @@ extension MainScreenPresenter: MainScreenInteractorOutputProtocol {
         switch result {
         case .success(let movies):
             self.searchResult = movies.results ?? []
+            searchResultPageCount = movies.total_pages ?? 1
             view?.reloadTableViewData(data: movies.results ?? [])
         case .failure(let error):
             //TODO: alert

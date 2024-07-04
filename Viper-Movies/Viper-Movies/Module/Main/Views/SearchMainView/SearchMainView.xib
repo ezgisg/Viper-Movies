@@ -66,6 +66,9 @@
                                                 </backgroundConfiguration>
                                                 <color key="baseForegroundColor" systemColor="tintColor"/>
                                             </buttonConfiguration>
+                                            <connections>
+                                                <action selector="seeMoreButtonTapped:" destination="-1" eventType="touchUpInside" id="T2L-cv-O65"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                 </stackView>

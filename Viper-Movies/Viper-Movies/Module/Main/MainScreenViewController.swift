@@ -321,7 +321,15 @@ private extension MainScreenViewController {
 
 
 extension MainScreenViewController: SearchMainViewDelegate {
+    func tappedSeeMore(movies: [MovResult]) {
+        let totalPage = presenter?.searchResultPageCount ?? 1
+        presenter?.seeMoreSelected(query: searchBar.text ?? "", movies: movies, totalPage: totalPage)
+    }
+    
     func didSelect(movieId: Int) {
         presenter?.didSelect(movieId: movieId)
     }
+    
+
+    
 }
