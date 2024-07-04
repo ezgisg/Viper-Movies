@@ -39,8 +39,12 @@ class SearchMainView: UIView, NibOwnerLoadable {
 }
 
 extension SearchMainView {
-    final func changeSeeMoreButtonVisibility(isHidden: Bool) {
-        seeMoreButton.isHidden = isHidden
+    
+    final func checkVisibilityOfViews(isSearchActive: Bool, isResultExist: Bool) {
+        let isNoResultActive = isSearchActive && !isResultExist
+        let isSeeMoreActive = isSearchActive && isResultExist
+        noResultView.isHidden = !isNoResultActive
+        seeMoreButton.isHidden = !isSeeMoreActive
     }
     
     final func loadData(data: [MovResult]) {
@@ -50,7 +54,7 @@ extension SearchMainView {
     
     final func reloadContent() {
         tableView.reloadData() {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            DispatchQueue.main.asyncAfter(deadline: .now()) {
                 self.updateTableViewHeight()
             }
         }
@@ -64,7 +68,7 @@ extension SearchMainView {
     
     func setupTableView() {
         tableView.dataSource = self
-        //        tableView.delegate = self
+                tableView.delegate = self
         tableView.register(nibWithCellClass: SearchCell.self)
     }
     
@@ -74,13 +78,16 @@ extension SearchMainView {
         containerView.backgroundColor = .systemGray5
         containerView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
         containerView.layer.cornerRadius = 20
+        noResultView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+        noResultView.layer.cornerRadius = 20
+        noResultView.backgroundColor = .systemGray5
     }
 }
     
     
     extension SearchMainView: UITableViewDataSource {
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return min(movies.count, 6)
+            return min(movies.count, 3)
         }
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCell(withClass: SearchCell.self)
@@ -92,4 +99,11 @@ extension SearchMainView {
     
 
 
-
+extension SearchMainView: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard min(movies.count, 3) >= indexPath.row else { return }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.updateTableViewHeight()
+        }
+    }
+}

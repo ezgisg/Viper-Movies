@@ -86,7 +86,7 @@
                     <rect key="frame" x="0.0" y="124" width="393" height="0.0"/>
                     <color key="backgroundColor" systemColor="tertiaryLabelColor"/>
                     <constraints>
-                        <constraint firstAttribute="height" id="sbh-zl-VoH"/>
+                        <constraint firstAttribute="height" priority="249" id="sbh-zl-VoH"/>
                     </constraints>
                 </view>
             </subviews>
@@ -109,7 +109,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="tertiaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29803921568627451" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29803921570000003" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -5,6 +5,9 @@
 //  Created by Ezgi Sümer Günaydın on 12.06.2024.
 //
 
+
+//TODO: view-presenter kontrolü
+//guardself ler eklenecek-genel refactor ve marklar
 import UIKit
 
 enum MainScreenSectionType: Int, CaseIterable {
@@ -95,15 +98,10 @@ private extension MainScreenViewController {
         controlSearchView()
     }
     
-    ///To manage "search change button" and "search bar cancel button" show-hide status
+    ///To manage "search change button" show-hide status
     final func controlSearchChangeButton(text: String) {
-        if text.count == 0 {
-            searchChangeButton.isHidden = false
-            searchMainView.changeSeeMoreButtonVisibility(isHidden: true)
-        } else {
-            searchChangeButton.isHidden = true
-            searchMainView.changeSeeMoreButtonVisibility(isHidden: false)
-        }
+        let SearchChangeButtonHiddenStatus = text.count != 0
+        searchChangeButton.isHidden = SearchChangeButtonHiddenStatus
     }
 }
 
@@ -244,15 +242,20 @@ extension MainScreenViewController: UISearchBarDelegate {
             }
         }
         guard let searchWorkItem else { return }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: searchWorkItem)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: searchWorkItem)
     }
 }
 
 
 //MARK: MainScreenViewControllerProtocol
 extension MainScreenViewController: MainScreenViewControllerProtocol {
+    
     func reloadTableViewData(data: [MovResult]) {
+        let isResultExist = data.count != 0
+        let isSearchActive = searchBar.text?.count != 0
+        searchMainView.checkVisibilityOfViews(isSearchActive: isSearchActive, isResultExist: isResultExist)
         searchMainView.loadData(data: data)
+        searchMainView.isUserInteractionEnabled = true
     }
     
     func reloadCollectionViewData() {
@@ -266,6 +269,7 @@ extension MainScreenViewController: MainScreenViewControllerProtocol {
     func hideLoadingView() {
         self.hideLoading()
     }
+    
 }
 
 //MARK: Keyboard operations
