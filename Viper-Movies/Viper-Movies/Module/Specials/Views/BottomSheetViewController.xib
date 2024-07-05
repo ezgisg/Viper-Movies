@@ -22,12 +22,15 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hm6-Rb-Eo8">
-                    <rect key="frame" x="0.0" y="596" width="393" height="256"/>
+                    <rect key="frame" x="0.0" y="658" width="393" height="194"/>
                     <subviews>
                         <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xgJ-IV-Hz7">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="256"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="160"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <color key="tintColor" red="0.94901960780000005" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" priority="999" constant="160" id="8mJ-p2-1dK"/>
+                            </constraints>
                         </pickerView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3N5-di-LUb">
                             <rect key="frame" x="318" y="0.0" width="75" height="35"/>
@@ -45,9 +48,7 @@
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="3N5-di-LUb" secondAttribute="trailing" id="59d-pJ-y2K"/>
                         <constraint firstItem="3N5-di-LUb" firstAttribute="top" secondItem="hm6-Rb-Eo8" secondAttribute="top" id="BGl-t1-rvd"/>
-                        <constraint firstAttribute="bottom" secondItem="xgJ-IV-Hz7" secondAttribute="bottom" id="RP7-Gl-X0A"/>
                         <constraint firstAttribute="trailing" secondItem="xgJ-IV-Hz7" secondAttribute="trailing" id="UG4-IB-rvb"/>
-                        <constraint firstAttribute="height" constant="256" id="Zx8-0I-24f"/>
                         <constraint firstItem="xgJ-IV-Hz7" firstAttribute="top" secondItem="hm6-Rb-Eo8" secondAttribute="top" id="w0q-Q0-29S"/>
                         <constraint firstItem="xgJ-IV-Hz7" firstAttribute="leading" secondItem="hm6-Rb-Eo8" secondAttribute="leading" id="wqB-8r-B1A"/>
                     </constraints>
@@ -59,6 +60,7 @@
                 <constraint firstItem="hm6-Rb-Eo8" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="8VA-5f-sNn"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="hm6-Rb-Eo8" secondAttribute="trailing" id="8aS-Us-0xb"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="hm6-Rb-Eo8" secondAttribute="trailing" id="H5w-dJ-yKz"/>
+                <constraint firstItem="xgJ-IV-Hz7" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="RfW-h2-DUI"/>
                 <constraint firstItem="hm6-Rb-Eo8" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Tth-Sc-Bae"/>
                 <constraint firstAttribute="bottom" secondItem="hm6-Rb-Eo8" secondAttribute="bottom" id="qgD-a3-veI"/>
             </constraints>

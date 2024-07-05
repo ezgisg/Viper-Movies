@@ -20,18 +20,31 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xpk-DF-kGa">
-                    <rect key="frame" x="20" y="159" width="353" height="353"/>
+                    <rect key="frame" x="20" y="119" width="353" height="353"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="Xpk-DF-kGa" secondAttribute="height" multiplier="1:1" id="NU7-Qq-S10"/>
                     </constraints>
                 </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M4Z-Cz-6j5">
+                    <rect key="frame" x="60" y="474" width="273" height="87"/>
+                    <string key="text">
+Thousands of movies is waiting for you!</string>
+                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="24"/>
+                    <color key="textColor" red="0.27711399401260117" green="0.084795577582544926" blue="0.43892387609289152" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <nil key="highlightedColor"/>
+                    <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="M4Z-Cz-6j5" secondAttribute="trailing" constant="60" id="1uu-AS-n2e"/>
                 <constraint firstItem="Xpk-DF-kGa" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="4ea-ZM-bJc"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Xpk-DF-kGa" secondAttribute="trailing" constant="20" id="Bdl-zE-yCw"/>
-                <constraint firstItem="Xpk-DF-kGa" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="100" id="V8k-gb-RRe"/>
+                <constraint firstItem="M4Z-Cz-6j5" firstAttribute="top" secondItem="Xpk-DF-kGa" secondAttribute="bottom" constant="2" id="LkY-hK-6h6"/>
+                <constraint firstItem="Xpk-DF-kGa" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="60" id="V8k-gb-RRe"/>
+                <constraint firstItem="M4Z-Cz-6j5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="60" id="skD-VW-kO9"/>
+                <constraint firstItem="M4Z-Cz-6j5" firstAttribute="centerX" secondItem="Xpk-DF-kGa" secondAttribute="centerX" id="x54-K0-tpE"/>
             </constraints>
             <point key="canvasLocation" x="132" y="-12"/>
         </view>

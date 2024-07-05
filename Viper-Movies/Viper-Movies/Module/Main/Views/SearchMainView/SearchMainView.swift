@@ -20,7 +20,8 @@ class SearchMainView: UIView, NibOwnerLoadable {
     @IBOutlet weak var noResultView: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var seeMoreButton: UIButton!
-
+    @IBOutlet weak var containerStackView: UIStackView!
+    
     @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
     var movies: [MovResult] = []
     var query: String = ""
@@ -83,14 +84,20 @@ extension SearchMainView {
     func setupInitialSettingsTableView() {
         seeMoreButton.isHidden = true
         noResultView.isHidden = true
+        
         containerView.backgroundColor = .systemGray5
         containerView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
         containerView.layer.cornerRadius = 20
+        
         noResultView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
         noResultView.layer.cornerRadius = 20
-        noResultView.backgroundColor = .systemGray6
+        noResultView.backgroundColor = .systemGray5
         noResultView.layer.borderWidth = 0.2
-   
+        
+        containerStackView.layer.shadowColor = UIColor.black.cgColor
+        containerStackView.layer.shadowOpacity = 0.5
+        containerStackView.layer.shadowOffset = CGSize(width: 0, height: 10)
+        containerStackView.layer.shadowRadius = 5
     }
 }
     

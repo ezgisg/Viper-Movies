@@ -8,7 +8,7 @@
 import UIKit
 
 
-class BottomSheetViewController: UIViewController {
+class BottomSheetViewController: BaseViewController {
 
     @IBOutlet var mainScreenContainer: UIView!
     @IBOutlet weak var containerView: UIView!
@@ -53,6 +53,12 @@ private extension BottomSheetViewController {
     final func setupUI() {
         containerView.layer.cornerRadius = 20
         containerView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+
+        containerView.layer.shadowColor = UIColor.black.cgColor
+        containerView.layer.shadowOpacity = 0.5
+        containerView.layer.shadowOffset = CGSize(width: 0, height: -2)
+        containerView.layer.shadowRadius = 20
+        
         pickerView.backgroundColor = .clear
         mainScreenContainer.backgroundColor = UIColor.gray.withAlphaComponent(0.1)
     }

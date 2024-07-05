@@ -26,7 +26,7 @@
                     <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="asK-3n-JhO">
-                            <rect key="frame" x="5" y="5" width="383" height="749"/>
+                            <rect key="frame" x="5" y="5" width="383" height="754"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6NI-Oe-lnT">
                                     <rect key="frame" x="0.0" y="0.0" width="383" height="60"/>
@@ -44,7 +44,7 @@
                                             <buttonConfiguration key="configuration" style="plain" title="≡"/>
                                         </button>
                                     </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="60" id="4uJ-gq-GQL"/>
                                         <constraint firstAttribute="trailing" secondItem="Ra5-gB-abu" secondAttribute="trailing" constant="20" id="9g5-pb-4Mz"/>
@@ -56,7 +56,7 @@
                                     </constraints>
                                 </view>
                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="cjj-uo-lPT">
-                                    <rect key="frame" x="0.0" y="65" width="383" height="684"/>
+                                    <rect key="frame" x="0.0" y="65" width="383" height="689"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="4si-Dy-Ejh">
                                         <size key="itemSize" width="128" height="128"/>
@@ -79,12 +79,12 @@
                         <constraint firstItem="asK-3n-JhO" firstAttribute="leading" secondItem="Zvt-q7-kxe" secondAttribute="leading" constant="5" id="Ldd-3t-fv3"/>
                         <constraint firstAttribute="trailing" secondItem="asK-3n-JhO" secondAttribute="trailing" constant="5" id="Luo-Aq-zzq"/>
                         <constraint firstItem="asK-3n-JhO" firstAttribute="top" secondItem="Zvt-q7-kxe" secondAttribute="top" constant="5" id="Y4d-yU-i99"/>
-                        <constraint firstAttribute="bottom" secondItem="asK-3n-JhO" secondAttribute="bottom" constant="5" id="vj5-np-pOj"/>
+                        <constraint firstAttribute="bottom" secondItem="asK-3n-JhO" secondAttribute="bottom" id="vj5-np-pOj"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wop-nr-CCD" customClass="SearchMainView" customModule="Viper_Movies" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="124" width="393" height="0.0"/>
-                    <color key="backgroundColor" systemColor="tertiaryLabelColor"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" priority="249" id="sbh-zl-VoH"/>
                     </constraints>
@@ -107,9 +107,6 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="tertiaryLabelColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29803921570000003" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

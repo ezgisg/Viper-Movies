@@ -100,6 +100,8 @@
 		ABE7B21A2C299B69003176A5 /* DetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE7B2192C299B69003176A5 /* DetailRouter.swift */; };
 		ABE7B2202C299C06003176A5 /* SimilarMovieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABE7B21F2C299C06003176A5 /* SimilarMovieCell.xib */; };
 		ABE7B2212C299C06003176A5 /* SimilarMovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE7B21E2C299C06003176A5 /* SimilarMovieCell.swift */; };
+		ABFC05A92C38137F003EE9E5 /* ReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFC05A82C38137F003EE9E5 /* ReachabilityManager.swift */; };
+		ABFC05AB2C3814E0003EE9E5 /* UIApplication+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFC05AA2C3814E0003EE9E5 /* UIApplication+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -214,6 +216,8 @@
 		ABE7B2192C299B69003176A5 /* DetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRouter.swift; sourceTree = "<group>"; };
 		ABE7B21E2C299C06003176A5 /* SimilarMovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarMovieCell.swift; sourceTree = "<group>"; };
 		ABE7B21F2C299C06003176A5 /* SimilarMovieCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimilarMovieCell.xib; sourceTree = "<group>"; };
+		ABFC05A82C38137F003EE9E5 /* ReachabilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityManager.swift; sourceTree = "<group>"; };
+		ABFC05AA2C3814E0003EE9E5 /* UIApplication+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -373,6 +377,7 @@
 				AB7A6AFE2C18437B00E33A60 /* NetworkManager.swift */,
 				AB7A6B002C18438800E33A60 /* ServiceManager.swift */,
 				AB7A6B022C18439200E33A60 /* Router.swift */,
+				ABFC05A82C38137F003EE9E5 /* ReachabilityManager.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -430,6 +435,7 @@
 				ABA20F552C2EB6DE00EE2DC3 /* NibOwnerLoadable.swift */,
 				ABA20F572C2EB72D00EE2DC3 /* NibLoadable.swift */,
 				ABA20F592C2F159A00EE2DC3 /* String+Extensions.swift */,
+				ABFC05AA2C3814E0003EE9E5 /* UIApplication+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -793,9 +799,11 @@
 				AB9F72892C1AD392007C321D /* BannerPresenter.swift in Sources */,
 				AB9F726C2C199B9D007C321D /* MainScreenRouter.swift in Sources */,
 				AB95F2912C2D9D81007D6BE4 /* FavoritesRouter.swift in Sources */,
+				ABFC05A92C38137F003EE9E5 /* ReachabilityManager.swift in Sources */,
 				AB7A6AD12C1842E700E33A60 /* Viper_Movies.xcdatamodeld in Sources */,
 				AB9F727C2C19EFBC007C321D /* UIColor+Extensions.swift in Sources */,
 				AB9F72752C19BF6C007C321D /* SplashPresenter.swift in Sources */,
+				ABFC05AB2C3814E0003EE9E5 /* UIApplication+Extensions.swift in Sources */,
 				AB7A6B0C2C1854E600E33A60 /* MovieDetailsResponse.swift in Sources */,
 				AB7A6B212C187DA200E33A60 /* BaseViewController.swift in Sources */,
 				AB95F28F2C2D9D78007D6BE4 /* FavoritesPresenter.swift in Sources */,

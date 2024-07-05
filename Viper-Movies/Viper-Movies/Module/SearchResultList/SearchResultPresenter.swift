@@ -44,6 +44,7 @@ extension SearchResultPresenter: SearchResultPresenterProtocol {
     
     func loadMore() {
         if totalPage > page {
+            view?.showLoadingView()
             page += 1
             interactor?.searchWithQuery(query: self.query, year: nil, page: page)
         }

@@ -9,6 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchMainView" customModule="Viper_Movies" customModuleProvider="target">
             <connections>
+                <outlet property="containerStackView" destination="n26-I2-l2F" id="qbQ-z7-HdF"/>
                 <outlet property="containerView" destination="JVC-Ml-xJe" id="QOx-d4-yeM"/>
                 <outlet property="noResultView" destination="6Ab-DL-uGo" id="Jwz-gh-Dzq"/>
                 <outlet property="seeMoreButton" destination="OKl-d7-qGh" id="SZs-F5-ycw"/>
@@ -82,9 +83,10 @@
                             </constraints>
                         </view>
                     </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </stackView>
             </subviews>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="n26-I2-l2F" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="3Aa-ca-gFh"/>
                 <constraint firstAttribute="trailing" secondItem="n26-I2-l2F" secondAttribute="trailing" id="50G-tW-jCq"/>

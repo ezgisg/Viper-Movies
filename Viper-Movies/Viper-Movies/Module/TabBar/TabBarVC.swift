@@ -64,14 +64,17 @@ class TabBarController: UITabBarController {
         
         let tabBarAppearance = UITabBarAppearance()
         let tabBarItemAppearance = UITabBarItemAppearance()
-
-        tabBarItemAppearance.normal.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.darkestBrown]
-        tabBarItemAppearance.selected.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.carrotOrange]
-
-        tabBarAppearance.stackedLayoutAppearance = tabBarItemAppearance
-
-//        tabBar.standardAppearance = tabBarAppearance
-//        tabBar.scrollEdgeAppearance = tabBarAppearance
         
-       }
+        tabBarItemAppearance.normal.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "darkestBrown") ?? UIColor.brown]
+        tabBarItemAppearance.selected.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        
+        tabBarAppearance.stackedLayoutAppearance = tabBarItemAppearance
+        tabBarAppearance.backgroundColor = UIColor.systemGray6
+        
+        tabBar.standardAppearance = tabBarAppearance
+        tabBar.scrollEdgeAppearance = tabBarAppearance
+
+    }
 }
+
+

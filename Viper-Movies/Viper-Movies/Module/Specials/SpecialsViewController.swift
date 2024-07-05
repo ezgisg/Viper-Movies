@@ -13,7 +13,7 @@ protocol SpecialsViewControllerProtocol: AnyObject {
     func hideLoadingView()
 }
 
-class SpecialsViewController: UIViewController, LoadingShowable {
+class SpecialsViewController: BaseViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var changeButton: UIButton!

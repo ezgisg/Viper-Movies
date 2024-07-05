@@ -15,7 +15,7 @@ protocol DetailViewControllerProtocol: AnyObject {
     func hideLoadingView()
 }
 
-class DetailViewController: UIViewController, LoadingShowable {
+class DetailViewController: BaseViewController {
 
     @IBOutlet weak var bannerImage: UIImageView!
     @IBOutlet weak var movieName: UILabel!
@@ -154,6 +154,7 @@ extension DetailViewController {
     }
     
     private func setupFavoriteButton() {
+        addToFavoriteButton.titleLabel?.textAlignment = .center
         guard let movieId = presenter?.movieId,
               let decoded = presenter?.getFromUserDefaults() else { return }
         if decoded.contains(where: { $0.id == movieId }) {

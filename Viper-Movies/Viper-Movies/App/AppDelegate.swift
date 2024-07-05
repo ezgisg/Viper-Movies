@@ -15,6 +15,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        ReachabilityManager.shared.startNetworkReachabilityObserver { [weak self] status in
+            guard let self else { return }
+            switch status {
+            case true:
+                break
+            case false:
+                showConnectionAlert()
+            }
+        }
+        
         return true
     }
 
@@ -77,5 +88,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+}
+
+private extension AppDelegate {
+    final func showConnectionAlert() {
+        guard let topViewController = UIApplication.topViewController() as? BaseViewController else { return }
+        topViewController.showAlert(title: "No Internet Connection!", message: "Please check your internet connection status.") { [weak self] in
+            guard let self,
+                 !ReachabilityManager.shared.isConnectedToInternet() else { return }
+            showConnectionAlert()
+        }
+    }
 }
 

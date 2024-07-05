@@ -12,7 +12,7 @@ protocol SecondPageDelegate: AnyObject {
     func startButtonClicked()
 }
 
-class SecondPageViewController: UIViewController {
+class SecondPageViewController: BaseViewController {
 
     @IBOutlet weak var imageView: UIImageView!
     weak var delegate: SecondPageDelegate?

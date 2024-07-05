@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FirstPageViewController: UIViewController {
+class FirstPageViewController: BaseViewController {
 
     @IBOutlet weak var imageView: UIImageView!
     override func viewDidLoad() {

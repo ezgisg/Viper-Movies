@@ -26,9 +26,10 @@ protocol MainScreenViewControllerProtocol: AnyObject {
     func showLoadingView()
     func hideLoadingView()
     var movieListHeaderTitle:  String  { get set }
+    var isLocalSearchActive: Bool { get set }
 }
 
-class MainScreenViewController: UIViewController, LoadingShowable {
+class MainScreenViewController: BaseViewController {
         
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -48,6 +49,14 @@ class MainScreenViewController: UIViewController, LoadingShowable {
             setupSearchChangeButton()
         }
     }
+    
+    internal var isLocalSearchActive: Bool = false {
+        didSet {
+            guard oldValue != isLocalSearchActive else { return }
+            applySnapshot(shouldAnimate: false)
+        }
+    }
+    
     
     var presenter: MainScreenPresenterProtocol?
     var movieListHeaderTitle: String = "Upcoming Movies" {
@@ -156,17 +165,17 @@ extension MainScreenViewController {
     
 
     
-    private func applySnapshot() {
+    private func applySnapshot(shouldAnimate: Bool = true) {
         var snapshot = NSDiffableDataSourceSnapshot<MainScreenSectionType, MovResult>()
         for section in MainScreenSectionType.allCases {
             snapshot.appendSections([section]) }
         if let movies = presenter?.getMovies() {
             snapshot.appendItems(movies, toSection: .movieList)
         }
-        if let banners = presenter?.getBanners() {
+        if let banners = presenter?.getBanners(), !isLocalSearchActive {
             snapshot.appendItems(banners, toSection: .banner)
         }
-        dataSource?.apply(snapshot, animatingDifferences: true)
+        dataSource?.apply(snapshot, animatingDifferences: shouldAnimate)
     
      }
 }
@@ -178,7 +187,11 @@ extension MainScreenViewController {
                 guard let sectionType = MainScreenSectionType(rawValue: sectionIndex) else { return nil }
                 switch sectionType {
                 case .banner:
-                    return self.createBannerSection()
+                    if self.isLocalSearchActive == true {
+                        return nil
+                    } else {
+                       return self.createBannerSection()
+                    }
                 case .movieList:
                     return self.createMovieListSection()
                 }

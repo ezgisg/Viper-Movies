@@ -22,7 +22,7 @@ final class SplashInteractor {
 
 extension SplashInteractor: SplashInteractorProtocol {
     func isConnected() {
-        let status = service.isConnectedToInternet()
+        let status = ReachabilityManager.shared.isConnectedToInternet()
         self.output?.isConnectedOutput(status)
     }
 }

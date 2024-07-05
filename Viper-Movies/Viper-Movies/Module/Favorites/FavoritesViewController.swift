@@ -12,7 +12,7 @@ protocol FavoritesViewControllerProtocol: AnyObject {
 
 }
 
-class FavoritesViewController: UIViewController {
+class FavoritesViewController: BaseViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
@@ -114,9 +114,9 @@ private extension FavoritesViewController {
         let isMainEmptyViewActive = !isItemExist && !isSearchBarActive
         
         tableView.isHidden = !isItemExist
-        
-        setupMainEmptyView(isActive: isMainEmptyViewActive)
+    
         setupSearchEmptyView(isActive: isSearchEmptyViewActive)
+        setupMainEmptyView(isActive: isMainEmptyViewActive)
     }
     
     final func setupSearchBar() {

@@ -73,12 +73,14 @@ extension MainScreenPresenter: MainScreenPresenterProtocol {
     
     func searchLocal(text: String) {
         guard text.count != 0 else {
+            view?.isLocalSearchActive = false
             view?.movieListHeaderTitle = "Upcoming Movies"
             filteredMovies = movies
             view?.reloadCollectionViewData()
             return
         }
         
+        view?.isLocalSearchActive = true
         let modifiedText = text.replacingOccurrences(of: "İ", with: "I").uppercased()
         filteredMovies = movies.filter {
             let modifiedTitle = $0.title?.replacingOccurrences(of: "i", with: "I").uppercased()
