@@ -27,10 +27,10 @@ extension BannerPresenter: BannerPresenterProtocol {
     func load() {
         let imageBaseUrl = "https://image.tmdb.org/t/p/w500/"
         guard let path = movieResult.posterPath else {
-            view?.setImage(imageUrlString: "")
+            view?.setImage(imagePath: "")
             return }
         let fullUrl = "\(imageBaseUrl)\(path)"
-        view?.setImage(imageUrlString: fullUrl)
+        view?.setImage(imagePath: fullUrl)
     }
 
 }

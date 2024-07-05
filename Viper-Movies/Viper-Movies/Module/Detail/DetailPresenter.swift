@@ -49,22 +49,21 @@ extension DetailPresenter: DetailInteractorOutputProtocol {
         view?.hideLoadingView()
         switch result {
         case .success(let movies):
-            self.similarMovies.append(contentsOf: movies.results ?? [])
+            similarMovies.append(contentsOf: movies.results ?? [])
             view?.reloadData()
         case .failure(let error):
-            //TODO: alert
-            print("***Benzer filmler datasını çekerken hata oluştu \(error)")
+            view?.showFailureAlert(error: error)
         }
     }
     
     func fetchMovieDetailOutput(result: MovieDetailsResult) {
         switch result {
         case .success(let detail):
-            self.movieDetail = detail
-            self.loadImage()
-            self.delegate?.fetchedDetails()
+            movieDetail = detail
+            loadImage()
+            delegate?.fetchedDetails()
         case .failure(let error):
-            print("***Detay datasını çekerken hata oluştu \(error)")
+            view?.showFailureAlert(error: error)
         }
     }
 }
@@ -80,12 +79,12 @@ extension DetailPresenter: DetailPresenterProtocol {
             favorites.append(favorite)
         }
         if let encoded = try? JSONEncoder().encode(favorites) {
-            UserDefaults.standard.set(encoded, forKey: "favorites")
+            UserDefaults.standard.set(encoded, forKey: Constants.UserDefaults.favorites)
         }
     }
     
     func getFromUserDefaults() -> [MovieFavoriteDetails] {
-        guard let favorites = UserDefaults.standard.object(forKey: "favorites") as? Data,
+        guard let favorites = UserDefaults.standard.object(forKey: Constants.UserDefaults.favorites) as? Data,
               let decoded = try? JSONDecoder().decode([MovieFavoriteDetails].self, from: favorites) else { return [] }
         return decoded
     }
@@ -99,8 +98,8 @@ extension DetailPresenter: DetailPresenterProtocol {
     }
 
     func loadDatas() {
-        interactor?.fetchMovieDetail(movieId: Int32(self.movieId))
-        interactor?.fetchSimilarMovies(page: nil, movieId: Int32(self.movieId))
+        interactor?.fetchMovieDetail(movieId: Int32(movieId))
+        interactor?.fetchSimilarMovies(page: nil, movieId: Int32(movieId))
     }
     
     func didSelect(movieId: Int) {
@@ -111,11 +110,10 @@ extension DetailPresenter: DetailPresenterProtocol {
 //MARK: Helpers
 extension DetailPresenter {
     private func loadImage() {
-        let imageBaseUrl = "https://image.tmdb.org/t/p/w500/"
         guard let path = movieDetail?.backdrop_path else {
-            view?.setImage(imageUrlString: "")
-            return }
-        let fullUrl = "\(imageBaseUrl)\(path)"
-        view?.setImage(imageUrlString: fullUrl)
+            view?.setImage(imagePath: "")
+            return
+        }
+        view?.setImage(imagePath: path)
     }
 }

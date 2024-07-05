@@ -26,10 +26,10 @@ extension SimilarMoviePresenter: SimilarMoviePresenterProtocol {
         let imageBaseUrl = "https://image.tmdb.org/t/p/w500/"
         view?.setNameTitle(title: similarMovieResult.title ?? "")
         guard let path = similarMovieResult.backdropPath else {
-            view?.setImage(imageUrlString: "")
+            view?.setImage(imagePath: "")
             return }
         let fullUrl = "\(imageBaseUrl)\(path)"
-        view?.setImage(imageUrlString: fullUrl)
+        view?.setImage(imagePath: fullUrl)
     }
     
 }

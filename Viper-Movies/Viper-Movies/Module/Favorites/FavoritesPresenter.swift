@@ -34,7 +34,7 @@ final class FavoritesPresenter {
 extension FavoritesPresenter: FavoritesPresenterProtocol {
   
     func loadData() {
-        guard let favorites = UserDefaults.standard.object(forKey: "favorites") as? Data,
+        guard let favorites = UserDefaults.standard.object(forKey: Constants.UserDefaults.favorites) as? Data,
               let decoded = try? JSONDecoder().decode([MovieFavoriteDetails].self, from: favorites) else { return }
         self.favorites = decoded
         filteredFavorites = self.favorites
@@ -61,7 +61,7 @@ extension FavoritesPresenter: FavoritesPresenterProtocol {
             filteredFavorites.remove(at: index)
         }
         if let encoded = try? JSONEncoder().encode(favorites) {
-            UserDefaults.standard.set(encoded, forKey: "favorites")
+            UserDefaults.standard.set(encoded, forKey: Constants.UserDefaults.favorites)
         }
     }
     

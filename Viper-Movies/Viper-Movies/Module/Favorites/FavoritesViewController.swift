@@ -144,29 +144,4 @@ private extension FavoritesViewController {
     }
 }
 
-//MARK: Keyboard operations
-private extension FavoritesViewController {
-    
-    private func setupKeyboardObservers() {
-          NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-          NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-      }
-
-      @objc private func keyboardWillShow() {
-          if tapGesture == nil {
-              tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-          }
-          view.addGestureRecognizer(tapGesture)
-      }
-      
-      @objc private func keyboardWillHide() {
-          if tapGesture != nil {
-              view.removeGestureRecognizer(tapGesture)
-          }
-      }
-      
-      @objc private func dismissKeyboard() {
-          view.endEditing(true)
-      }
-}
 

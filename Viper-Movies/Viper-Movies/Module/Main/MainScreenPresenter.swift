@@ -18,7 +18,7 @@ protocol MainScreenPresenterProtocol: AnyObject {
     func loadMoreData()
     func getDates() -> (String?, String?)
     func didSelect(movieId: Int)
-    func seeMoreSelected(query: String, movies: [MovResult], totalPage: Int)
+    func seeMoreSelected(query: String)
 }
 
 
@@ -74,7 +74,7 @@ extension MainScreenPresenter: MainScreenPresenterProtocol {
     func searchLocal(text: String) {
         guard text.count != 0 else {
             view?.isLocalSearchActive = false
-            view?.movieListHeaderTitle = "Upcoming Movies"
+            view?.movieListHeaderTitle = Constants.Titles.upcoming
             filteredMovies = movies
             view?.reloadCollectionViewData()
             return
@@ -87,9 +87,9 @@ extension MainScreenPresenter: MainScreenPresenterProtocol {
             return modifiedTitle?.contains(modifiedText) ?? false
         }
         if filteredMovies.count == 0 {
-            view?.movieListHeaderTitle = "No result"
+            view?.movieListHeaderTitle = Constants.Titles.noResult
         } else {
-            view?.movieListHeaderTitle = "Upcoming Movies"
+            view?.movieListHeaderTitle = Constants.Titles.upcoming
         }
         view?.reloadCollectionViewData()
     }
@@ -108,25 +108,22 @@ extension MainScreenPresenter: MainScreenPresenterProtocol {
         router?.navigate(.detail, movieId: movieId)
     }
     
-    func seeMoreSelected(query: String, movies: [MovResult], totalPage: Int) {
-        router?.navigateToList(query: query, movies: movies, totalPage: totalPage)
+    func seeMoreSelected(query: String) {
+        router?.navigateToList(query: query, movies: searchResult, totalPage: searchResultPageCount ?? 1)
     }
-    
 }
 
-
-//MARK: MainScreenInteractorOutputProtocol
+// MARK: - MainScreenInteractorOutputProtocol
 extension MainScreenPresenter: MainScreenInteractorOutputProtocol {
     func searchWithQueryOutput(result: MoviesResult) {
         view?.hideLoadingView()
         switch result {
         case .success(let movies):
-            self.searchResult = movies.results ?? []
+            searchResult = movies.results ?? []
             searchResultPageCount = movies.total_pages ?? 1
             view?.reloadTableViewData(data: movies.results ?? [])
         case .failure(let error):
-            //TODO: alert
-            print("***Detay datayı çekerken hata oluştu \(error)")
+            view?.showFailureAlert(error: error)
         }
     }
     
@@ -137,12 +134,11 @@ extension MainScreenPresenter: MainScreenInteractorOutputProtocol {
             self.movies.append(contentsOf: movies.results ?? [])
             pageCount = movies.total_pages ?? 1
             minDate = movies.dates?.minimum?.formatDate(from: "yyyy-MM-dd", to: "dd.MM.yyyy") ?? ""
-            maxDate =       movies.dates?.maximum?.formatDate(from: "yyyy-MM-dd", to: "dd.MM.yyyy") ?? ""
+            maxDate = movies.dates?.maximum?.formatDate(from: "yyyy-MM-dd", to: "dd.MM.yyyy") ?? ""
             filteredMovies = self.movies
             view?.reloadCollectionViewData()
         case .failure(let error):
-            //TODO: alert
-            print("***Detay datayı çekerken hata oluştu \(error)")
+            view?.showFailureAlert(error: error)
         }
     }
 }

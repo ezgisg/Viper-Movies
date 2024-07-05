@@ -11,7 +11,7 @@ protocol MovieCellProtocol: AnyObject {
     func setTitle(title: String)
     func setDescription(description: String)
     func setDetail(detail: String)
-    func setImage(imageUrlString: String)
+    func setImage(imagePath: String)
 }
 
 class MovieCell: UICollectionViewCell {
@@ -48,22 +48,7 @@ extension MovieCell: MovieCellProtocol {
         detailLabel.text = detail.formatDate(from: "yyyy-MM-dd", to: "dd/MM/yyyy")
     }
     
-    func setImage(imageUrlString: String) {
-        let url = URL(string: imageUrlString)
-        imageView.kf.indicatorType = .activity
-        imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = 10
-        imageView.kf.setImage(with: url) { result in
-            switch result {
-            case .success(let data):
-                self.imageView.image = data.image
-            case .failure(let error):
-                print("Görüntü yüklenirken hata oluştu: \(error.localizedDescription)")
-                self.imageView.image = UIImage(named: "noImage")
-            }
-        }
-        
-        
+    func setImage(imagePath: String) {
+        imageView.loadImage(with: imagePath)
     }
-    
 }

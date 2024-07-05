@@ -6,10 +6,9 @@
 //
 
 import UIKit
-import Kingfisher
 
-protocol DetailViewControllerProtocol: AnyObject {
-    func setImage(imageUrlString: String)
+protocol DetailViewControllerProtocol: BaseViewControllerProtocol {
+    func setImage(imagePath: String)
     func reloadData()
     func showLoadingView()
     func hideLoadingView()
@@ -45,19 +44,8 @@ class DetailViewController: BaseViewController {
 //MARK: DetailViewControllerProtocol
 extension DetailViewController: DetailViewControllerProtocol {
     
-    func setImage(imageUrlString: String) {
-        let url = URL(string: imageUrlString)
-        bannerImage.kf.indicatorType = .activity
-        bannerImage.contentMode = .scaleToFill
-        bannerImage.kf.setImage(with: url) { result in
-            switch result {
-            case .success(let data):
-                self.bannerImage.image = data.image
-            case .failure(let error):
-                print("Görüntü yüklenirken hata oluştu: \(error.localizedDescription)")
-                self.bannerImage.image = UIImage(named: "noImage")
-            }
-        }
+    func setImage(imagePath: String) {
+        bannerImage.loadImage(with: imagePath, cornerRadius: 0)
     }
     
     func reloadData() {

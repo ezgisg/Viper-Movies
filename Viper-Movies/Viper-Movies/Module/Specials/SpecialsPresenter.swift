@@ -42,8 +42,7 @@ extension SpecialsPresenter: SpecialsInteractorOutputProtocol {
             self.movies.append(contentsOf: movies.results ?? [])
             view?.reloadData()
         case .failure(let error):
-            //TODO: alert
-            print("***Specials datasını çekerken hata oluştu \(error)")
+            view?.showFailureAlert(error: error)
         }
     }
     

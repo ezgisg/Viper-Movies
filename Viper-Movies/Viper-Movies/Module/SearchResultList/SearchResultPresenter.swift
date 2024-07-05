@@ -61,8 +61,7 @@ extension SearchResultPresenter: SearchResultInteractorOutputProtocol {
             self.movies.append(contentsOf: movies.results ?? [])
             view?.reloadData()
         case .failure(let error):
-            //TODO: alert
-            print("***Detay datayı çekerken hata oluştu \(error)")
+            view?.showFailureAlert(error: error)
         }
     }
 }

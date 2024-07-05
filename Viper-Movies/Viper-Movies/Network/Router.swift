@@ -39,14 +39,14 @@ enum Router: URLRequestConvertible {
             return "movie/\(movieId)"
         case .similar(page: _, movieId: let movieId):
             return "movie/\(movieId)/similar"
-        case .search(query: let query, primary_release_year: let primary_release_year, page: let page):
+        case .search:
             return "search/movie"
         }
     }
     
     var method: HTTPMethod {
         switch self {
-        case .nowPlaying, .popular,.topRated, .upcoming, .details, .similar, .search:
+        case .nowPlaying, .popular, .topRated, .upcoming, .details, .similar, .search:
             return .get
         }
     }
@@ -107,7 +107,7 @@ enum Router: URLRequestConvertible {
         
         do {
             let request = try encoding.encode(urlRequest, with: completeParameters)
-            debugPrint("*** MY URL: ", request.url ?? "")
+            debugPrint("*** Request URL: ", request.url ?? "")
             return request
         } catch  {
             debugPrint("*** Error urlrequest: ", error)

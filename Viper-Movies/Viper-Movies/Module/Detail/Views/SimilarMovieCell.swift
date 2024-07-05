@@ -8,7 +8,7 @@
 import UIKit
 
 protocol SimilarMovieCellProtocol: AnyObject {
-    func setImage(imageUrlString: String)
+    func setImage(imagePath: String)
     func setNameTitle(title: String)
 }
 
@@ -22,34 +22,14 @@ class SimilarMovieCell: UICollectionViewCell {
             cellPresenter?.load()
         }
     }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-    }
-
 }
 
 extension SimilarMovieCell: SimilarMovieCellProtocol {
-    func setImage(imageUrlString: String) {
-        let url = URL(string: imageUrlString)
-        similarImageView.kf.indicatorType = .activity
-        similarImageView.contentMode = .scaleAspectFill
-        similarImageView.layer.cornerRadius = 10
-        similarImageView.kf.setImage(with: url) { result in
-            switch result {
-            case .success(let data):
-                self.similarImageView.image = data.image
-            case .failure(let error):
-                print("Görüntü yüklenirken hata oluştu: \(error.localizedDescription)")
-                self.similarImageView.image = UIImage(named: "noImage")
-            }
-        }
-        
+    func setImage(imagePath: String) {
+        similarImageView.loadImage(with: imagePath)
     }
     
     func setNameTitle(title: String) {
         similarNameLabel.text = title
     }
-    
 }

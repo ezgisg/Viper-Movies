@@ -7,13 +7,13 @@
 
 import UIKit
 
-protocol SearchResultViewControllerProtocol: AnyObject {
+protocol SearchResultViewControllerProtocol: BaseViewControllerProtocol {
     func reloadData()
     func showLoadingView()
     func hideLoadingView()
 }
 
-class SearchResultViewController: UIViewController, LoadingShowable {
+class SearchResultViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var presenter: SearchResultPresenterProtocol?
@@ -21,11 +21,7 @@ class SearchResultViewController: UIViewController, LoadingShowable {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.presenter?.loadMore()
-        }
     }
-
 }
 
 extension SearchResultViewController: SearchResultViewControllerProtocol {

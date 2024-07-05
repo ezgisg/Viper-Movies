@@ -27,9 +27,9 @@ extension FavoritesCellPresenter: FavoritesCellPresenterProtocol {
     func load() {
         view?.setNameTitle(title: favorite.title ?? "")
         guard let path = favorite.backdrop_path else {
-            view?.setImage(imageUrlString: "")
+            view?.setImage(imagePath: "")
             return }
         let fullUrl = "\(FavoritesCellPresenter.imageBaseUrl)\(path)"
-        view?.setImage(imageUrlString: fullUrl)
+        view?.setImage(imagePath: fullUrl)
     }
 }

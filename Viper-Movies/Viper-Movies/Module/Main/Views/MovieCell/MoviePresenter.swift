@@ -28,10 +28,10 @@ extension MoviePresenter: MoviePresenterProtocol {
         view?.setDescription(description: movieResult.overview ?? "")
         view?.setDetail(detail: movieResult.releaseDate ?? "")
         guard let path = movieResult.backdropPath else { 
-            view?.setImage(imageUrlString: "")
+            view?.setImage(imagePath: "")
             return }
         let fullUrl = "\(imageBaseUrl)\(path)"
-        view?.setImage(imageUrlString: fullUrl)
+        view?.setImage(imagePath: fullUrl)
 
     }
 

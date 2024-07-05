@@ -48,5 +48,5 @@ class MoviesService: MoviesServiceProtocol {
     
 }
 
-typealias MoviesResult = Result<MoviesResponse, Error>
-typealias MovieDetailsResult = Result<MovieDetailsResponse, Error>
+typealias MoviesResult = Result<MoviesResponse, BaseError>
+typealias MovieDetailsResult = Result<MovieDetailsResponse, BaseError>

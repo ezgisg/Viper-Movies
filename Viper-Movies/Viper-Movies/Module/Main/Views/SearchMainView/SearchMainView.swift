@@ -11,7 +11,7 @@ import UIKit
 
 protocol SearchMainViewDelegate {
     func didSelect(movieId: Int)
-    func tappedSeeMore(movies: [MovResult])
+    func tappedSeeMore()
 }
 
 class SearchMainView: UIView, NibOwnerLoadable {
@@ -42,14 +42,15 @@ class SearchMainView: UIView, NibOwnerLoadable {
     }
 
     @IBAction func seeMoreButtonTapped(_ sender: Any) {
-        delegate?.tappedSeeMore(movies: self.movies)
+        delegate?.tappedSeeMore()
     }
 }
 
 extension SearchMainView {
     
-    final func checkVisibilityOfViews(isSearchActive: Bool, isResultExist: Bool, resultCount: Int) {
+    final func checkVisibilityOfViews(isSearchActive: Bool, resultCount: Int) {
         let isMoreThanShow = resultCount > 3
+        let isResultExist = resultCount != 0
         let isNoResultActive = isSearchActive && !isResultExist
         let isSeeMoreActive = isSearchActive && isResultExist && isMoreThanShow
         noResultView.isHidden = !isNoResultActive

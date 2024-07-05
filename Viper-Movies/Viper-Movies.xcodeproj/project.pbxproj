@@ -14,8 +14,6 @@
 		AB3CA83A2C35A606008C40DE /* SearchMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB3CA8392C35A606008C40DE /* SearchMainView.xib */; };
 		AB7A6AC72C1842E700E33A60 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7A6AC62C1842E700E33A60 /* AppDelegate.swift */; };
 		AB7A6AC92C1842E700E33A60 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7A6AC82C1842E700E33A60 /* SceneDelegate.swift */; };
-		AB7A6ACB2C1842E700E33A60 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7A6ACA2C1842E700E33A60 /* ViewController.swift */; };
-		AB7A6ACE2C1842E700E33A60 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = AB7A6ACD2C1842E700E33A60 /* Base */; };
 		AB7A6AD12C1842E700E33A60 /* Viper_Movies.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AB7A6ACF2C1842E700E33A60 /* Viper_Movies.xcdatamodeld */; };
 		AB7A6AD32C1842E900E33A60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB7A6AD22C1842E900E33A60 /* Assets.xcassets */; };
 		AB7A6AD62C1842E900E33A60 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = AB7A6AD52C1842E900E33A60 /* Base */; };
@@ -102,6 +100,9 @@
 		ABE7B2212C299C06003176A5 /* SimilarMovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE7B21E2C299C06003176A5 /* SimilarMovieCell.swift */; };
 		ABFC05A92C38137F003EE9E5 /* ReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFC05A82C38137F003EE9E5 /* ReachabilityManager.swift */; };
 		ABFC05AB2C3814E0003EE9E5 /* UIApplication+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFC05AA2C3814E0003EE9E5 /* UIApplication+Extensions.swift */; };
+		ABFC05AD2C381D17003EE9E5 /* BaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFC05AC2C381D17003EE9E5 /* BaseError.swift */; };
+		ABFC05AF2C3828DF003EE9E5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFC05AE2C3828DF003EE9E5 /* Constants.swift */; };
+		ABFC05B12C382B58003EE9E5 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFC05B02C382B58003EE9E5 /* UIImageView+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,8 +131,6 @@
 		AB7A6AC32C1842E700E33A60 /* Viper-Movies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Viper-Movies.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB7A6AC62C1842E700E33A60 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB7A6AC82C1842E700E33A60 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		AB7A6ACA2C1842E700E33A60 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		AB7A6ACD2C1842E700E33A60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AB7A6AD02C1842E700E33A60 /* Viper_Movies.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Viper_Movies.xcdatamodel; sourceTree = "<group>"; };
 		AB7A6AD22C1842E900E33A60 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AB7A6AD52C1842E900E33A60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -218,6 +217,9 @@
 		ABE7B21F2C299C06003176A5 /* SimilarMovieCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimilarMovieCell.xib; sourceTree = "<group>"; };
 		ABFC05A82C38137F003EE9E5 /* ReachabilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityManager.swift; sourceTree = "<group>"; };
 		ABFC05AA2C3814E0003EE9E5 /* UIApplication+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extensions.swift"; sourceTree = "<group>"; };
+		ABFC05AC2C381D17003EE9E5 /* BaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseError.swift; sourceTree = "<group>"; };
+		ABFC05AE2C3828DF003EE9E5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		ABFC05B02C382B58003EE9E5 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -324,8 +326,6 @@
 				AB7A6AFD2C18434700E33A60 /* Resources */,
 				AB7A6AFC2C18434100E33A60 /* Module */,
 				AB7A6AFB2C18433A00E33A60 /* Network */,
-				AB7A6ACA2C1842E700E33A60 /* ViewController.swift */,
-				AB7A6ACC2C1842E700E33A60 /* Main.storyboard */,
 				AB7A6AD42C1842E900E33A60 /* LaunchScreen.storyboard */,
 				AB7A6AD72C1842E900E33A60 /* Info.plist */,
 				AB7A6ACF2C1842E700E33A60 /* Viper_Movies.xcdatamodeld */,
@@ -355,8 +355,6 @@
 			children = (
 				AB7A6AC62C1842E700E33A60 /* AppDelegate.swift */,
 				AB7A6AC82C1842E700E33A60 /* SceneDelegate.swift */,
-				AB7A6AD22C1842E900E33A60 /* Assets.xcassets */,
-				AB9F725F2C1982C7007C321D /* movieGif.gif */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -400,6 +398,8 @@
 		AB7A6AFD2C18434700E33A60 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AB7A6AD22C1842E900E33A60 /* Assets.xcassets */,
+				AB9F725F2C1982C7007C321D /* movieGif.gif */,
 				AB7A6B0D2C186DB800E33A60 /* Utils */,
 				AB7A6B0E2C186DC300E33A60 /* Views */,
 				AB7A6B0F2C186DC900E33A60 /* Extensions */,
@@ -412,6 +412,7 @@
 			children = (
 				AB7A6B102C186DE800E33A60 /* Entities */,
 				ABA20F6C2C32FB5D00EE2DC3 /* LoadingShowable.swift */,
+				ABFC05AE2C3828DF003EE9E5 /* Constants.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -430,6 +431,7 @@
 				AB7A6B2B2C18874B00E33A60 /* UIImage+Extensions.swift */,
 				AB9F72612C1997E8007C321D /* Array+Extensions.swift */,
 				AB9F727B2C19EFBC007C321D /* UIColor+Extensions.swift */,
+				ABFC05B02C382B58003EE9E5 /* UIImageView+Extensions.swift */,
 				AB9F728F2C1AFCE7007C321D /* CollectionView+Extensions.swift */,
 				AB95F2992C2DBC10007D6BE4 /* TableView+Extensions.swift */,
 				ABA20F552C2EB6DE00EE2DC3 /* NibOwnerLoadable.swift */,
@@ -444,6 +446,7 @@
 			isa = PBXGroup;
 			children = (
 				AB7A6B092C1854D600E33A60 /* MoviesResponse.swift */,
+				ABFC05AC2C381D17003EE9E5 /* BaseError.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -730,7 +733,6 @@
 				AB7A6AD62C1842E900E33A60 /* Base in Resources */,
 				AB8408BE2C36DC2000E0BC0C /* SearchResultViewController.xib in Resources */,
 				ABA20F682C32AA3600EE2DC3 /* BottomSheetViewController.xib in Resources */,
-				AB7A6ACE2C1842E700E33A60 /* Base in Resources */,
 				ABA20F542C2EACF400EE2DC3 /* EmptyView.xib in Resources */,
 				AB9F72862C1AD30D007C321D /* MovieCell.xib in Resources */,
 				AB7A6B292C18855000E33A60 /* SecondPageViewController.xib in Resources */,
@@ -765,7 +767,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB7A6ACB2C1842E700E33A60 /* ViewController.swift in Sources */,
 				AB9F72622C1997E8007C321D /* Array+Extensions.swift in Sources */,
 				AB3CA8312C3583E3008C40DE /* SearchPresenter.swift in Sources */,
 				AB9F726A2C199B8D007C321D /* MainScreenPresenter.swift in Sources */,
@@ -801,6 +802,7 @@
 				AB95F2912C2D9D81007D6BE4 /* FavoritesRouter.swift in Sources */,
 				ABFC05A92C38137F003EE9E5 /* ReachabilityManager.swift in Sources */,
 				AB7A6AD12C1842E700E33A60 /* Viper_Movies.xcdatamodeld in Sources */,
+				ABFC05AF2C3828DF003EE9E5 /* Constants.swift in Sources */,
 				AB9F727C2C19EFBC007C321D /* UIColor+Extensions.swift in Sources */,
 				AB9F72752C19BF6C007C321D /* SplashPresenter.swift in Sources */,
 				ABFC05AB2C3814E0003EE9E5 /* UIApplication+Extensions.swift in Sources */,
@@ -819,12 +821,14 @@
 				AB7A6B012C18438800E33A60 /* ServiceManager.swift in Sources */,
 				AB9F727A2C19D3CC007C321D /* TabBarVC.swift in Sources */,
 				ABA20F582C2EB72D00EE2DC3 /* NibLoadable.swift in Sources */,
+				ABFC05B12C382B58003EE9E5 /* UIImageView+Extensions.swift in Sources */,
 				AB8408C52C36DC9100E0BC0C /* SearchResultRouter.swift in Sources */,
 				AB7A6B252C18853300E33A60 /* FirstPageViewController.swift in Sources */,
 				AB7A6B2C2C18874B00E33A60 /* UIImage+Extensions.swift in Sources */,
 				ABA20F5A2C2F159A00EE2DC3 /* String+Extensions.swift in Sources */,
 				ABA20F632C32A04300EE2DC3 /* SpecialsPresenter.swift in Sources */,
 				ABA20F6D2C32FB5D00EE2DC3 /* LoadingShowable.swift in Sources */,
+				ABFC05AD2C381D17003EE9E5 /* BaseError.swift in Sources */,
 				AB3CA82F2C358145008C40DE /* SearchCell.swift in Sources */,
 				AB9F72832C1AD2F7007C321D /* BannerCell.swift in Sources */,
 				AB8408C12C36DC7500E0BC0C /* SearchResultPresenter.swift in Sources */,
@@ -868,14 +872,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		AB7A6ACC2C1842E700E33A60 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AB7A6ACD2C1842E700E33A60 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		AB7A6AD42C1842E900E33A60 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1017,7 +1013,7 @@
 				INFOPLIST_FILE = "Viper-Movies/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1044,7 +1040,7 @@
 				INFOPLIST_FILE = "Viper-Movies/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

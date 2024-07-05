@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol SpecialsViewControllerProtocol: AnyObject {
+protocol SpecialsViewControllerProtocol: BaseViewControllerProtocol {
     func reloadData()
     func showLoadingView()
     func hideLoadingView()

@@ -9,7 +9,7 @@ import UIKit
 
 
 protocol FavoritesTableViewCellProtocol: AnyObject {
-    func setImage(imageUrlString: String)
+    func setImage(imagePath: String)
     func setNameTitle(title: String)
 }
 
@@ -41,25 +41,11 @@ class FavoritesTableViewCell: UITableViewCell {
 }
 
 extension FavoritesTableViewCell: FavoritesTableViewCellProtocol {
-    func setImage(imageUrlString: String) {
-        let url = URL(string: imageUrlString)
-        movieImage.kf.indicatorType = .activity
-        movieImage.contentMode = .scaleAspectFill
-        movieImage.layer.cornerRadius = 10
-        movieImage.kf.setImage(with: url) { result in
-            switch result {
-            case .success(let data):
-                self.movieImage.image = data.image
-            case .failure(let error):
-                print("Görüntü yüklenirken hata oluştu: \(error.localizedDescription)")
-                self.movieImage.image = UIImage(named: "noImage")
-            }
-        }
+    func setImage(imagePath: String) {
+        movieImage.loadImage(with: imagePath)
     }
     
     func setNameTitle(title: String) {
         movieTitleLabel.text = title
     }
-    
-    
 }

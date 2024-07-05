@@ -21,4 +21,9 @@ extension String {
             return nil
         }
     }
+    
+    var imageUrl: URL? {
+        let urlString = "\(Constants.URLPaths.imageBase)\(self)"
+        return URL(string: urlString)
+    }
 }
