@@ -7,14 +7,17 @@
 
 import Foundation
 
+// MARK: - SpecialsRouterProtocol
 protocol SpecialsRouterProtocol: AnyObject {
     func navigate(_ route: SpecialsRoutes, movieId: Int)
 }
 
+// MARK: - Enum
 enum SpecialsRoutes {
     case detail
 }
 
+// MARK: - SpecialsRouter
 final class SpecialsRouter {
     weak var viewController: SpecialsViewController?
     var presenter: SpecialsPresenterProtocol?
@@ -31,11 +34,11 @@ final class SpecialsRouter {
     }
 }
 
+// MARK: - SpecialsRouterProtocol
 extension SpecialsRouter: SpecialsRouterProtocol {
     func navigate(_ route: SpecialsRoutes, movieId: Int) {
         switch route {
         case .detail:
-            
             guard let navigationController = viewController?.navigationController else { return }
             let detailVC = DetailRouter.createModule(movieId: movieId)
             navigationController.pushViewController(detailVC, animated: true)

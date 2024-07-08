@@ -7,12 +7,13 @@
 
 import UIKit
 
+// MARK: - BaseViewControllerProtocol
 protocol BaseViewControllerProtocol: AnyObject {
     func showFailureAlert(error: BaseError)
 }
 
+// MARK: - BaseViewController
 class BaseViewController: UIViewController, LoadingShowable {
-
     private var tapGesture: UITapGestureRecognizer!
     
     override func viewDidLoad() {
@@ -27,9 +28,9 @@ class BaseViewController: UIViewController, LoadingShowable {
         alert.addAction(okAction)
         self.present(alert, animated: true, completion: nil)
     }
-    
 }
 
+// MARK: - BaseViewController: BaseViewControllerProtocol
 extension BaseViewController: BaseViewControllerProtocol {
     final func showFailureAlert(error: BaseError) {
         showAlert(

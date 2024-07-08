@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: - DetailViewControllerProtocol
 protocol DetailViewControllerProtocol: BaseViewControllerProtocol {
     func setImage(imagePath: String)
     func reloadData()
@@ -14,8 +15,9 @@ protocol DetailViewControllerProtocol: BaseViewControllerProtocol {
     func hideLoadingView()
 }
 
+// MARK: - DetailViewController
 class DetailViewController: BaseViewController {
-
+    // MARK: - Outlets
     @IBOutlet weak var bannerImage: UIImageView!
     @IBOutlet weak var movieName: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
@@ -24,8 +26,10 @@ class DetailViewController: BaseViewController {
     @IBOutlet weak var imdbImage: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    // MARK: - Module Components
     var presenter: DetailPresenterProtocol?
- 
+    
+    // MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.delegate = self
@@ -33,17 +37,15 @@ class DetailViewController: BaseViewController {
         setupViews()
         showLoadingView()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         descriptionTextView.flashScrollIndicators()
         setupFavoriteButton()
     }
-    
 }
 
-//MARK: DetailViewControllerProtocol
+// MARK: - DetailViewControllerProtocol
 extension DetailViewController: DetailViewControllerProtocol {
-    
     func setImage(imagePath: String) {
         bannerImage.loadImage(with: imagePath, cornerRadius: 0)
     }
@@ -57,11 +59,11 @@ extension DetailViewController: DetailViewControllerProtocol {
     }
     
     func hideLoadingView() {
-        self.hideLoading()
+        hideLoading()
     }
 }
 
-//MARK: DetailPresenterDelegate
+// MARK: - DetailPresenterDelegate
 extension DetailViewController: DetailPresenterDelegate {
     func fetchedDetails() {
         let details = presenter?.getDetails()
@@ -71,7 +73,7 @@ extension DetailViewController: DetailPresenterDelegate {
     }
 }
 
-//MARK: CollectionViewDataSource
+// MARK: - CollectionViewDataSource
 extension DetailViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return presenter?.getSimilars().count ?? 0
@@ -85,7 +87,7 @@ extension DetailViewController: UICollectionViewDataSource {
     }
 }
 
-//MARK: Compositional Layout
+// MARK: - Compositional Layout
 extension DetailViewController {
     private func createSimilarsSection() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
@@ -98,42 +100,43 @@ extension DetailViewController {
     }
     
     private func createCompositionalLayout() -> UICollectionViewCompositionalLayout {
-            return UICollectionViewCompositionalLayout { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
-                self.createSimilarsSection()
-            }
+        return UICollectionViewCompositionalLayout { [weak self] (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
+            guard let self else { return nil }
+            return createSimilarsSection()
         }
+    }
 }
 
-
-//MARK: CollectionViewDelegate
+// MARK: - CollectionViewDelegate
 extension DetailViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let similars = presenter?.getSimilars(),
               let movieId = similars[indexPath.row].id else { return }
-
+        
         if let cell = collectionView.cellForItem(at: indexPath) {
-                UIView.animate(withDuration: 0.2,
-                               animations: {
-                    cell.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
-                }, completion: { _ in
-                    UIView.animate(withDuration: 0.2) {
-                        cell.transform = CGAffineTransform.identity
-                        self.presenter?.didSelect(movieId: movieId)
-
-                    }
-                })
-            }
+            UIView.animate(withDuration: 0.2,
+                           animations: {
+                cell.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+            }, completion: { _ in
+                UIView.animate(withDuration: 0.2) { [weak self] in
+                    guard let self else { return }
+                    cell.transform = CGAffineTransform.identity
+                    presenter?.didSelect(movieId: movieId)
+                }
+            })
+        }
     }
 }
 
-//MARK: View functions
+// MARK: - Configuration of View
 extension DetailViewController {
     private func setupImdbButton() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imdbImageTapped(_:)))
-            imdbImage.isUserInteractionEnabled = true
-            imdbImage.addGestureRecognizer(tapGestureRecognizer)
+        imdbImage.isUserInteractionEnabled = true
+        imdbImage.addGestureRecognizer(tapGestureRecognizer)
     }
     
+    ///To go to imdb web page of movie
     @objc private func imdbImageTapped(_ sender: UITapGestureRecognizer) {
         guard let imdbID = presenter?.getDetails()?.imdb_id else { return }
         let imdbUrlString = "https://www.imdb.com/title/\(imdbID)/"
@@ -157,9 +160,9 @@ extension DetailViewController {
         collectionView.dataSource = self
         collectionView.register(cellType: SimilarMovieCell.self)
         collectionView.collectionViewLayout = createCompositionalLayout()
-        
     }
     
+    ///To save or remove from userdefaults "favorites"
     @IBAction func addToFavoriteTapped(_ sender: Any) {
         presenter?.saveToUserDefaults()
         setupFavoriteButton()
@@ -174,5 +177,4 @@ extension DetailViewController {
         setupImdbButton()
         setupFavoriteButton()
     }
-
 }

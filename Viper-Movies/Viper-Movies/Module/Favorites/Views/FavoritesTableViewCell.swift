@@ -7,14 +7,14 @@
 
 import UIKit
 
-
+// MARK: - FavoritesTableViewCellProtocol
 protocol FavoritesTableViewCellProtocol: AnyObject {
     func setImage(imagePath: String)
     func setNameTitle(title: String)
 }
 
-class FavoritesTableViewCell: UITableViewCell {
-    
+// MARK: - FavoritesTableViewCell
+final class FavoritesTableViewCell: UITableViewCell {
     @IBOutlet weak var movieImage: UIImageView!
     @IBOutlet weak var movieTitleLabel: UILabel!
     
@@ -31,15 +31,9 @@ class FavoritesTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
-    func configure(with favorite: MovieFavoriteDetails) {
-        let presenter = FavoritesCellPresenter(view: self, favorite: favorite)
-        self.cellPresenter = presenter
-    }
-    
-    
 }
 
+// MARK: - FavoritesTableViewCellProtocol
 extension FavoritesTableViewCell: FavoritesTableViewCellProtocol {
     func setImage(imagePath: String) {
         movieImage.loadImage(with: imagePath)
@@ -47,5 +41,13 @@ extension FavoritesTableViewCell: FavoritesTableViewCellProtocol {
     
     func setNameTitle(title: String) {
         movieTitleLabel.text = title
+    }
+}
+
+// MARK: - Helpers
+extension FavoritesTableViewCell {
+    func configure(with favorite: MovieFavoriteDetails) {
+        let presenter = FavoritesCellPresenter(view: self, favorite: favorite)
+        self.cellPresenter = presenter
     }
 }

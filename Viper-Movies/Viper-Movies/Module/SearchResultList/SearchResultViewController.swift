@@ -7,12 +7,14 @@
 
 import UIKit
 
+// MARK: - SearchResultViewControllerProtocol
 protocol SearchResultViewControllerProtocol: BaseViewControllerProtocol {
     func reloadData()
     func showLoadingView()
     func hideLoadingView()
 }
 
+// MARK: - SearchResultViewController
 class SearchResultViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     
@@ -24,8 +26,8 @@ class SearchResultViewController: BaseViewController {
     }
 }
 
+// MARK: - SearchResultViewControllerProtocol
 extension SearchResultViewController: SearchResultViewControllerProtocol {
-
     func reloadData() {
         tableView.reloadData()
     }
@@ -37,9 +39,9 @@ extension SearchResultViewController: SearchResultViewControllerProtocol {
     func hideLoadingView() {
         hideLoading()
     }
-    
 }
 
+// MARK: - UITableViewDataSource
 extension SearchResultViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         presenter?.getMovies().count ?? 0
@@ -52,12 +54,10 @@ extension SearchResultViewController: UITableViewDataSource {
             cell.configure(with: movie)
         }
         return cell
-
     }
-    
 }
 
-
+// MARK: - UITableViewDelegate
 extension SearchResultViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let movieId = presenter?.getMovies()[indexPath.row].id else { return }
@@ -70,6 +70,7 @@ extension SearchResultViewController: UITableViewDelegate {
     }
 }
 
+// MARK: - Setup Functions
 private extension SearchResultViewController {
     final func setupTableView() {
         tableView.delegate = self

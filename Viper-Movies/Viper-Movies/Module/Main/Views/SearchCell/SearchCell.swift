@@ -7,12 +7,14 @@
 
 import UIKit
 
+// MARK: - SearchCellProtocol
 protocol SearchCellProtocol: AnyObject {
     func setName(name: String)
     func setYear(year: String)
 }
 
-class SearchCell: UITableViewCell {
+// MARK: - SearchCell
+final class SearchCell: UITableViewCell {
 
     @IBOutlet weak var movieNameLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
@@ -23,22 +25,18 @@ class SearchCell: UITableViewCell {
         }
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-
-    }
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
     func configure(with movie: MovResult) {
         let presenter = SearchPresenter(view: self, movie: movie)
-        self.cellPresenter = presenter
+        cellPresenter = presenter
     }
     
 }
 
+// MARK: - SearchCellProtocol
 extension SearchCell: SearchCellProtocol {
     func setName(name: String) {
         movieNameLabel.text = name
@@ -47,5 +45,4 @@ extension SearchCell: SearchCellProtocol {
     func setYear(year: String) {
         yearLabel.text = year
     }
-    
 }

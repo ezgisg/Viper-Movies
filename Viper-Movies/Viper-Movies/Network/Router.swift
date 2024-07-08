@@ -8,9 +8,10 @@
 import Foundation
 import Alamofire
 
+// MARK: - Router
 enum Router: URLRequestConvertible {
     
-    static let apiKey = ""
+    static let apiKey = "e6055b472537ec47f98dfc79860288d4"
     
     case nowPlaying(page: Int?)
     case popular(page: Int?)
@@ -20,7 +21,6 @@ enum Router: URLRequestConvertible {
     case similar(page: Int?, movieId: Int32)
     case search(query: String, primary_release_year: String?, page: Int?)
   
-    
     var baseURL: URL? {
         return URL(string: "https://api.themoviedb.org/3/")
     }

@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: - MoviesServiceProtocol
 protocol MoviesServiceProtocol {
     func fetchNowPlayingMovies(page: Int?, completion: @escaping (MoviesResult) -> ())
     func fetchPopularMovies(page: Int?, completion: @escaping (MoviesResult) -> ())
@@ -17,7 +18,8 @@ protocol MoviesServiceProtocol {
     func fetchQuerySearch(query: String, primary_release_year: String?, page: Int?, completion: @escaping (MoviesResult) -> ())
 }
 
-class MoviesService: MoviesServiceProtocol {
+// MARK: - MoviesService
+final class MoviesService: MoviesServiceProtocol {
     func fetchNowPlayingMovies(page: Int?, completion: @escaping (MoviesResult) -> ()) {
         NetworkManager.shared.request(Router.nowPlaying(page: page), decodeToType: MoviesResponse.self, completion: completion)
     }
@@ -45,8 +47,6 @@ class MoviesService: MoviesServiceProtocol {
     func fetchQuerySearch(query: String, primary_release_year: String?, page: Int?, completion: @escaping (MoviesResult) -> ()) {
         NetworkManager.shared.request(Router.search(query: query, primary_release_year: primary_release_year, page: page), decodeToType: MoviesResponse.self, completion: completion)
     }
-    
 }
 
-typealias MoviesResult = Result<MoviesResponse, BaseError>
-typealias MovieDetailsResult = Result<MovieDetailsResponse, BaseError>
+

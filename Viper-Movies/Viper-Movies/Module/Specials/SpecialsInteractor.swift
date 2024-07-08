@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: - Enum
 enum SelectedType: String {
     case popular = "Popular"
     case topRated = "Top Rated"
@@ -26,21 +27,24 @@ enum SelectedType: String {
     }
 }
 
+// MARK: - SpecialsInteractorProtocol
 protocol SpecialsInteractorProtocol: AnyObject {
     func fetchSelectedTypeMovies(selectedType: SelectedType, page:Int?)
 }
 
+// MARK: - SpecialsInteractorOutputProtocol
 protocol SpecialsInteractorOutputProtocol: AnyObject {
     func fetchSelectedTypeMoviesOutput(result: MoviesResult)
 }
 
+// MARK: - SpecialsInteractor
 final class SpecialsInteractor {
     var output: SpecialsInteractorOutputProtocol?
     var presenter: SpecialsPresenterProtocol?
     private var service = MoviesService()
 }
 
-
+// MARK: - SpecialsInteractorProtocol
 extension SpecialsInteractor: SpecialsInteractorProtocol {
     func fetchSelectedTypeMovies(selectedType: SelectedType, page: Int?) {
         switch selectedType {
@@ -58,6 +62,4 @@ extension SpecialsInteractor: SpecialsInteractorProtocol {
             }
         }
     }
-    
-    
 }

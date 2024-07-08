@@ -7,20 +7,26 @@
 
 import Foundation
 
+// MARK: - FavoritesPresenterProtocol
 protocol FavoritesPresenterProtocol: AnyObject {
     var favorites: [MovieFavoriteDetails] { get set }
     var filteredFavorites: [MovieFavoriteDetails] { get set }
+    
     func loadData()
     func didSelect(movieId: Int)
     func searchWithText(text: String)
     func deleteFromFavorites(movieId: Int)
-    
 }
 
+// MARK: - FavoritesPresenter
 final class FavoritesPresenter {
+    
+    // MARK: - Module Components
     weak var view: FavoritesViewControllerProtocol?
     var interactor: FavoritesInteractorProtocol?
     var router: FavoritesRouterProtocol?
+    
+    // MARK: - Global Variables
     var favorites: [MovieFavoriteDetails] = []
     var filteredFavorites: [MovieFavoriteDetails] = []
     
@@ -31,8 +37,8 @@ final class FavoritesPresenter {
     }
 }
 
+// MARK: - FavoritesPresenterProtocol
 extension FavoritesPresenter: FavoritesPresenterProtocol {
-  
     func loadData() {
         guard let favorites = UserDefaults.standard.object(forKey: Constants.UserDefaults.favorites) as? Data,
               let decoded = try? JSONDecoder().decode([MovieFavoriteDetails].self, from: favorites) else { return }
@@ -44,7 +50,8 @@ extension FavoritesPresenter: FavoritesPresenterProtocol {
     func didSelect(movieId: Int) {
         router?.navigate(.detail, movieId: movieId)
     }
-
+    
+    ///To search in recorded favorites
     func searchWithText(text: String) {
         if text.count == 0 {
             filteredFavorites = favorites
@@ -64,10 +71,9 @@ extension FavoritesPresenter: FavoritesPresenterProtocol {
             UserDefaults.standard.set(encoded, forKey: Constants.UserDefaults.favorites)
         }
     }
-    
 }
 
+// MARK: - FavoritesInteractorOutputProtocol
 extension FavoritesPresenter: FavoritesInteractorOutputProtocol {
-    
 }
 

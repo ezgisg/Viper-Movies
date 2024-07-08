@@ -8,33 +8,35 @@
 import Foundation
 import UIKit.UINavigationBar
 
-protocol onboardingRouterProtocol: AnyObject {
-    func navigate(_ route: onboardingRoutes)
+// MARK: - OnboardingRouterProtocol
+protocol OnboardingRouterProtocol: AnyObject {
+    func navigate(_ route: OnboardingRoutes)
 }
 
-enum onboardingRoutes {
+// MARK: - OnboardingRouterProtocol
+enum OnboardingRoutes {
     case tabBar
 }
 
-final class onboardingRouter {
-    
+// MARK: - OnboardingRouter
+final class OnboardingRouter {
     weak var viewController: OnboardingViewController?
     
     static func createModule() -> OnboardingViewController {
         let view = OnboardingViewController()
         let interactor = onboardingInteractor()
-        let router = onboardingRouter()
+        let router = OnboardingRouter()
         let presenter = onboardingPresenter(view: view, interactor: interactor, router: router)
         view.presenter = presenter
         interactor.output = presenter
         router.viewController = view
         return view
     }
-    
 }
 
-extension onboardingRouter: onboardingRouterProtocol {
-    func navigate(_ route: onboardingRoutes) {
+// MARK: - OnboardingRouterProtocol
+extension OnboardingRouter: OnboardingRouterProtocol {
+    func navigate(_ route: OnboardingRoutes) {
         switch route {
         case .tabBar:
             guard let window = viewController?.view.window else { return }

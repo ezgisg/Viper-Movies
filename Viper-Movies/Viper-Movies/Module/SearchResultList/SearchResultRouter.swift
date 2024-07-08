@@ -7,11 +7,12 @@
 
 import Foundation
 
-
+// MARK: - SearchResultRouterProtocol
 protocol SearchResultRouterProtocol: AnyObject {
     func navigate(_ route: MainRoutes, movieId: Int)
 }
 
+// MARK: - SearchResultRouter
 final class SearchResultRouter {
     weak var viewController: SearchResultViewController?
     var presenter: SearchResultPresenterProtocol?
@@ -28,6 +29,7 @@ final class SearchResultRouter {
     }
 }
 
+// MARK: - SearchResultRouterProtocol
 extension SearchResultRouter: SearchResultRouterProtocol {
     func navigate(_ route: MainRoutes, movieId: Int) {
         switch route {

@@ -5,6 +5,7 @@
 //  Created by Ezgi Sümer Günaydın on 12.06.2024.
 
 // TODO: - Firebase Integration
+// TODO: - UITest
 
 import UIKit
 
@@ -31,7 +32,7 @@ protocol MainScreenViewControllerProtocol: BaseViewControllerProtocol {
 }
 
 // MARK: - MainScreenViewController
-class MainScreenViewController: BaseViewController {
+final class MainScreenViewController: BaseViewController {
     // MARK: - Outlets
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var searchBar: UISearchBar!
@@ -146,17 +147,18 @@ private extension MainScreenViewController {
     }
     
     final func configureSupplementaryViewsDataSource() {
-        dataSource?.supplementaryViewProvider = { collectionView, kind, indexPath in
+        dataSource?.supplementaryViewProvider = { [weak self] collectionView, kind, indexPath in
+            guard let self else { return UICollectionReusableView()}
             guard let sectionType = MainScreenSectionType(rawValue: indexPath.section) else { return UICollectionReusableView() }
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withClass: SectionHeader.self, for: indexPath)
             switch sectionType {
             case .banner:
-                if let minDate = self.presenter?.getDates().0,
-                   let maxDate = self.presenter?.getDates().1 {
+                if let minDate = presenter?.getDates().0,
+                   let maxDate = presenter?.getDates().1 {
                     headerView.configure(with: "\(minDate) - \(maxDate) Posters")
                 }
             case .movieList:
-                headerView.configure(with: self.movieListHeaderTitle)
+                headerView.configure(with: movieListHeaderTitle)
             }
             return headerView
         }
@@ -295,7 +297,8 @@ extension MainScreenViewController: MainScreenViewControllerProtocol {
     func reloadTableViewData(data: [MovResult]) {
         let isSearchActive = searchBar.text?.count != 0
         searchMainView.checkVisibilityOfViews(isSearchActive: isSearchActive, resultCount: data.count)
-        searchMainView.loadData(data: data)
+        let presenter = SearchMainPresenter(view: searchMainView, movies: data)
+        searchMainView.cellPresenter = presenter
         searchMainView.isUserInteractionEnabled = true
     }
     

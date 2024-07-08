@@ -94,3 +94,7 @@ enum OriginalLanguage: String, Decodable {
         self = OriginalLanguage(rawValue: string) ?? .other
     }
 }
+
+// MARK: - Alias
+typealias MoviesResult = Result<MoviesResponse, BaseError>
+

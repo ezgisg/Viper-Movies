@@ -7,12 +7,13 @@
 
 import UIKit
 
+// MARK: - BannerCellProtocol
 protocol BannerCellProtocol {
     func setImage(imagePath: String)
 }
 
+// MARK: - BannerCell
 class BannerCell: UICollectionViewCell {
-
     @IBOutlet weak var imageView: UIImageView!
     
     var cellPresenter: BannerPresenter? {
@@ -22,6 +23,7 @@ class BannerCell: UICollectionViewCell {
     }
 }
 
+// MARK: - BannerCellProtocol
 extension BannerCell: BannerCellProtocol {
     func setImage(imagePath: String) {
         imageView.loadImage(with: imagePath)

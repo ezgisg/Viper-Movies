@@ -7,13 +7,14 @@
 
 import UIKit
 
+// MARK: - FavoritesViewControllerProtocol
 protocol FavoritesViewControllerProtocol: AnyObject {
     func reloadData()
-
 }
 
-class FavoritesViewController: BaseViewController {
-
+// MARK: - FavoritesViewController
+final class FavoritesViewController: BaseViewController {
+    // MARK: - Outlets
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var mainEmptyView: EmptyView!
@@ -21,8 +22,10 @@ class FavoritesViewController: BaseViewController {
     private var emptyView: EmptyView?
     private var tapGesture: UITapGestureRecognizer!
     
+    // MARK: - Module Components
     var presenter: FavoritesPresenterProtocol?
     
+    // MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSearchBar()
@@ -31,6 +34,7 @@ class FavoritesViewController: BaseViewController {
         checkForEmptyViews()
         setupKeyboardObservers()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         presenter?.loadData()
         if let searchText = searchBar.text,
@@ -38,21 +42,20 @@ class FavoritesViewController: BaseViewController {
             presenter?.searchWithText(text: searchText)
         }
     }
-    
 }
 
-//MARK: FavoritesViewControllerProtocol
+// MARK: - FavoritesViewControllerProtocol
 extension FavoritesViewController: FavoritesViewControllerProtocol {
-
     func reloadData() {
-        UIView.transition(with: tableView, duration: 0.5, options: .transitionCrossDissolve) {
-            self.tableView.reloadData()
+        UIView.transition(with: tableView, duration: 0.5, options: .transitionCrossDissolve) { [weak self] in
+            guard let self else { return }
+            tableView.reloadData()
         }
         checkForEmptyViews()
     }
 }
 
-//MARK: UITableViewDataSource
+// MARK: - UITableViewDataSource
 extension FavoritesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter?.filteredFavorites.count ?? 0
@@ -67,7 +70,7 @@ extension FavoritesViewController: UITableViewDataSource {
     }
 }
 
-//MARK: UITableViewDelegate
+// MARK: - UITableViewDelegate
 extension FavoritesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let movieID = presenter?.filteredFavorites[indexPath.row].id else { return }
@@ -76,7 +79,6 @@ extension FavoritesViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard let movieID = presenter?.filteredFavorites[indexPath.row].id else { return }
-        
         presenter?.deleteFromFavorites(movieId: movieID)
        
         DispatchQueue.main.async {
@@ -84,6 +86,7 @@ extension FavoritesViewController: UITableViewDelegate {
                tableView.deleteRows(at: [indexPath], with: .fade)
                tableView.endUpdates()
            }
+        
         checkForEmptyViews()
     }
     
@@ -92,13 +95,14 @@ extension FavoritesViewController: UITableViewDelegate {
     }
 }
 
-//MARK: UISearchBarDelegate
+// MARK: - UISearchBarDelegate
 extension FavoritesViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         presenter?.searchWithText(text: searchText)
     }
 }
 
+// MARK: - Setups
 private extension FavoritesViewController {
     final func setupTableView() {
         tableView.delegate = self
@@ -106,6 +110,7 @@ private extension FavoritesViewController {
         tableView.register(nibWithCellClass: FavoritesTableViewCell.self)
     }
 
+    ///To manage "main empty view" and "search empty view" show-hide status
     final func checkForEmptyViews() {
         let isItemExist = !(presenter?.filteredFavorites.isEmpty ?? true)
         let isSearchBarActive = (searchBar.text?.count ?? 0) != 0
@@ -134,6 +139,7 @@ private extension FavoritesViewController {
         searchEmptyView.isHidden = !isActive
     }
     
+    ///initial setups
     final func setupEmptyViews() {
         mainEmptyView.addImage.image = UIImage(named: "addFavorite")
         mainEmptyView.addText.text = "Let's add!"

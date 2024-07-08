@@ -7,9 +7,11 @@
 
 import Foundation
 
+// MARK: - Constants
 struct Constants {
     struct UserDefaults {
          static let favorites = "favorites"
+         static let isFirstLaunch = "isFirstLaunch?"
     }
     
     struct URLPaths {
@@ -20,4 +22,11 @@ struct Constants {
         static let upcoming = "Upcoming Movies"
         static let noResult = "No Result"
     }
+    
+    struct NoConnectionMessages {
+        static let noConnectionTitle = "No Connection"
+        static let noConnectionMessage = "Please check your internet connection"
+    }
 }
+
+

@@ -149,3 +149,6 @@ struct MovieFavoriteDetails: Codable {
         self.title = title
     }
 }
+
+// MARK: - Alias
+typealias MovieDetailsResult = Result<MovieDetailsResponse, BaseError>

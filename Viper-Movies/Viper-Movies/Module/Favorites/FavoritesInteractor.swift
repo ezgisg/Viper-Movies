@@ -7,19 +7,20 @@
 
 import Foundation
 
+// MARK: - FavoritesInteractorProtocol
 protocol FavoritesInteractorProtocol: AnyObject {
-    
 }
 
+// MARK: - FavoritesInteractorOutputProtocol
 protocol FavoritesInteractorOutputProtocol: AnyObject {
-    
 }
 
+// MARK: - FavoritesInteractor
 final class FavoritesInteractor {
     var presenter: FavoritesPresenterProtocol?
     var output: FavoritesInteractorOutputProtocol?
 }
 
+// MARK: - FavoritesInteractorProtocol
 extension FavoritesInteractor: FavoritesInteractorProtocol {
-    
 }

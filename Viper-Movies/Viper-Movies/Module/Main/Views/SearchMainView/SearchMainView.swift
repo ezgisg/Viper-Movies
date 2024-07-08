@@ -7,24 +7,42 @@
 
 import UIKit
 
-//TODO: Viper mimarisine uygun olarak düzenlenecek
+// MARK: - SearchMainViewProtocol
+protocol SearchMainViewProtocol: AnyObject {
+    var movies: [MovResult] { get set }
+    func reloadData()
+}
 
+// MARK: - SearchMainViewDelegate
 protocol SearchMainViewDelegate {
     func didSelect(movieId: Int)
     func tappedSeeMore()
 }
 
-class SearchMainView: UIView, NibOwnerLoadable {
-    
+// MARK: - SearchMainView
+final class SearchMainView: UIView, NibOwnerLoadable {
+
+    // MARK: - Outlets
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var noResultView: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var seeMoreButton: UIButton!
     @IBOutlet weak var containerStackView: UIStackView!
-    
     @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
+    
+    // MARK: - Module Components
+    var cellPresenter: SearchMainPresenter? {
+        didSet {
+            cellPresenter?.load()
+        }
+    }
+    
+    // MARK: - Private Variables
+    private var query: String = ""
+    private var elementCountToDisplay: Int = 3
+    
+    // MARK: - Global Variables
     var movies: [MovResult] = []
-    var query: String = ""
     var delegate: SearchMainViewDelegate?
     
     override init(frame: CGRect) {
@@ -46,10 +64,23 @@ class SearchMainView: UIView, NibOwnerLoadable {
     }
 }
 
+// MARK: - SearchMainViewProtocol
+extension SearchMainView : SearchMainViewProtocol {
+    func reloadData() {
+        tableView.reloadData() {
+            DispatchQueue.main.asyncAfter(deadline: .now()) { [weak self] in
+                guard let self else { return }
+                updateTableViewHeight()
+            }
+        }
+    }
+}
+
+// MARK: - Helpers
 extension SearchMainView {
-    
+    ///To control no result view and see more button show-hide status
     final func checkVisibilityOfViews(isSearchActive: Bool, resultCount: Int) {
-        let isMoreThanShow = resultCount > 3
+        let isMoreThanShow = resultCount > elementCountToDisplay
         let isResultExist = resultCount != 0
         let isNoResultActive = isSearchActive && !isResultExist
         let isSeeMoreActive = isSearchActive && isResultExist && isMoreThanShow
@@ -57,32 +88,22 @@ extension SearchMainView {
         seeMoreButton.isHidden = !isSeeMoreActive
     }
     
-    final func loadData(data: [MovResult]) {
-        self.movies = data
-        reloadContent()
-    }
-    
-    final func reloadContent() {
-        tableView.reloadData() {
-            DispatchQueue.main.asyncAfter(deadline: .now()) {
-                self.updateTableViewHeight()
-            }
-        }
-    }
-    
-    private func updateTableViewHeight() {
+    private final func updateTableViewHeight() {
         let height = tableView.contentSize.height
         tableViewHeight.constant = height
-        self.tableView.layoutIfNeeded()
+        tableView.layoutIfNeeded()
     }
-    
-    func setupTableView() {
+}
+
+// MARK: - View Setups
+private extension SearchMainView {
+    final func setupTableView() {
         tableView.dataSource = self
-                tableView.delegate = self
+        tableView.delegate = self
         tableView.register(nibWithCellClass: SearchCell.self)
     }
     
-    func setupInitialSettingsTableView() {
+    final func setupInitialSettingsTableView() {
         seeMoreButton.isHidden = true
         noResultView.isHidden = true
         
@@ -101,11 +122,11 @@ extension SearchMainView {
         containerStackView.layer.shadowRadius = 5
     }
 }
-    
-    
+
+// MARK: - UITableViewDataSource
     extension SearchMainView: UITableViewDataSource {
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return min(movies.count, 3)
+            return min(movies.count, elementCountToDisplay)
         }
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCell(withClass: SearchCell.self)
@@ -114,14 +135,15 @@ extension SearchMainView {
             return cell
         }
     }
-    
 
-
+// MARK: - UITableViewDelegate
 extension SearchMainView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard min(movies.count, 3) >= indexPath.row else { return }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            self.updateTableViewHeight()
+        ///To resize tableviews height simultaneously when result count is change
+        guard min(movies.count, elementCountToDisplay) >= indexPath.row else { return }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1)  { [weak self] in
+            guard let self else { return }
+            updateTableViewHeight()
         }
     }
     
@@ -129,7 +151,6 @@ extension SearchMainView: UITableViewDelegate {
         guard let movieId = movies[indexPath.row].id else { return }
         delegate?.didSelect(movieId: movieId)
     }
-  
 }
 
 

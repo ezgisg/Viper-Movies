@@ -7,65 +7,53 @@
 
 import Foundation
 
-protocol onboardingPresenterProtocol: AnyObject {
-    func viewDidLoad()
+// MARK: - OnboardingPresenterProtocol
+protocol OnboardingPresenterProtocol: AnyObject {
     func viewDidAppear()
     func goToTabBar()
 }
 
-extension onboardingPresenter {
-    fileprivate enum Constans {
-        static let noConnectionTitle = "No Connection"
-        static let noConnectionMessage = "Please check your internet connection"
-    }
-}
-
+// MARK: - OnboardingPresenter
 final class onboardingPresenter {
+    // MARK: - Module Components
     weak var view: OnboardingViewControllerProtocol?
-    var interactor: onboardingInteractorProtocol?
-    var router: onboardingRouterProtocol?
+    var interactor: OnboardingInteractorProtocol?
+    var router: OnboardingRouterProtocol?
     
-    init(view: OnboardingViewControllerProtocol, interactor: onboardingInteractorProtocol, router: onboardingRouterProtocol) {
+    init(view: OnboardingViewControllerProtocol, interactor: OnboardingInteractorProtocol, router: OnboardingRouterProtocol) {
         self.view = view
         self.interactor = interactor
         self.router = router
     }
 }
 
-//MARK: onboardingPresenterProtocol
-extension onboardingPresenter: onboardingPresenterProtocol {
-
-
-    func viewDidLoad() {
-
-    }
-    
+// MARK: - OnboardingPresenterProtocol
+extension onboardingPresenter: OnboardingPresenterProtocol {
     func viewDidAppear() {
         isConnectedToInternet()
     }
     
     func goToTabBar() {
-        UserDefaults.standard.set(false, forKey: "isFirstLaunch?")
+        UserDefaults.standard.set(false, forKey: Constants.UserDefaults.isFirstLaunch )
         router?.navigate(.tabBar)
     }
-    
-    
-    private func isConnectedToInternet() {
-        interactor?.isConnected()
-    }
-    
-    
-    
 }
 
-//MARK: onboardingInteractorOutputProtocol
+// MARK: - OnboardingInteractorOutputProtocol
 extension onboardingPresenter: onboardingInteractorOutputProtocol {
     func isConnectedOutput(_ status: Bool) {
         switch status {
         case true:
             break
         case false:
-            view?.makeAlert(title: Constans.noConnectionTitle, message: Constans.noConnectionMessage)
+            view?.makeAlert(title: Constants.NoConnectionMessages.noConnectionTitle, message: Constants.NoConnectionMessages.noConnectionMessage)
         }
+    }
+}
+
+// MARK: - Helpers
+private extension onboardingPresenter {
+    final func isConnectedToInternet() {
+        interactor?.isConnected()
     }
 }

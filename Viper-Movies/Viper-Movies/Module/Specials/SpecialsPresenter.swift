@@ -7,9 +7,11 @@
 
 import Foundation
 
+// MARK: - SpecialsPresenterProtocol
 protocol SpecialsPresenterProtocol: AnyObject {
     var fetchedMovies: [MovResult]? { get }
     var currentPage: Int { get set }
+    
     func getOptions() -> ([SelectedType])
     func fetchData(selectedType: String)
     func didSelect(movieId: Int)
@@ -17,13 +19,18 @@ protocol SpecialsPresenterProtocol: AnyObject {
     func removeAllMovies()
 }
 
+// MARK: - SpecialsPresenter
 final class SpecialsPresenter {
+    // MARK: - Module Components
     weak var view: SpecialsViewControllerProtocol?
     var interactor: SpecialsInteractorProtocol?
     var router: SpecialsRouterProtocol?
     
-    var movies: [MovResult] = []
-    var pageCount : Int?
+    // MARK: - Private Variables
+    private var movies: [MovResult] = []
+    private var pageCount : Int?
+    
+    // MARK: - Global Variables
     var currentPage = 1
     
     init(view: SpecialsViewControllerProtocol, interactor: SpecialsInteractorProtocol, router: SpecialsRouterProtocol) {
@@ -33,6 +40,7 @@ final class SpecialsPresenter {
     }
 }
 
+// MARK: - SpecialsInteractorOutputProtocol
 extension SpecialsPresenter: SpecialsInteractorOutputProtocol {
     func fetchSelectedTypeMoviesOutput(result: MoviesResult) {
         view?.hideLoadingView()
@@ -48,8 +56,8 @@ extension SpecialsPresenter: SpecialsInteractorOutputProtocol {
     
 }
 
+// MARK: - SpecialsPresenterProtocol
 extension SpecialsPresenter: SpecialsPresenterProtocol {
- 
     var fetchedMovies: [MovResult]? {
         get {
             return movies
@@ -65,6 +73,7 @@ extension SpecialsPresenter: SpecialsPresenterProtocol {
         interactor?.fetchSelectedTypeMovies(selectedType: selectedEnumType, page: nil)
     }
     
+    ///To get types of data
     func getOptions() -> ([SelectedType]) {
         return [.topRated, .upcoming, .popular,]
     }
@@ -73,18 +82,18 @@ extension SpecialsPresenter: SpecialsPresenterProtocol {
         router?.navigate(.detail, movieId: movieId)
     }
     
-
+    ///For loading data with pagination
     func loadMoreData(selectedType: String) {
         guard let selectedEnumType = SelectedType(rawValue: selectedType),
               currentPage != pageCount ?? 1 else { return }
         currentPage += 1
-//        view?.showLoadingView()
+        view?.showLoadingView()
         interactor?.fetchSelectedTypeMovies(selectedType: selectedEnumType , page: currentPage)
     }
     
+    ///To remove movies array when type is changed
     func removeAllMovies() {
         movies.removeAll(keepingCapacity: false)
         view?.reloadData()
     }
-    
 }

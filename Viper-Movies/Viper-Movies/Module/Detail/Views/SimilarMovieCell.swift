@@ -7,13 +7,14 @@
 
 import UIKit
 
+// MARK: - SimilarMovieCellProtocol
 protocol SimilarMovieCellProtocol: AnyObject {
     func setImage(imagePath: String)
     func setNameTitle(title: String)
 }
 
+// MARK: - SimilarMovieCell
 class SimilarMovieCell: UICollectionViewCell {
-
     @IBOutlet weak var similarImageView: UIImageView!
     @IBOutlet weak var similarNameLabel: UILabel!
     
@@ -24,6 +25,7 @@ class SimilarMovieCell: UICollectionViewCell {
     }
 }
 
+// MARK: - SimilarMovieCellProtocol
 extension SimilarMovieCell: SimilarMovieCellProtocol {
     func setImage(imagePath: String) {
         similarImageView.loadImage(with: imagePath)

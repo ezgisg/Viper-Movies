@@ -7,10 +7,12 @@
 
 import Foundation
 
+// MARK: - SearchPresenterProtocol
 protocol SearchPresenterProtocol: AnyObject {
     func load()
 }
 
+// MARK: - SearchPresenter
 final class SearchPresenter {
     weak var view: SearchCellProtocol?
     private var movie: MovResult
@@ -21,6 +23,7 @@ final class SearchPresenter {
     }
 }
 
+// MARK: - SearchPresenterProtocol
 extension SearchPresenter: SearchPresenterProtocol {
     func load() {
         view?.setName(name: movie.title ?? "")

@@ -10,6 +10,7 @@ import Foundation
 import Foundation
 import UIKit
 
+// MARK: - LoadingShowable Protocol
 protocol LoadingShowable where Self: UIViewController {
     func showLoading()
     func hideLoading()

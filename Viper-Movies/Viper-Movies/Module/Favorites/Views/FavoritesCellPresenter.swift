@@ -7,13 +7,13 @@
 
 import Foundation
 
+// MARK: - FavoritesCellPresenterProtocol
 protocol FavoritesCellPresenterProtocol: AnyObject {
     func load()
 }
 
+// MARK: - FavoritesCellPresenter
 final class FavoritesCellPresenter {
-    
-    static let imageBaseUrl = "https://image.tmdb.org/t/p/w500/"
     let view: FavoritesTableViewCellProtocol?
     private var favorite: MovieFavoriteDetails
     
@@ -23,13 +23,14 @@ final class FavoritesCellPresenter {
     }
 }
 
+// MARK: - FavoritesCellPresenterProtocol
 extension FavoritesCellPresenter: FavoritesCellPresenterProtocol {
     func load() {
         view?.setNameTitle(title: favorite.title ?? "")
         guard let path = favorite.backdrop_path else {
             view?.setImage(imagePath: "")
             return }
-        let fullUrl = "\(FavoritesCellPresenter.imageBaseUrl)\(path)"
+        let fullUrl = "\(Constants.URLPaths.imageBase)\(path)"
         view?.setImage(imagePath: fullUrl)
     }
 }

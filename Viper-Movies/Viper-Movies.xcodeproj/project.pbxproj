@@ -91,6 +91,7 @@
 		ABA20F6F2C32FB7300EE2DC3 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA20F6E2C32FB7300EE2DC3 /* LoadingView.swift */; };
 		ABA79FB82C1C881800441357 /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA79FB62C1C881800441357 /* SectionHeader.swift */; };
 		ABA79FB92C1C881800441357 /* SectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABA79FB72C1C881800441357 /* SectionHeader.xib */; };
+		ABB3E1092C3C214100137B6F /* SearchMainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB3E1082C3C214100137B6F /* SearchMainPresenter.swift */; };
 		ABE7B2132C2999B6003176A5 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABE7B2122C2999B6003176A5 /* DetailViewController.xib */; };
 		ABE7B2142C2999B6003176A5 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE7B2112C2999B6003176A5 /* DetailViewController.swift */; };
 		ABE7B2162C299B4D003176A5 /* DetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE7B2152C299B4D003176A5 /* DetailInteractor.swift */; };
@@ -208,6 +209,7 @@
 		ABA20F6E2C32FB7300EE2DC3 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		ABA79FB62C1C881800441357 /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		ABA79FB72C1C881800441357 /* SectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionHeader.xib; sourceTree = "<group>"; };
+		ABB3E1082C3C214100137B6F /* SearchMainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMainPresenter.swift; sourceTree = "<group>"; };
 		ABE7B2112C2999B6003176A5 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		ABE7B2122C2999B6003176A5 /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		ABE7B2152C299B4D003176A5 /* DetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInteractor.swift; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 			children = (
 				AB3CA8372C35A5F6008C40DE /* SearchMainView.swift */,
 				AB3CA8392C35A606008C40DE /* SearchMainView.xib */,
+				ABB3E1082C3C214100137B6F /* SearchMainPresenter.swift */,
 			);
 			path = SearchMainView;
 			sourceTree = "<group>";
@@ -824,6 +827,7 @@
 				ABFC05B12C382B58003EE9E5 /* UIImageView+Extensions.swift in Sources */,
 				AB8408C52C36DC9100E0BC0C /* SearchResultRouter.swift in Sources */,
 				AB7A6B252C18853300E33A60 /* FirstPageViewController.swift in Sources */,
+				ABB3E1092C3C214100137B6F /* SearchMainPresenter.swift in Sources */,
 				AB7A6B2C2C18874B00E33A60 /* UIImage+Extensions.swift in Sources */,
 				ABA20F5A2C2F159A00EE2DC3 /* String+Extensions.swift in Sources */,
 				ABA20F632C32A04300EE2DC3 /* SpecialsPresenter.swift in Sources */,

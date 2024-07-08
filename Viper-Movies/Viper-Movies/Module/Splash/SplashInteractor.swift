@@ -7,22 +7,26 @@
 
 import Foundation
 
+// MARK: - SplashInteractorProtocol
 protocol SplashInteractorProtocol: AnyObject {
     func isConnected()
 }
 
+// MARK: - SplashInteractorOutputProtocol
 protocol SplashInteractorOutputProtocol: AnyObject {
     func isConnectedOutput(_ status: Bool)
 }
 
+// MARK: - SplashInteractor
 final class SplashInteractor {
     var output: SplashInteractorOutputProtocol?
     fileprivate let service = NetworkManager()
 }
 
+// MARK: - SplashInteractorProtocol
 extension SplashInteractor: SplashInteractorProtocol {
     func isConnected() {
         let status = ReachabilityManager.shared.isConnectedToInternet()
-        self.output?.isConnectedOutput(status)
+        output?.isConnectedOutput(status)
     }
 }

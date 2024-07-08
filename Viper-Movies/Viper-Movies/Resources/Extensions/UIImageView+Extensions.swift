@@ -9,12 +9,12 @@ import Foundation
 import UIKit.UIImageView
 import Kingfisher
 
+///To load image from url with KF
 extension UIImageView {
     func loadImage(with path: String, cornerRadius: CGFloat = 10) {
         kf.indicatorType = .activity
         contentMode = .scaleToFill
         layer.cornerRadius = cornerRadius
-        
         kf.setImage(with: path.imageUrl) { [weak self] result in
             guard let self else { return }
             switch result {

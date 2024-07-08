@@ -7,38 +7,45 @@
 
 import UIKit
 
+// MARK: - OnboardingViewControllerProtocol
 protocol OnboardingViewControllerProtocol: AnyObject {
     func makeAlert(title: String, message: String)
 }
 
-//MARK: OnboardingViewController
+// MARK: - OnboardingViewController
 final class OnboardingViewController: BaseViewController {
-
+    // MARK: - Outlets
     @IBOutlet weak var pageController: UIPageControl!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var skipButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     
-    var presenter: onboardingPresenterProtocol?
-    var controllers = [UIViewController]()
-    var firstPage = FirstPageViewController()
-    var secondPage = SecondPageViewController()
-    var pageVC = UIPageViewController()
+    // MARK: - Module Components
+    var presenter: OnboardingPresenterProtocol?
+    
+    // MARK: - Private Variables
+    private var controllers = [UIViewController]()
+    private var firstPage = FirstPageViewController()
+    private var secondPage = SecondPageViewController()
+    private var pageVC = UIPageViewController()
 
-
+    // MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
         controllers.append(firstPage)
         controllers.append(secondPage)
         secondPage.delegate = self
-
     }
     
     override func viewDidAppear(_ animated: Bool) {
         setupPageViewController()
         presenter?.viewDidAppear()
     }
+}
 
+
+// MARK: - Buttons action
+extension OnboardingViewController {
     @IBAction func nextButtonClicked(_ sender: Any) {
         let nextIndex = pageController.currentPage + 1
         pageController.currentPage = nextIndex
@@ -48,7 +55,6 @@ final class OnboardingViewController: BaseViewController {
         }
         pageVC.setViewControllers([nextVC], direction: .forward, animated: true)
         setupLastonboardingScreen(index: nextIndex)
-        
     }
     
     @IBAction func skipButtonClicked(_ sender: Any) {
@@ -56,16 +62,15 @@ final class OnboardingViewController: BaseViewController {
     }
 }
 
-//MARK: OnboardingViewControllerProtocol
+// MARK: - OnboardingViewControllerProtocol
 extension OnboardingViewController: OnboardingViewControllerProtocol {
     func makeAlert(title: String, message: String) {
         showAlert(title: title, message: message, completion: nil)
     }
 }
 
-//MARK: UIPageViewControllerDelegate
+// MARK: - UIPageViewControllerDelegate
 extension OnboardingViewController: UIPageViewControllerDelegate {
-    
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if completed,
         let visibleViewController = pageViewController.viewControllers?.first,
@@ -74,16 +79,14 @@ extension OnboardingViewController: UIPageViewControllerDelegate {
             setupLastonboardingScreen(index: index)
         }
     }
-    
 }
 
-//MARK: UIPageViewControllerDataSource
+// MARK: - UIPageViewControllerDataSource
 extension OnboardingViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let index = controllers.firstIndex(of: viewController), index > 0 else {return nil}
         let previous = index - 1
         return controllers[previous]
-        
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
@@ -93,11 +96,9 @@ extension OnboardingViewController: UIPageViewControllerDataSource {
     }
 }
 
-
-//MARK: PageVC Setups
-extension OnboardingViewController {
-    
-    func setupPageViewController() {
+// MARK: - PageVC Setups
+private extension OnboardingViewController {
+    final func setupPageViewController() {
         guard let first = controllers.first else { return }
         pageVC = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         pageVC.modalPresentationStyle = .fullScreen
@@ -118,7 +119,7 @@ extension OnboardingViewController {
         pageController.currentPage = 0
     }
     
-   private final func setupLastonboardingScreen(index: Int) {
+    final func setupLastonboardingScreen(index: Int) {
        guard index == controllers.count - 1 else {
            skipButton.isHidden = false
            nextButton.setTitle("Next", for: .normal)
@@ -129,7 +130,7 @@ extension OnboardingViewController {
     }
 }
 
-//MARK: SecondPageDelegate
+// MARK: - SecondPageDelegate
 extension OnboardingViewController: SecondPageDelegate {
     func startButtonClicked() {
         presenter?.goToTabBar()

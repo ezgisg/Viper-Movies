@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: - MainScreenPresenterProtocol
 protocol MainScreenPresenterProtocol: AnyObject {
     var searchResult: [MovResult] { get set }
     var searchResultPageCount: Int? { get }
@@ -21,12 +22,14 @@ protocol MainScreenPresenterProtocol: AnyObject {
     func seeMoreSelected(query: String)
 }
 
-
+// MARK: - MainScreenPresenter
 final class MainScreenPresenter {
+    // MARK: - Module Components
     weak var view: MainScreenViewControllerProtocol?
     var interactor: MainScreenInteractorProtocol?
     var router: MainScreenRouterProtocol?
     
+    // MARK: - Global Variables
     var movies: [MovResult] = []
     var filteredMovies: [MovResult] = []
     var banners: [MovResult] = []
@@ -44,9 +47,10 @@ final class MainScreenPresenter {
     }
 }
 
-//MARK: MainScreenPresenterProtocol
+//MARK: MainScreenPresenter
 extension MainScreenPresenter: MainScreenPresenterProtocol {
-
+    
+    ///To get banners section title
     func getDates() -> (String?, String?) {
         return (minDate, maxDate)
     }
@@ -71,6 +75,7 @@ extension MainScreenPresenter: MainScreenPresenterProtocol {
         interactor?.fetchNowPlayingMovies(page: nil)
     }
     
+    ///To search in already fetched data
     func searchLocal(text: String) {
         guard text.count != 0 else {
             view?.isLocalSearchActive = false
@@ -79,26 +84,25 @@ extension MainScreenPresenter: MainScreenPresenterProtocol {
             view?.reloadCollectionViewData()
             return
         }
-        
         view?.isLocalSearchActive = true
         let modifiedText = text.replacingOccurrences(of: "İ", with: "I").uppercased()
         filteredMovies = movies.filter {
             let modifiedTitle = $0.title?.replacingOccurrences(of: "i", with: "I").uppercased()
             return modifiedTitle?.contains(modifiedText) ?? false
         }
-        if filteredMovies.count == 0 {
-            view?.movieListHeaderTitle = Constants.Titles.noResult
-        } else {
-            view?.movieListHeaderTitle = Constants.Titles.upcoming
-        }
+        
+        view?.movieListHeaderTitle = filteredMovies.isEmpty ? Constants.Titles.noResult : Constants.Titles.upcoming
         view?.reloadCollectionViewData()
     }
     
+    ///To search in all movies data with query
     func searchService(text: String) {
         interactor?.searchWithQuery(query: text, year: nil, page: nil)
     }
     
+    ///For loading data with pagination
     func loadMoreData() {
+        ///To control whether it is  last page or not
         guard currentPage != pageCount ?? 1 else { return }
         currentPage += 1
         interactor?.fetchNowPlayingMovies(page: currentPage)
@@ -108,6 +112,7 @@ extension MainScreenPresenter: MainScreenPresenterProtocol {
         router?.navigate(.detail, movieId: movieId)
     }
     
+    ///To see more when "search in all" is active and there is more than showed
     func seeMoreSelected(query: String) {
         router?.navigateToList(query: query, movies: searchResult, totalPage: searchResultPageCount ?? 1)
     }
@@ -115,6 +120,7 @@ extension MainScreenPresenter: MainScreenPresenterProtocol {
 
 // MARK: - MainScreenInteractorOutputProtocol
 extension MainScreenPresenter: MainScreenInteractorOutputProtocol {
+    ///Fetching data from search service with query
     func searchWithQueryOutput(result: MoviesResult) {
         view?.hideLoadingView()
         switch result {
@@ -127,14 +133,15 @@ extension MainScreenPresenter: MainScreenInteractorOutputProtocol {
         }
     }
     
+    ///Fetching data from now playing service
     func fetchNowPlayingMoviesOutput(result: MoviesResult) {
         view?.hideLoadingView()
         switch result {
-        case .success(let movies):
-            self.movies.append(contentsOf: movies.results ?? [])
-            pageCount = movies.total_pages ?? 1
-            minDate = movies.dates?.minimum?.formatDate(from: "yyyy-MM-dd", to: "dd.MM.yyyy") ?? ""
-            maxDate = movies.dates?.maximum?.formatDate(from: "yyyy-MM-dd", to: "dd.MM.yyyy") ?? ""
+        case .success(let moviesData):
+            movies.append(contentsOf: moviesData.results ?? [])
+            pageCount = moviesData.total_pages ?? 1
+            minDate = moviesData.dates?.minimum?.formatDate(from: "yyyy-MM-dd", to: "dd.MM.yyyy") ?? ""
+            maxDate = moviesData.dates?.maximum?.formatDate(from: "yyyy-MM-dd", to: "dd.MM.yyyy") ?? ""
             filteredMovies = self.movies
             view?.reloadCollectionViewData()
         case .failure(let error):

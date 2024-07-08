@@ -7,23 +7,20 @@
 
 import Foundation
 
+// MARK: - SearchResultInteractorOutputProtocol
 protocol SplashPresenterProtocol: AnyObject {
-    func viewDidLoad()
     func checkConnection()
 }
 
-extension SplashPresenter {
-    fileprivate enum Constans {
-        static let noConnectionTitle = "No Connection"
-        static let noConnectionMessage = "Please check your internet connection"
-    }
-}
-
+// MARK: - SplashPresenter
 final class SplashPresenter {
-    let isFirstLaunch = UserDefaults.standard.object(forKey: "isFirstLaunch?")
+    // MARK: - Module Components
     weak var view: SplashViewControllerProtocol?
     var interactor: SplashInteractorProtocol?
     var router: SplashRouterProtocol?
+    
+    // MARK: - Private Variables
+    private let isFirstLaunch = UserDefaults.standard.object(forKey: Constants.UserDefaults.isFirstLaunch)
     
     init(view: SplashViewControllerProtocol, interactor: SplashInteractorProtocol, router: SplashRouterProtocol) {
         self.view = view
@@ -34,36 +31,31 @@ final class SplashPresenter {
     private func isConnectedToInternet() {
         interactor?.isConnected()
     }
-    
-    
 }
 
+// MARK: - SplashPresenterProtocol
 extension SplashPresenter: SplashPresenterProtocol {
     func checkConnection() {
         interactor?.isConnected()
     }
-    
-    func viewDidLoad() {
-      
-    }
-    
-    
 }
 
+// MARK: - SplashInteractorOutputProtocol
 extension SplashPresenter: SplashInteractorOutputProtocol {
     func isConnectedOutput(_ status: Bool) {
         switch status {
         case true:
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
                 guard let self else { return }
-                guard let isFirstLaunch = UserDefaults.standard.object(forKey: "isFirstLaunch?") as? Bool,
+                ///To check whether the onboarding screen has been passed before
+                guard let isFirstLaunch = UserDefaults.standard.object(forKey:  Constants.UserDefaults.isFirstLaunch) as? Bool,
                       isFirstLaunch == false else {
                 self.router?.navigate(.onboarding)
                     return }
                 self.router?.navigate(.tabBar)
             }
         case false:
-            view?.makeAlert(title: Constans.noConnectionTitle, message: Constans.noConnectionMessage)
+            view?.makeAlert(title: Constants.NoConnectionMessages.noConnectionTitle, message: Constants.NoConnectionMessages.noConnectionMessage)
         }
     }
 }

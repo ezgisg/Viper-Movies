@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+// MARK: - LoadingView
 class LoadingView {
    
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
@@ -34,7 +35,6 @@ class LoadingView {
               let window = windowScene.windows.first else {
             return
         }
-        
         window.addSubview(blurView)
         blurView.translatesAutoresizingMaskIntoConstraints = false
         activityIndicator.startAnimating()

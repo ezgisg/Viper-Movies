@@ -7,6 +7,7 @@
 
 import Foundation
 
+//MARK: BaseError Enum
 enum BaseError: Error {
     case decoding
     case badRequest
@@ -19,6 +20,7 @@ enum BaseError: Error {
     case internalServerError
     case unknown
     
+    ///Alert message title
     var title: String {
         switch self {
         case .decoding:
@@ -44,6 +46,7 @@ enum BaseError: Error {
         }
     }
     
+    ///Alert message text
     var message: String {
         switch self {
         case .decoding:

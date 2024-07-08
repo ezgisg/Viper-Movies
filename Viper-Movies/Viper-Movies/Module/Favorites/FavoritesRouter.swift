@@ -7,15 +7,17 @@
 
 import Foundation
 
+// MARK: - FavoritesRouterProtocol
 protocol FavoritesRouterProtocol: AnyObject {
     func navigate(_ route: FavoritesRoutes, movieId: Int)
 }
 
+// MARK: - Enum
 enum FavoritesRoutes {
     case detail
 }
 
-
+// MARK: - FavoritesRouter
 final class FavoritesRouter {
     weak var viewController: FavoritesViewController?
     var presenter: FavoritesPresenterProtocol?
@@ -32,6 +34,7 @@ final class FavoritesRouter {
     }
 }
 
+// MARK: - FavoritesRouterProtocol
 extension FavoritesRouter: FavoritesRouterProtocol {
     func navigate(_ route: FavoritesRoutes, movieId: Int) {
         switch route {

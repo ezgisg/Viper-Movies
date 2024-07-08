@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+// MARK: - EmptyView
 class EmptyView: UIView, NibOwnerLoadable {
     
     private var contentView: UIView?
@@ -26,7 +27,6 @@ class EmptyView: UIView, NibOwnerLoadable {
         loadNibContent()
         setupTapGesture()
     }
-    
     
     private func setupTapGesture() {
            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(addImageTapped))

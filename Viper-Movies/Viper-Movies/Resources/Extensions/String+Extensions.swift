@@ -7,14 +7,16 @@
 
 import Foundation
 
+// MARK: - String Extension
 extension String {
+    ///To obtain string in desired date format
     func formatDate(from inputFormat: String, to outputFormat: String) -> String? {
         let dateFormatterGet = DateFormatter()
         dateFormatterGet.dateFormat = inputFormat
-
+        
         let dateFormatterSet = DateFormatter()
         dateFormatterSet.dateFormat = outputFormat
-
+        
         if let date = dateFormatterGet.date(from: self) {
             return dateFormatterSet.string(from: date)
         } else {
@@ -22,6 +24,7 @@ extension String {
         }
     }
     
+    ///To convert string to url with using imageBase constant link
     var imageUrl: URL? {
         let urlString = "\(Constants.URLPaths.imageBase)\(self)"
         return URL(string: urlString)

@@ -8,11 +8,12 @@
 import Foundation
 import Kingfisher
 
-
+// MARK: - BannerPresenterProtocol
 protocol BannerPresenterProtocol: AnyObject {
     func load()
 }
 
+// MARK: - BannerPresenter
 final class BannerPresenter {
     let view: BannerCellProtocol?
     var movieResult: MovResult
@@ -23,15 +24,14 @@ final class BannerPresenter {
     }
 }
 
+// MARK: - BannerPresenterProtocol
 extension BannerPresenter: BannerPresenterProtocol {
     func load() {
-        let imageBaseUrl = "https://image.tmdb.org/t/p/w500/"
         guard let path = movieResult.posterPath else {
             view?.setImage(imagePath: "")
             return }
-        let fullUrl = "\(imageBaseUrl)\(path)"
+        let fullUrl = "\(Constants.URLPaths.imageBase)\(path)"
         view?.setImage(imagePath: fullUrl)
     }
-
 }
 

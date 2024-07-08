@@ -7,14 +7,13 @@
 
 import UIKit
 
-
+// MARK: - SplashViewControllerProtocol
 protocol SplashViewControllerProtocol: AnyObject {
     func makeAlert(title: String, message: String)
 }
 
-
+// MARK: - SplashViewController
 class SplashViewController: BaseViewController {
-
     @IBOutlet weak var imageView: UIImageView!
     var presenter: SplashPresenterProtocol?
     
@@ -25,13 +24,15 @@ class SplashViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         presenter?.checkConnection()
     }
-
 }
 
+// MARK: - SearchResultInteractorOutputProtocol
 extension SplashViewController: SplashViewControllerProtocol {
+    ///To check connection status and if there is not then show alert
     func makeAlert(title: String, message: String) {
-        showAlert(title: title, message: message) {
-            self.presenter?.checkConnection()
+        showAlert(title: title, message: message) { [weak self] in
+            guard let self else { return }
+            presenter?.checkConnection()
         }
     }
 }

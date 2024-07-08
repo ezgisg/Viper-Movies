@@ -7,17 +7,19 @@
 
 import UIKit
 
-
+// MARK: - BottomSheetViewController
 class BottomSheetViewController: BaseViewController {
-
+    // MARK: - Outlets
     @IBOutlet var mainScreenContainer: UIView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var pickerView: UIPickerView!
     
+    // MARK: - Private Variables
     private var data: [String]
     private var optionSelected: ((String) -> Void)
     private var selectedOption: String?
     
+    // MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -38,7 +40,10 @@ class BottomSheetViewController: BaseViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+}
+
+// MARK: - Button Functions
+private extension BottomSheetViewController {
     @IBAction func doneButtonClicked(_ sender: Any) {
         let selectedRow = pickerView.selectedRow(inComponent: 0)
         let selectedOption = data[selectedRow]
@@ -49,6 +54,7 @@ class BottomSheetViewController: BaseViewController {
     }
 }
 
+// MARK: - Setup Functions
 private extension BottomSheetViewController {
     final func setupUI() {
         containerView.layer.cornerRadius = 20
@@ -74,6 +80,7 @@ private extension BottomSheetViewController {
     }
 }
 
+// MARK: - UIPickerViewDataSource
 extension BottomSheetViewController: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -83,7 +90,8 @@ extension BottomSheetViewController: UIPickerViewDataSource {
         data.count
     }
 }
-    
+
+// MARK: - UIPickerViewDelegate
 extension BottomSheetViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         data[row]

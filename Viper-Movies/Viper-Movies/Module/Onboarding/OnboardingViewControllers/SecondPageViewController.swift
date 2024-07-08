@@ -7,13 +7,13 @@
 
 import UIKit
 
-
+// MARK: - SecondPageDelegate
 protocol SecondPageDelegate: AnyObject {
     func startButtonClicked()
 }
 
+// MARK: - SecondPageViewController
 class SecondPageViewController: BaseViewController {
-
     @IBOutlet weak var imageView: UIImageView!
     weak var delegate: SecondPageDelegate?
     
@@ -26,6 +26,5 @@ class SecondPageViewController: BaseViewController {
         delegate?.startButtonClicked()
         print("Main screen e gidilecek")
     }
-    
 }
 

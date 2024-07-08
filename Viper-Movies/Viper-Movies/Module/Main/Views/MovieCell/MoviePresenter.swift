@@ -7,10 +7,12 @@
 
 import Foundation
 
+// MARK: - MoviePresenterProtocol
 protocol MoviePresenterProtocol: AnyObject {
     func load()
 }
 
+// MARK: - MoviePresenter
 final class MoviePresenter {
     let view: MovieCellProtocol?
     private var movieResult: MovResult
@@ -21,16 +23,16 @@ final class MoviePresenter {
     }
 }
 
+// MARK: - MoviePresenterProtocol
 extension MoviePresenter: MoviePresenterProtocol {
     func load() {
-        let imageBaseUrl = "https://image.tmdb.org/t/p/w500/"
         view?.setTitle(title: movieResult.title ?? "")
         view?.setDescription(description: movieResult.overview ?? "")
         view?.setDetail(detail: movieResult.releaseDate ?? "")
         guard let path = movieResult.backdropPath else { 
             view?.setImage(imagePath: "")
             return }
-        let fullUrl = "\(imageBaseUrl)\(path)"
+        let fullUrl = "\(Constants.URLPaths.imageBase)\(path)"
         view?.setImage(imagePath: fullUrl)
 
     }

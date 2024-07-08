@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: - DetailPresenterProtocol
 protocol DetailPresenterProtocol: AnyObject {
     var movieId: Int { get set }
     var delegate: DetailPresenterDelegate? { get set }
@@ -18,20 +19,25 @@ protocol DetailPresenterProtocol: AnyObject {
     func getFromUserDefaults() -> [MovieFavoriteDetails]
 }
 
+// MARK: - DetailPresenterDelegate
 protocol DetailPresenterDelegate: AnyObject {
     func fetchedDetails()
 }
 
+// MARK: - DetailPresenter
 final class DetailPresenter {
+    // MARK: - Module Components
     weak var view: DetailViewControllerProtocol?
     var interactor: DetailInteractorProtocol?
     var router: DetailRouterProtocol?
     
+    // MARK: - Global Variables
     var movieId: Int
-    var delegate: DetailPresenterDelegate?
-    
     var similarMovies: [MovResult] = []
-    var movieDetail: MovieDetailsResponse? = nil
+    var delegate: DetailPresenterDelegate?
+
+    // MARK: - Private Variables
+    private var movieDetail: MovieDetailsResponse? = nil
     
     init(view: DetailViewControllerProtocol, interactor: DetailInteractorProtocol, router: DetailRouterProtocol, movieId: Int) {
         self.view = view
@@ -42,7 +48,7 @@ final class DetailPresenter {
     
 }
 
-//MARK: DetailInteractorOutputProtocol
+// MARK: - DetailInteractorOutputProtocol
 extension DetailPresenter: DetailInteractorOutputProtocol {
     func fetchSimilarMoviesOutput(result: MoviesResult) {
         similarMovies.removeAll(keepingCapacity: true)
@@ -68,8 +74,9 @@ extension DetailPresenter: DetailInteractorOutputProtocol {
     }
 }
 
-//MARK: DetailPresenterProtocol
+// MARK: - DetailPresenterProtocol
 extension DetailPresenter: DetailPresenterProtocol {
+    ///To save or remove from userdefaults "favorites"
     func saveToUserDefaults() {
         guard let favorite = movieDetail?.favorite else { return }
         var favorites = getFromUserDefaults()
@@ -83,6 +90,7 @@ extension DetailPresenter: DetailPresenterProtocol {
         }
     }
     
+    ///To get data from userdefaults "favorites"
     func getFromUserDefaults() -> [MovieFavoriteDetails] {
         guard let favorites = UserDefaults.standard.object(forKey: Constants.UserDefaults.favorites) as? Data,
               let decoded = try? JSONDecoder().decode([MovieFavoriteDetails].self, from: favorites) else { return [] }
@@ -107,7 +115,7 @@ extension DetailPresenter: DetailPresenterProtocol {
     }
 }
 
-//MARK: Helpers
+// MARK: - Helpers
 extension DetailPresenter {
     private func loadImage() {
         guard let path = movieDetail?.backdrop_path else {

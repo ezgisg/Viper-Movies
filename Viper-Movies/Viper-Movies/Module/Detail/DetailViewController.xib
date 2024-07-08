@@ -42,13 +42,13 @@
                     <rect key="frame" x="0.0" y="0.0" width="393" height="618"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imdb" translatesAutoresizingMaskIntoConstraints="NO" id="9IM-tf-dk7">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="401"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="397"/>
                         </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3L1-s6-4Xj">
-                            <rect key="frame" x="0.0" y="407" width="393" height="24"/>
+                            <rect key="frame" x="0.0" y="403" width="393" height="28"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kWI-XN-OFx">
-                                    <rect key="frame" x="5" y="0.0" width="383" height="24"/>
+                                    <rect key="frame" x="5" y="0.0" width="383" height="28"/>
                                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="24"/>
                                     <nil key="textColor"/>
                                 </label>
@@ -59,7 +59,7 @@
                                 <constraint firstItem="kWI-XN-OFx" firstAttribute="leading" secondItem="3L1-s6-4Xj" secondAttribute="leading" constant="5" id="I3o-AM-gdu"/>
                                 <constraint firstAttribute="trailing" secondItem="kWI-XN-OFx" secondAttribute="trailing" constant="5" id="XHb-TK-xlF"/>
                                 <constraint firstItem="kWI-XN-OFx" firstAttribute="top" secondItem="3L1-s6-4Xj" secondAttribute="top" id="bRb-3M-VpY"/>
-                                <constraint firstAttribute="height" constant="24" id="jVD-KQ-Y6N"/>
+                                <constraint firstAttribute="height" constant="28" id="jVD-KQ-Y6N"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7gj-nv-Cad">

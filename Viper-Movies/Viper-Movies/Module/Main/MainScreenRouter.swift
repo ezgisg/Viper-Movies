@@ -8,16 +8,18 @@
 import Foundation
 import UIKit.UINavigationBar
 
+// MARK: - MainScreenRouterProtocol
 protocol MainScreenRouterProtocol: AnyObject {
     func navigate(_ route: MainRoutes, movieId: Int)
     func navigateToList(query: String , movies: [MovResult], totalPage: Int)
 }
 
+// MARK: - Enum
 enum MainRoutes {
     case detail
 }
 
-
+// MARK: - MainScreenRouter
 final class MainScreenRouter {
     weak var viewController: MainScreenViewController?
     var presenter: MainScreenPresenterProtocol?
@@ -34,18 +36,18 @@ final class MainScreenRouter {
     }
 }
 
+// MARK: - MainScreenRouter
 extension MainScreenRouter: MainScreenRouterProtocol {
- 
+    ///To go to detail page
     func navigate(_ route: MainRoutes, movieId: Int) {
         switch route {
         case .detail:
-            
             guard let navigationController = viewController?.navigationController else { return }
             let detailVC = DetailRouter.createModule(movieId: movieId)
             navigationController.pushViewController(detailVC, animated: true)
         }
     }
-    
+    ///To go to service "search result" list page
     func navigateToList(query: String, movies: [MovResult], totalPage: Int) {
         guard let navigationController = viewController?.navigationController else { return }
         let searchResultListVC = SearchResultRouter.createModule(query: query, movies: movies, totalPage: totalPage)

@@ -7,23 +7,27 @@
 
 import Foundation
 
-
+// MARK: - SearchResultInteractorProtocol
 protocol SearchResultInteractorProtocol: AnyObject {
     func searchWithQuery(query: String, year: String?, page: Int?)
 }
 
+// MARK: - SearchResultInteractorOutputProtocol
 protocol SearchResultInteractorOutputProtocol: AnyObject {
     func searchWithQueryOutput(result: MoviesResult)
 }
 
-
+// MARK: - SearchResultInteractor
 final class SearchResultInteractor {
     var presenter: SearchResultPresenterProtocol?
     var output: SearchResultInteractorOutputProtocol?
+    
     private var service = MoviesService()
 }
 
+// MARK: - SearchResultInteractorProtocol
 extension SearchResultInteractor: SearchResultInteractorProtocol {
+    ///Fetching data from search service with query
     func searchWithQuery(query: String, year: String?, page: Int?) {
         service.fetchQuerySearch(query: query, primary_release_year: year, page: page) { MoviesResult in
             self.output?.searchWithQueryOutput(result: MoviesResult)

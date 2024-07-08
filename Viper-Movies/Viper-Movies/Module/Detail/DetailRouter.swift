@@ -7,19 +7,20 @@
 
 import Foundation
 
+// MARK: - DetailRouterProtocol
 protocol DetailRouterProtocol: AnyObject {
     func navigate(_ route: DetailRoutes, movieId: Int)
 }
 
+// MARK: - Enum
 enum DetailRoutes {
     case detail
 }
 
-
+// MARK: - DetailRouter
 final class DetailRouter {
     weak var viewController: DetailViewController?
     var presenter: DetailPresenterProtocol?
-
     
     static func createModule(movieId: Int) -> DetailViewController {
         let view = DetailViewController()
@@ -33,6 +34,7 @@ final class DetailRouter {
     }
 }
 
+// MARK: - DetailRouterProtocol
 extension DetailRouter: DetailRouterProtocol {
     func navigate(_ route: DetailRoutes, movieId: Int) {
         switch route {

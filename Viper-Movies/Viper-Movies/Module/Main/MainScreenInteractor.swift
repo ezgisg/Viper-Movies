@@ -7,16 +7,19 @@
 
 import Foundation
 
+// MARK: - MainScreenInteractorProtocol
 protocol MainScreenInteractorProtocol: AnyObject {
     func fetchNowPlayingMovies(page: Int?)
     func searchWithQuery(query: String, year: String?, page: Int?)
 }
 
+// MARK: - MainScreenInteractorOutputProtocol
 protocol MainScreenInteractorOutputProtocol: AnyObject {
     func fetchNowPlayingMoviesOutput(result: MoviesResult)
     func searchWithQueryOutput(result: MoviesResult)
 }
 
+// MARK: - MainScreenInteractor
 final class MainScreenInteractor {
     var presenter: MainScreenPresenterProtocol?
     var output: MainScreenInteractorOutputProtocol?
@@ -24,15 +27,19 @@ final class MainScreenInteractor {
 }
 
 extension MainScreenInteractor: MainScreenInteractorProtocol {
+    ///Fetching data from now playing service
     func fetchNowPlayingMovies(page: Int?) {
-        service.fetchNowPlayingMovies(page: page) { MoviesResult in
-            self.output?.fetchNowPlayingMoviesOutput(result: MoviesResult)
+        service.fetchNowPlayingMovies(page: page) { [weak self] MoviesResult in
+            guard let self else { return }
+            output?.fetchNowPlayingMoviesOutput(result: MoviesResult)
         }
     }
     
+    ///Fetching data from search service with query
     func searchWithQuery(query: String, year: String?, page: Int?) {
-        service.fetchQuerySearch(query: query, primary_release_year: year, page: page) { MoviesResult in
-            self.output?.searchWithQueryOutput(result: MoviesResult)
+        service.fetchQuerySearch(query: query, primary_release_year: year, page: page) { [weak self]  MoviesResult in
+            guard let self else { return }
+            output?.searchWithQueryOutput(result: MoviesResult)
         }
     }
     

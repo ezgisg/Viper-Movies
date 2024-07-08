@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: - SearchResultPresenterProtocol
 protocol SearchResultPresenterProtocol: AnyObject {
     func getMovies() -> [MovResult]
     func didSelect(movieId: Int)
@@ -14,14 +15,18 @@ protocol SearchResultPresenterProtocol: AnyObject {
  
 }
 
+// MARK: - SearchResultPresenter
 final class SearchResultPresenter {
+    // MARK: - Module Components
     weak var view: SearchResultViewControllerProtocol?
     var interactor: SearchResultInteractorProtocol?
     var router: SearchResultRouterProtocol?
-    var query: String
-    var movies: [MovResult]
-    var page: Int = 1
-    var totalPage: Int
+    
+    // MARK: - Private Variables
+    private var query: String
+    private var movies: [MovResult]
+    private var page: Int = 1
+    private var totalPage: Int
     
     init(view: SearchResultViewControllerProtocol, interactor: SearchResultInteractorProtocol, router: SearchResultRouterProtocol, query: String, movies: [MovResult], totalPage: Int) {
         self.view = view
@@ -34,7 +39,6 @@ final class SearchResultPresenter {
 }
 
 extension SearchResultPresenter: SearchResultPresenterProtocol {
-
     func getMovies() -> [MovResult] {
         return movies
     }
@@ -42,6 +46,7 @@ extension SearchResultPresenter: SearchResultPresenterProtocol {
         router?.navigate(.detail, movieId: movieId)
     }
     
+    //To load more when scroll to bottom - pagination
     func loadMore() {
         if totalPage > page {
             view?.showLoadingView()
@@ -49,11 +54,11 @@ extension SearchResultPresenter: SearchResultPresenterProtocol {
             interactor?.searchWithQuery(query: self.query, year: nil, page: page)
         }
     }
-    
 }
 
-
+// MARK: - SearchResultInteractorOutputProtocol
 extension SearchResultPresenter: SearchResultInteractorOutputProtocol {
+    ///Fetching data from search service with query
     func searchWithQueryOutput(result: MoviesResult) {
         view?.hideLoadingView()
         switch result {

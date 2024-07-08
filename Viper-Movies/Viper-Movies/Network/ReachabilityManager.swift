@@ -8,6 +8,7 @@
 import Foundation
 import Alamofire
 
+// MARK: - ReachabilityManager
 final class ReachabilityManager {
     static let shared = ReachabilityManager()
     
