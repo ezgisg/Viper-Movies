@@ -9,7 +9,7 @@ import UIKit
 
 // MARK: - FirstPageViewController
 class FirstPageViewController: BaseViewController {
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet private weak var imageView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         let videoGif = UIImage.gifImageWithName("movieGif")

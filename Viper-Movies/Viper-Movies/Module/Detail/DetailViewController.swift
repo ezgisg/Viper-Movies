@@ -11,20 +11,18 @@ import UIKit
 protocol DetailViewControllerProtocol: BaseViewControllerProtocol {
     func setImage(imagePath: String)
     func reloadData()
-    func showLoadingView()
-    func hideLoadingView()
 }
 
 // MARK: - DetailViewController
 class DetailViewController: BaseViewController {
     // MARK: - Outlets
-    @IBOutlet weak var bannerImage: UIImageView!
-    @IBOutlet weak var movieName: UILabel!
-    @IBOutlet weak var descriptionTextView: UITextView!
-    @IBOutlet weak var addToFavoriteButton: UIButton!
-    @IBOutlet weak var detailLabel: UILabel!
-    @IBOutlet weak var imdbImage: UIImageView!
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet private weak var bannerImage: UIImageView!
+    @IBOutlet private weak var movieName: UILabel!
+    @IBOutlet private weak var descriptionTextView: UITextView!
+    @IBOutlet private weak var addToFavoriteButton: UIButton!
+    @IBOutlet private weak var detailLabel: UILabel!
+    @IBOutlet private weak var imdbImage: UIImageView!
+    @IBOutlet private weak var collectionView: UICollectionView!
     
     // MARK: - Module Components
     var presenter: DetailPresenterProtocol?
@@ -39,6 +37,7 @@ class DetailViewController: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         descriptionTextView.flashScrollIndicators()
         setupFavoriteButton()
     }
@@ -52,14 +51,6 @@ extension DetailViewController: DetailViewControllerProtocol {
     
     func reloadData() {
         collectionView.reloadData()
-    }
-    
-    func showLoadingView() {
-        showLoading()
-    }
-    
-    func hideLoadingView() {
-        hideLoading()
     }
 }
 
@@ -78,6 +69,7 @@ extension DetailViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return presenter?.getSimilars().count ?? 0
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let similars = presenter?.getSimilars() else { return UICollectionViewCell()}
         let cell = collectionView.dequeueReusableCell(with: SimilarMovieCell.self, for: indexPath)
@@ -88,8 +80,8 @@ extension DetailViewController: UICollectionViewDataSource {
 }
 
 // MARK: - Compositional Layout
-extension DetailViewController {
-    private func createSimilarsSection() -> NSCollectionLayoutSection {
+private extension DetailViewController {
+    final func createSimilarsSection() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         let groupSize = NSCollectionLayoutSize(widthDimension: .estimated(140),  heightDimension: .absolute(200))
@@ -99,7 +91,7 @@ extension DetailViewController {
         return section
     }
     
-    private func createCompositionalLayout() -> UICollectionViewCompositionalLayout {
+    final func createCompositionalLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { [weak self] (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
             guard let self else { return nil }
             return createSimilarsSection()
@@ -129,22 +121,23 @@ extension DetailViewController: UICollectionViewDelegate {
 }
 
 // MARK: - Configuration of View
-extension DetailViewController {
-    private func setupImdbButton() {
+private extension DetailViewController {
+    final func setupImdbButton() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imdbImageTapped(_:)))
         imdbImage.isUserInteractionEnabled = true
         imdbImage.addGestureRecognizer(tapGestureRecognizer)
     }
     
     ///To go to imdb web page of movie
-    @objc private func imdbImageTapped(_ sender: UITapGestureRecognizer) {
+    @objc final func imdbImageTapped(_ sender: UITapGestureRecognizer) {
         guard let imdbID = presenter?.getDetails()?.imdb_id else { return }
-        let imdbUrlString = "https://www.imdb.com/title/\(imdbID)/"
+        let imdbUrlString = "\(Constants.URLPaths.imbdBaseURL)/\(imdbID)/"
+        
         guard let imdbUrl = URL(string: imdbUrlString) else { return }
         UIApplication.shared.open(imdbUrl)
     }
     
-    private func setupFavoriteButton() {
+    final func setupFavoriteButton() {
         addToFavoriteButton.titleLabel?.textAlignment = .center
         guard let movieId = presenter?.movieId,
               let decoded = presenter?.getFromUserDefaults() else { return }
@@ -155,7 +148,7 @@ extension DetailViewController {
         }
     }
     
-    private func setupCollectionView() {
+    final func setupCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(cellType: SimilarMovieCell.self)
@@ -163,16 +156,17 @@ extension DetailViewController {
     }
     
     ///To save or remove from userdefaults "favorites"
-    @IBAction func addToFavoriteTapped(_ sender: Any) {
+    @IBAction final func addToFavoriteTapped(_ sender: Any) {
         presenter?.saveToUserDefaults()
         setupFavoriteButton()
     }
     
-    private func setupViews() {
-        imdbImage.image = UIImage(named: "imdb")
+    final func setupViews() {
+        imdbImage.image = .imdb
         setupCollectionView()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            self.descriptionTextView.flashScrollIndicators()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+            guard let self else { return }
+            descriptionTextView.flashScrollIndicators()
         }
         setupImdbButton()
         setupFavoriteButton()

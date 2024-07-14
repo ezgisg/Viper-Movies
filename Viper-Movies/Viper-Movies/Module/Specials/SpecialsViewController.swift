@@ -17,10 +17,10 @@ protocol SpecialsViewControllerProtocol: BaseViewControllerProtocol {
 // MARK: - SpecialsViewController
 final class SpecialsViewController: BaseViewController {
     // MARK: - Outlets
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var changeButton: UIButton!
-    @IBOutlet weak var pickerLabel: UILabel!
-    @IBOutlet weak var labelContainer: UIView!
+    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var changeButton: UIButton!
+    @IBOutlet private weak var pickerLabel: UILabel!
+    @IBOutlet private weak var labelContainer: UIView!
     
     // MARK: - Module Components
     var presenter: SpecialsPresenterProtocol?
@@ -30,7 +30,6 @@ final class SpecialsViewController: BaseViewController {
         super.viewDidLoad()
         initialSetup()
         presenter?.fetchData(selectedType: pickerLabel.text ?? "")
-      
     }
 }
 
@@ -41,11 +40,12 @@ extension SpecialsViewController {
         let bottomSheetVC = BottomSheetViewController(
             data: presenter?.getOptions().map({$0.rawValue}) ?? [],
             selectedOption: pickerLabel.text,
+            ///callback
             optionSelected: { [weak self] selectedOption in
                 guard let self else { return }
                 pickerLabel.text = selectedOption
+                
                 if previousText != selectedOption {
-    
                     collectionView.scrollToItem(at: [0,0], at: .top, animated: false)
                     presenter?.removeAllMovies()
                     ///To change currentPage value when type is changed
@@ -63,14 +63,6 @@ extension SpecialsViewController {
 
 // MARK: - SpecialsViewControllerProtocol
 extension SpecialsViewController: SpecialsViewControllerProtocol {
-    func showLoadingView() {
-        showLoading()
-    }
-    
-    func hideLoadingView() {
-        hideLoading()
-    }
-    
     func reloadData() {
         collectionView.reloadData()
     }
@@ -80,8 +72,10 @@ extension SpecialsViewController: SpecialsViewControllerProtocol {
 private extension SpecialsViewController {
     final func initialSetup() {
         pickerLabel.text = presenter?.getOptions()[0].rawValue
+        
         labelContainer.layer.cornerRadius = 10
         labelContainer.backgroundColor = .systemGray5
+        
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(cellType: MovieCell.self)
@@ -107,20 +101,19 @@ extension SpecialsViewController: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 extension SpecialsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let movieId = presenter?.fetchedMovies?[indexPath.row].id else { return }
+        guard let movieId = presenter?.fetchedMovies?[safe: indexPath.row]?.id else { return }
         presenter?.didSelect(movieId: movieId)
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if presenter?.fetchedMovies?.count == indexPath.row + 1 {
-            presenter?.loadMoreData(selectedType: pickerLabel.text ?? "")
-        }
+        guard presenter?.fetchedMovies?.count == indexPath.row + 1 else { return }
+        presenter?.loadMoreData(selectedType: pickerLabel.text ?? "")
     }
 }
 
 // MARK: - CompositionalLayout
-extension SpecialsViewController {
-    private func createCompositionalLayout() -> UICollectionViewCompositionalLayout {
+private extension SpecialsViewController {
+    final func createCompositionalLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
             let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
             let item = NSCollectionLayoutItem(layoutSize: itemSize)

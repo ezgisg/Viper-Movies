@@ -10,6 +10,8 @@ import UIKit
 // MARK: - BaseViewControllerProtocol
 protocol BaseViewControllerProtocol: AnyObject {
     func showFailureAlert(error: BaseError)
+    func showLoadingView()
+    func hideLoadingView()
 }
 
 // MARK: - BaseViewController
@@ -39,6 +41,14 @@ extension BaseViewController: BaseViewControllerProtocol {
             buttonTitle: "Ok",
             completion: nil
         )
+    }
+    
+    final func showLoadingView() {
+        showLoading()
+    }
+    
+    final func hideLoadingView() {
+        hideLoading()
     }
 }
 

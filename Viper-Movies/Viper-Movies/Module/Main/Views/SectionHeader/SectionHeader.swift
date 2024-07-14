@@ -11,7 +11,7 @@ import UIKit
 class SectionHeader: UICollectionReusableView {
     static var reuseIdentifier = "SectionHeader"
     
-    @IBOutlet weak var sectionHeaderLabel: UILabel!
+    @IBOutlet private weak var sectionHeaderLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
     }

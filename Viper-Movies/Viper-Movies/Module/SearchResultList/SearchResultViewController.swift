@@ -10,13 +10,11 @@ import UIKit
 // MARK: - SearchResultViewControllerProtocol
 protocol SearchResultViewControllerProtocol: BaseViewControllerProtocol {
     func reloadData()
-    func showLoadingView()
-    func hideLoadingView()
 }
 
 // MARK: - SearchResultViewController
 class SearchResultViewController: BaseViewController {
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView!
     
     var presenter: SearchResultPresenterProtocol?
     
@@ -31,14 +29,6 @@ extension SearchResultViewController: SearchResultViewControllerProtocol {
     func reloadData() {
         tableView.reloadData()
     }
-    
-    func showLoadingView() {
-        showLoading()
-    }
-    
-    func hideLoadingView() {
-        hideLoading()
-    }
 }
 
 // MARK: - UITableViewDataSource
@@ -49,8 +39,7 @@ extension SearchResultViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withClass: SearchCell.self)
-        let movie = presenter?.getMovies()[indexPath.row]
-        if let movie {
+        if let movie = presenter?.getMovies()[safe: indexPath.row] {
             cell.configure(with: movie)
         }
         return cell
@@ -63,10 +52,10 @@ extension SearchResultViewController: UITableViewDelegate {
         guard let movieId = presenter?.getMovies()[indexPath.row].id else { return }
         presenter?.didSelect(movieId: movieId)
     }
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if presenter?.getMovies().count == indexPath.row + 1 {
-            presenter?.loadMore()
-        }
+        guard presenter?.getMovies().count == indexPath.row + 1 else { return }
+        presenter?.loadMore()
     }
 }
 

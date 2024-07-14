@@ -16,8 +16,8 @@ protocol SearchCellProtocol: AnyObject {
 // MARK: - SearchCell
 final class SearchCell: UITableViewCell {
 
-    @IBOutlet weak var movieNameLabel: UILabel!
-    @IBOutlet weak var yearLabel: UILabel!
+    @IBOutlet private weak var movieNameLabel: UILabel!
+    @IBOutlet private weak var yearLabel: UILabel!
     
     var cellPresenter: SearchPresenter? {
         didSet {

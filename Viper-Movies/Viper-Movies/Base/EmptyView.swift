@@ -43,7 +43,7 @@ class EmptyView: UIView, NibOwnerLoadable {
        }
     
    /*
-    ///without NibOwnerLoadable extension
+    /// Without NibOwnerLoadable extension commonInit
     private func commonInit() {
         if let nib = Bundle.main.loadNibNamed("EmptyView", owner: self)?.first as? UIView {
             contentView = nib

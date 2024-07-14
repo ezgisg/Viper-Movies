@@ -15,10 +15,12 @@ protocol FavoritesViewControllerProtocol: AnyObject {
 // MARK: - FavoritesViewController
 final class FavoritesViewController: BaseViewController {
     // MARK: - Outlets
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var mainEmptyView: EmptyView!
-    @IBOutlet weak var searchEmptyView: EmptyView!
+    @IBOutlet private weak var searchBar: UISearchBar!
+    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var mainEmptyView: EmptyView!
+    @IBOutlet private weak var searchEmptyView: EmptyView!
+    
+    // MARK: - Variables
     private var emptyView: EmptyView?
     private var tapGesture: UITapGestureRecognizer!
     
@@ -36,11 +38,11 @@ final class FavoritesViewController: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         presenter?.loadData()
-        if let searchText = searchBar.text,
-           !searchText.isEmpty {
-            presenter?.searchWithText(text: searchText)
-        }
+        guard let searchText = searchBar.text,
+              !searchText.isEmpty else { return }
+        presenter?.searchWithText(text: searchText)
     }
 }
 
@@ -63,7 +65,7 @@ extension FavoritesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withClass: FavoritesTableViewCell.self)
-        if let favorite = presenter?.filteredFavorites[indexPath.row] {
+        if let favorite = presenter?.filteredFavorites[safe: indexPath.row] {
             cell.configure(with: favorite)
         }
         return cell
@@ -80,12 +82,12 @@ extension FavoritesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard let movieID = presenter?.filteredFavorites[indexPath.row].id else { return }
         presenter?.deleteFromFavorites(movieId: movieID)
-       
+        
         DispatchQueue.main.async {
-               tableView.beginUpdates()
-               tableView.deleteRows(at: [indexPath], with: .fade)
-               tableView.endUpdates()
-           }
+            tableView.beginUpdates()
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.endUpdates()
+        }
         
         checkForEmptyViews()
     }
@@ -139,11 +141,12 @@ private extension FavoritesViewController {
         searchEmptyView.isHidden = !isActive
     }
     
-    ///initial setups
+    /// Initial setups
     final func setupEmptyViews() {
         mainEmptyView.addImage.image = UIImage(named: "addFavorite")
         mainEmptyView.addText.text = "Let's add!"
         mainEmptyView.noMoviesText.text = "No movies to list"
+        
         searchEmptyView.addImage.isHidden = true
         searchEmptyView.addText.isHidden = true
         searchEmptyView.noMoviesText.text = "No result"

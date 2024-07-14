@@ -20,7 +20,7 @@ protocol SplashInteractorOutputProtocol: AnyObject {
 // MARK: - SplashInteractor
 final class SplashInteractor {
     var output: SplashInteractorOutputProtocol?
-    fileprivate let service = NetworkManager()
+    private let service = NetworkManager()
 }
 
 // MARK: - SplashInteractorProtocol

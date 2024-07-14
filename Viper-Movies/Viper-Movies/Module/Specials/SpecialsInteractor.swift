@@ -12,19 +12,6 @@ enum SelectedType: String {
     case popular = "Popular"
     case topRated = "Top Rated"
     case upcoming = "Upcoming"
-    
-    init?(rawValue: String) {
-        switch rawValue {
-        case "Popular":
-            self = .popular
-        case "Top Rated":
-            self = .topRated
-        case "Upcoming":
-            self = .upcoming
-        default:
-            return nil
-        }
-    }
 }
 
 // MARK: - SpecialsInteractorProtocol

@@ -14,7 +14,7 @@ protocol OnboardingPresenterProtocol: AnyObject {
 }
 
 // MARK: - OnboardingPresenter
-final class onboardingPresenter {
+final class OnboardingPresenter {
     // MARK: - Module Components
     weak var view: OnboardingViewControllerProtocol?
     var interactor: OnboardingInteractorProtocol?
@@ -28,19 +28,19 @@ final class onboardingPresenter {
 }
 
 // MARK: - OnboardingPresenterProtocol
-extension onboardingPresenter: OnboardingPresenterProtocol {
+extension OnboardingPresenter: OnboardingPresenterProtocol {
     func viewDidAppear() {
         isConnectedToInternet()
     }
     
     func goToTabBar() {
-        UserDefaults.standard.set(false, forKey: Constants.UserDefaults.isFirstLaunch )
+        UserDefaults.standard.set(false, forKey: Constants.UserDefaults.isFirstLaunch)
         router?.navigate(.tabBar)
     }
 }
 
 // MARK: - OnboardingInteractorOutputProtocol
-extension onboardingPresenter: onboardingInteractorOutputProtocol {
+extension OnboardingPresenter: onboardingInteractorOutputProtocol {
     func isConnectedOutput(_ status: Bool) {
         switch status {
         case true:
@@ -52,7 +52,7 @@ extension onboardingPresenter: onboardingInteractorOutputProtocol {
 }
 
 // MARK: - Helpers
-private extension onboardingPresenter {
+private extension OnboardingPresenter {
     final func isConnectedToInternet() {
         interactor?.isConnected()
     }

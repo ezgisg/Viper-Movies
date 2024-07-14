@@ -7,32 +7,38 @@
 
 import Foundation
 
+// MARK: - DetailInteractorProtocol
 protocol DetailInteractorProtocol: AnyObject {
     func fetchSimilarMovies(page: Int?, movieId: Int32)
     func fetchMovieDetail(movieId: Int32)
 }
 
+// MARK: - DetailInteractorOutputProtocol
 protocol DetailInteractorOutputProtocol: AnyObject {
     func fetchSimilarMoviesOutput(result: MoviesResult)
     func fetchMovieDetailOutput(result: MovieDetailsResult)
 }
 
+// MARK: - DetailInteractor
 final class DetailInteractor {
     var presenter: DetailPresenterProtocol?
     var output: DetailInteractorOutputProtocol?
     private var service = MoviesService()
 }
 
+// MARK: - DetailInteractorProtocol
 extension DetailInteractor: DetailInteractorProtocol {
     func fetchSimilarMovies(page: Int?, movieId: Int32) {
-        service.fetchSimilarMovies(page: page, movieId: movieId) { MoviesResult in
-            self.output?.fetchSimilarMoviesOutput(result: MoviesResult)
+        service.fetchSimilarMovies(page: page, movieId: movieId) { [weak self] moviesResult in
+            guard let self else { return }
+            output?.fetchSimilarMoviesOutput(result: moviesResult)
         }
     }
 
     func fetchMovieDetail(movieId: Int32) {
-        service.fetchMovieDetails(movieId: movieId) { MovieDetailsResult in
-            self.output?.fetchMovieDetailOutput(result: MovieDetailsResult)
+        service.fetchMovieDetails(movieId: movieId) { [weak self] movieDetailsResult in
+            guard let self else { return }
+            output?.fetchMovieDetailOutput(result: movieDetailsResult)
         }
     }
 }

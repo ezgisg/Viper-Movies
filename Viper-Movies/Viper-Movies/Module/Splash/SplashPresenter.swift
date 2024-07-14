@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - SearchResultInteractorOutputProtocol
+// MARK: - SplashPresenterProtocol
 protocol SplashPresenterProtocol: AnyObject {
     func checkConnection()
 }
@@ -46,6 +46,7 @@ extension SplashPresenter: SplashInteractorOutputProtocol {
         switch status {
         case true:
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+                /// 1 second added the Splash animation
                 guard let self else { return }
                 ///To check whether the onboarding screen has been passed before
                 guard let isFirstLaunch = UserDefaults.standard.object(forKey:  Constants.UserDefaults.isFirstLaunch) as? Bool,

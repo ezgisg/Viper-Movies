@@ -26,7 +26,7 @@ final class OnboardingRouter {
         let view = OnboardingViewController()
         let interactor = onboardingInteractor()
         let router = OnboardingRouter()
-        let presenter = onboardingPresenter(view: view, interactor: interactor, router: router)
+        let presenter = OnboardingPresenter(view: view, interactor: interactor, router: router)
         view.presenter = presenter
         interactor.output = presenter
         router.viewController = view

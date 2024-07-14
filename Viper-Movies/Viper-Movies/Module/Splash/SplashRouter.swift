@@ -41,19 +41,22 @@ extension SplashRouter: SplashRouterProtocol {
     func navigate(_ route: SplashRoutes) {
         switch route {
         case .onboarding:
-            guard let window = viewController?.view.window else { return }
             let onboardingVC = OnboardingRouter.createModule()
-            let navigationController = UINavigationController(rootViewController: onboardingVC )
-            UIView.transition(with: window, duration: 1, options: .transitionCrossDissolve, animations: {
-                window.rootViewController = navigationController
-            })
+            let navigationController = UINavigationController(rootViewController: onboardingVC)
+            makeTransaction(with: navigationController, options: .transitionCrossDissolve)
         case .tabBar:
-            guard let window = viewController?.view.window else { return }
             let tabBarController = TabBarController()
-            UIView.transition(with: window, duration: 1, options: .transitionFlipFromRight, animations: {
-                window.rootViewController = tabBarController
-            })
+            makeTransaction(with: tabBarController, options: .transitionFlipFromRight)
         }
     }
+}
 
+// MARK: - Helpers
+private extension SplashRouter {
+    final func makeTransaction(with viewController:  UIViewController?, options:  UIView.AnimationOptions) {
+        guard let window = self.viewController?.view.window else { return }
+        UIView.transition(with: window, duration: 1, options: options, animations: {
+            window.rootViewController = viewController
+        })
+    }
 }

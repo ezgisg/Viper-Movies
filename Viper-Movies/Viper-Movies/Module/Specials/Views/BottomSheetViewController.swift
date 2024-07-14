@@ -10,9 +10,9 @@ import UIKit
 // MARK: - BottomSheetViewController
 class BottomSheetViewController: BaseViewController {
     // MARK: - Outlets
-    @IBOutlet var mainScreenContainer: UIView!
-    @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var pickerView: UIPickerView!
+    @IBOutlet private var mainScreenContainer: UIView!
+    @IBOutlet private weak var containerView: UIView!
+    @IBOutlet private weak var pickerView: UIPickerView!
     
     // MARK: - Private Variables
     private var data: [String]
@@ -26,6 +26,7 @@ class BottomSheetViewController: BaseViewController {
         setupPicker()
     }
     
+    // MARK: - Init
     init(
         data: [String],
         selectedOption: String?,
@@ -44,12 +45,12 @@ class BottomSheetViewController: BaseViewController {
 
 // MARK: - Button Functions
 private extension BottomSheetViewController {
-    @IBAction func doneButtonClicked(_ sender: Any) {
+    @IBAction final func doneButtonClicked(_ sender: Any) {
         let selectedRow = pickerView.selectedRow(inComponent: 0)
         let selectedOption = data[selectedRow]
         dismiss(animated: true) { [weak self] in
             guard let self else { return }
-            self.optionSelected(selectedOption)
+            optionSelected(selectedOption)
         }
     }
 }

@@ -12,7 +12,6 @@ protocol SearchResultPresenterProtocol: AnyObject {
     func getMovies() -> [MovResult]
     func didSelect(movieId: Int)
     func loadMore()
- 
 }
 
 // MARK: - SearchResultPresenter
@@ -28,6 +27,7 @@ final class SearchResultPresenter {
     private var page: Int = 1
     private var totalPage: Int
     
+    // MARK: - Init
     init(view: SearchResultViewControllerProtocol, interactor: SearchResultInteractorProtocol, router: SearchResultRouterProtocol, query: String, movies: [MovResult], totalPage: Int) {
         self.view = view
         self.interactor = interactor
@@ -38,21 +38,22 @@ final class SearchResultPresenter {
     }
 }
 
+// MARK: - SearchResultPresenterProtocol
 extension SearchResultPresenter: SearchResultPresenterProtocol {
     func getMovies() -> [MovResult] {
         return movies
     }
+    
     func didSelect(movieId: Int) {
         router?.navigate(.detail, movieId: movieId)
     }
     
-    //To load more when scroll to bottom - pagination
+    /// To load more when scroll to bottom - pagination
     func loadMore() {
-        if totalPage > page {
-            view?.showLoadingView()
-            page += 1
-            interactor?.searchWithQuery(query: self.query, year: nil, page: page)
-        }
+        guard totalPage > page else { return }
+        view?.showLoadingView()
+        page += 1
+        interactor?.searchWithQuery(query: query, year: nil, page: page)
     }
 }
 
@@ -62,8 +63,8 @@ extension SearchResultPresenter: SearchResultInteractorOutputProtocol {
     func searchWithQueryOutput(result: MoviesResult) {
         view?.hideLoadingView()
         switch result {
-        case .success(let movies):
-            self.movies.append(contentsOf: movies.results ?? [])
+        case .success(let fetchedMovies):
+            movies.append(contentsOf: fetchedMovies.results ?? [])
             view?.reloadData()
         case .failure(let error):
             view?.showFailureAlert(error: error)

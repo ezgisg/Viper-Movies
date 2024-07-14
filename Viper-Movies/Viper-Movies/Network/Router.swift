@@ -19,10 +19,10 @@ enum Router: URLRequestConvertible {
     case upcoming(page: Int?)
     case details(movieId: Int32)
     case similar(page: Int?, movieId: Int32)
-    case search(query: String, primary_release_year: String?, page: Int?)
+    case search(query: String, primaryReleaseYear: String?, page: Int?)
   
     var baseURL: URL? {
-        return URL(string: "https://api.themoviedb.org/3/")
+        return URL(string: Constants.URLPaths.baseURL)
     }
     
     var path: String {
@@ -76,13 +76,13 @@ enum Router: URLRequestConvertible {
             if let page {
                 params["page"] = page
             }
-        case .search(query: let query, primary_release_year: let primary_release_year, page: let page):
+        case .search(query: let query, primaryReleaseYear: let primaryReleaseYear, page: let page):
             params["query"] = query
             if let page {
                 params["page"] = page
             }
-            if let primary_release_year {
-                params["primary_release_year"] = primary_release_year
+            if let primaryReleaseYear {
+                params["primary_release_year"] = primaryReleaseYear
             }
         }
         return params
@@ -98,6 +98,7 @@ enum Router: URLRequestConvertible {
     func asURLRequest() throws -> URLRequest {
         guard let baseURL else {throw URLError(.badURL)}
         var urlRequest = URLRequest(url: baseURL.appending(path: path))
+
         urlRequest.httpMethod = method.rawValue
         urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")

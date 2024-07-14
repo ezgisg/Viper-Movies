@@ -15,8 +15,8 @@ protocol SimilarMovieCellProtocol: AnyObject {
 
 // MARK: - SimilarMovieCell
 class SimilarMovieCell: UICollectionViewCell {
-    @IBOutlet weak var similarImageView: UIImageView!
-    @IBOutlet weak var similarNameLabel: UILabel!
+    @IBOutlet private weak var similarImageView: UIImageView!
+    @IBOutlet private weak var similarNameLabel: UILabel!
     
     var cellPresenter: SimilarMoviePresenter? {
         didSet {

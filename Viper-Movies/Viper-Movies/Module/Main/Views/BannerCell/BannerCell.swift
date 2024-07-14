@@ -14,7 +14,7 @@ protocol BannerCellProtocol {
 
 // MARK: - BannerCell
 class BannerCell: UICollectionViewCell {
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet private weak var imageView: UIImageView!
     
     var cellPresenter: BannerPresenter? {
         didSet {

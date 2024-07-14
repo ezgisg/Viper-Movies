@@ -29,8 +29,9 @@ final class SearchResultInteractor {
 extension SearchResultInteractor: SearchResultInteractorProtocol {
     ///Fetching data from search service with query
     func searchWithQuery(query: String, year: String?, page: Int?) {
-        service.fetchQuerySearch(query: query, primary_release_year: year, page: page) { MoviesResult in
-            self.output?.searchWithQueryOutput(result: MoviesResult)
+        service.fetchQuerySearch(query: query, primaryReleaseYear: year, page: page) { [weak self] moviesResult in
+            guard let self else { return }
+            output?.searchWithQueryOutput(result: moviesResult)
         }
     }
     

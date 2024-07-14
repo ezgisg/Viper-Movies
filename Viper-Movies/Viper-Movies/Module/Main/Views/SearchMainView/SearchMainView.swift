@@ -23,12 +23,12 @@ protocol SearchMainViewDelegate {
 final class SearchMainView: UIView, NibOwnerLoadable {
 
     // MARK: - Outlets
-    @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var noResultView: UIView!
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var seeMoreButton: UIButton!
-    @IBOutlet weak var containerStackView: UIStackView!
-    @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
+    @IBOutlet private weak var containerView: UIView!
+    @IBOutlet private weak var noResultView: UIView!
+    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var seeMoreButton: UIButton!
+    @IBOutlet private weak var containerStackView: UIStackView!
+    @IBOutlet private weak var tableViewHeight: NSLayoutConstraint!
     
     // MARK: - Module Components
     var cellPresenter: SearchMainPresenter? {

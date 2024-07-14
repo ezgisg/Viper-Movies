@@ -15,8 +15,8 @@ protocol FavoritesTableViewCellProtocol: AnyObject {
 
 // MARK: - FavoritesTableViewCell
 final class FavoritesTableViewCell: UITableViewCell {
-    @IBOutlet weak var movieImage: UIImageView!
-    @IBOutlet weak var movieTitleLabel: UILabel!
+    @IBOutlet private weak var movieImage: UIImageView!
+    @IBOutlet private weak var movieTitleLabel: UILabel!
     
     var cellPresenter: FavoritesCellPresenter? {
         didSet {

@@ -15,6 +15,8 @@ struct Constants {
     }
     
     struct URLPaths {
+        static let baseURL = "https://api.themoviedb.org/3/"
+        static let imbdBaseURL = "https://www.imdb.com/title"
         static let imageBase = "https://image.tmdb.org/t/p/w500/"
     }
     

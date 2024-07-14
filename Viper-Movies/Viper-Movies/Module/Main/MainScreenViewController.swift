@@ -6,6 +6,7 @@
 
 // TODO: - Firebase Integration
 // TODO: - UITest
+// TODO: - Localizable
 
 import UIKit
 
@@ -304,13 +305,5 @@ extension MainScreenViewController: MainScreenViewControllerProtocol {
     
     func reloadCollectionViewData() {
         applySnapshot()
-    }
-    
-    func showLoadingView() {
-        showLoading()
-    }
-    
-    func hideLoadingView() {
-        hideLoading()
     }
 }

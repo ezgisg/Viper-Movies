@@ -37,9 +37,9 @@ extension MainScreenInteractor: MainScreenInteractorProtocol {
     
     ///Fetching data from search service with query
     func searchWithQuery(query: String, year: String?, page: Int?) {
-        service.fetchQuerySearch(query: query, primary_release_year: year, page: page) { [weak self]  MoviesResult in
+        service.fetchQuerySearch(query: query, primaryReleaseYear: year, page: page) { [weak self]  movieResult in
             guard let self else { return }
-            output?.searchWithQueryOutput(result: MoviesResult)
+            output?.searchWithQueryOutput(result: movieResult)
         }
     }
     

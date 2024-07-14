@@ -14,12 +14,12 @@ protocol SplashViewControllerProtocol: AnyObject {
 
 // MARK: - SplashViewController
 class SplashViewController: BaseViewController {
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet private weak var imageView: UIImageView!
     var presenter: SplashPresenterProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        imageView.image = UIImage(named: "movie")
+        imageView.image = .movie
     }
     override func viewDidAppear(_ animated: Bool) {
         presenter?.checkConnection()

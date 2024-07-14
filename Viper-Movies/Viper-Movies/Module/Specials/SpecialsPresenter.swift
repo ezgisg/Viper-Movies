@@ -45,9 +45,9 @@ extension SpecialsPresenter: SpecialsInteractorOutputProtocol {
     func fetchSelectedTypeMoviesOutput(result: MoviesResult) {
         view?.hideLoadingView()
         switch result {
-        case .success(let movies):
-            pageCount = movies.total_pages ?? 1
-            self.movies.append(contentsOf: movies.results ?? [])
+        case .success(let fetchedMovies):
+            pageCount = fetchedMovies.total_pages ?? 1
+            movies.append(contentsOf: fetchedMovies.results ?? [])
             view?.reloadData()
         case .failure(let error):
             view?.showFailureAlert(error: error)
@@ -59,9 +59,7 @@ extension SpecialsPresenter: SpecialsInteractorOutputProtocol {
 // MARK: - SpecialsPresenterProtocol
 extension SpecialsPresenter: SpecialsPresenterProtocol {
     var fetchedMovies: [MovResult]? {
-        get {
-            return movies
-        }
+        return movies
     }
     
     func fetchData(selectedType: String) {

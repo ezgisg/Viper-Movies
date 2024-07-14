@@ -20,7 +20,6 @@ protocol FavoritesPresenterProtocol: AnyObject {
 
 // MARK: - FavoritesPresenter
 final class FavoritesPresenter {
-    
     // MARK: - Module Components
     weak var view: FavoritesViewControllerProtocol?
     var interactor: FavoritesInteractorProtocol?
@@ -40,10 +39,10 @@ final class FavoritesPresenter {
 // MARK: - FavoritesPresenterProtocol
 extension FavoritesPresenter: FavoritesPresenterProtocol {
     func loadData() {
-        guard let favorites = UserDefaults.standard.object(forKey: Constants.UserDefaults.favorites) as? Data,
-              let decoded = try? JSONDecoder().decode([MovieFavoriteDetails].self, from: favorites) else { return }
-        self.favorites = decoded
-        filteredFavorites = self.favorites
+        guard let storedFavorites = UserDefaults.standard.object(forKey: Constants.UserDefaults.favorites) as? Data,
+              let decodedFavorites = try? JSONDecoder().decode([MovieFavoriteDetails].self, from: storedFavorites) else { return }
+        favorites = decodedFavorites
+        filteredFavorites = decodedFavorites
         view?.reloadData()
     }
     
@@ -61,12 +60,15 @@ extension FavoritesPresenter: FavoritesPresenterProtocol {
         view?.reloadData()
     }
     
+    /// To control whether movie was added to favorites or not and depends on it removing/adding movie to favorites
     func deleteFromFavorites(movieId: Int) {
         guard let index = favorites.firstIndex(where: { $0.id == movieId }) else { return }
         favorites.remove(at: index)
+        
         if let index = filteredFavorites.firstIndex(where: { $0.id == movieId }) {
             filteredFavorites.remove(at: index)
         }
+        
         if let encoded = try? JSONEncoder().encode(favorites) {
             UserDefaults.standard.set(encoded, forKey: Constants.UserDefaults.favorites)
         }

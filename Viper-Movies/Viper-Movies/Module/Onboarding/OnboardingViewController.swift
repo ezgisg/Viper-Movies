@@ -15,10 +15,10 @@ protocol OnboardingViewControllerProtocol: AnyObject {
 // MARK: - OnboardingViewController
 final class OnboardingViewController: BaseViewController {
     // MARK: - Outlets
-    @IBOutlet weak var pageController: UIPageControl!
-    @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var skipButton: UIButton!
-    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet private weak var pageController: UIPageControl!
+    @IBOutlet private weak var contentView: UIView!
+    @IBOutlet private weak var skipButton: UIButton!
+    @IBOutlet private weak var nextButton: UIButton!
     
     // MARK: - Module Components
     var presenter: OnboardingPresenterProtocol?
@@ -32,17 +32,16 @@ final class OnboardingViewController: BaseViewController {
     // MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
-        controllers.append(firstPage)
-        controllers.append(secondPage)
+        controllers.append(contentsOf: [firstPage, secondPage])
         secondPage.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         setupPageViewController()
         presenter?.viewDidAppear()
     }
 }
-
 
 // MARK: - Buttons action
 extension OnboardingViewController {

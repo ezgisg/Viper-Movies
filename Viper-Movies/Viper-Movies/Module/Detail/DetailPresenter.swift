@@ -11,6 +11,7 @@ import Foundation
 protocol DetailPresenterProtocol: AnyObject {
     var movieId: Int { get set }
     var delegate: DetailPresenterDelegate? { get set }
+    
     func getSimilars() -> [MovResult]
     func getDetails() -> MovieDetailsResponse?
     func loadDatas()

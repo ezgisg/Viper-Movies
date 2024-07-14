@@ -13,7 +13,7 @@ final class ReachabilityManager {
     static let shared = ReachabilityManager()
     
     private init() { }
-    private let reachabilityManager = Alamofire.NetworkReachabilityManager(host: "api.themoviedb.org")
+    private let reachabilityManager = Alamofire.NetworkReachabilityManager(host: Constants.URLPaths.baseURL)
 
     func startNetworkReachabilityObserver(completion: @escaping (Bool) -> Void ) {
         reachabilityManager?.startListening { status in

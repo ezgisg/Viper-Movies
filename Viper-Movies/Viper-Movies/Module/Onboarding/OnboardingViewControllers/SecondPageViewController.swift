@@ -14,17 +14,17 @@ protocol SecondPageDelegate: AnyObject {
 
 // MARK: - SecondPageViewController
 class SecondPageViewController: BaseViewController {
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet private weak var imageView: UIImageView!
     weak var delegate: SecondPageDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        imageView.image = UIImage(named: "cinema")
+        imageView.image = .cinema
     }
 
+    /// Triggers the `Let's Discover` button's action for routing the tabBar with `SecondPageDelegate`.
     @IBAction func startButton(_ sender: Any) {
         delegate?.startButtonClicked()
-        print("Main screen e gidilecek")
     }
 }
 

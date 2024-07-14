@@ -15,7 +15,7 @@ protocol MoviesServiceProtocol {
     func fetchUpcomingMovies(page: Int?, completion: @escaping (MoviesResult) -> ())
     func fetchMovieDetails(movieId: Int32, completion: @escaping (MovieDetailsResult) -> ())
     func fetchSimilarMovies(page: Int?, movieId: Int32, completion: @escaping (MoviesResult) -> ())
-    func fetchQuerySearch(query: String, primary_release_year: String?, page: Int?, completion: @escaping (MoviesResult) -> ())
+    func fetchQuerySearch(query: String, primaryReleaseYear: String?, page: Int?, completion: @escaping (MoviesResult) -> ())
 }
 
 // MARK: - MoviesService
@@ -44,8 +44,8 @@ final class MoviesService: MoviesServiceProtocol {
         NetworkManager.shared.request(Router.similar(page: page, movieId: movieId), decodeToType: MoviesResponse.self, completion: completion)
     }  
     
-    func fetchQuerySearch(query: String, primary_release_year: String?, page: Int?, completion: @escaping (MoviesResult) -> ()) {
-        NetworkManager.shared.request(Router.search(query: query, primary_release_year: primary_release_year, page: page), decodeToType: MoviesResponse.self, completion: completion)
+    func fetchQuerySearch(query: String, primaryReleaseYear: String?, page: Int?, completion: @escaping (MoviesResult) -> ()) {
+        NetworkManager.shared.request(Router.search(query: query, primaryReleaseYear: primaryReleaseYear, page: page), decodeToType: MoviesResponse.self, completion: completion)
     }
 }
 
