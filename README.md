@@ -37,6 +37,9 @@ Viper-Movies is an iOS application that utilizes the MovieDB.org database to pro
    <img src="https://github.com/user-attachments/assets/4d4b7258-2148-4cd0-9cbe-4d4240c05889" alt="iPhone SE" width="400"/>
 
 * **Layout and Data Management:** Implements compositional layout and diffable datasource on some pages for efficient data rendering.
+
+   <img src="https://github.com/user-attachments/assets/5466d5e3-b0a5-4088-8f2d-f417fea744b4" alt="diffablegif" width="133"/>
+
 * **Localization:** Supports English and Turkish languages using Localizable files.
 
    ###### **Turkish**
@@ -47,8 +50,17 @@ Viper-Movies is an iOS application that utilizes the MovieDB.org database to pro
    <img src="https://github.com/user-attachments/assets/d950b047-54a8-46af-8885-8ffb50b18839" alt="English" width="400"/>
 
 * **Network Connectivity:** Checks for internet connectivity app-wide; restricts usage without internet.
+  
+   <img src="https://github.com/user-attachments/assets/7d47b823-38be-4aeb-892a-898cdb5eca84" alt="noConnection" width="266"/>
+  
 * **Loading View:** Displays a loading view until data is fetched for a smooth user experience.
+  
+   <img src="https://github.com/user-attachments/assets/b12e74aa-f355-40a0-bff6-43816b344fab" alt="loading" width="133"/>
 
+* **Auto-dismiss Keyboard Feature:** Includes a convenient feature where the keyboard automatically dismisses when tapping anywhere outside of it, except on the keyboard itself.
+  
+   <img src="https://github.com/user-attachments/assets/9535771b-bf61-4a38-a939-4eb4050ac953" alt="keyboardgif" width="133"/>
+  
 ## Dependencies
 * **Networking**: Integrates Alamofire for networking.
 * **Image Loading:** Utilizes Kingfisher for image loading.
