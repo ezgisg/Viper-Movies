@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB2961B92C4649F500C0999C /* Localize.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2961B82C4649F500C0999C /* Localize.swift */; };
+		AB2961BB2C464A5F00C0999C /* String+Localize.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2961BA2C464A5F00C0999C /* String+Localize.swift */; };
+		AB2961BD2C464A9300C0999C /* LocalizableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2961BC2C464A9300C0999C /* LocalizableProtocol.swift */; };
+		AB2961BF2C464AAD00C0999C /* LocalizableKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2961BE2C464AAD00C0999C /* LocalizableKeys.swift */; };
+		AB2961C42C464D7700C0999C /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = AB2961C32C464D7700C0999C /* Localizable.xcstrings */; };
 		AB3CA82E2C358145008C40DE /* SearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB3CA82D2C358145008C40DE /* SearchCell.xib */; };
 		AB3CA82F2C358145008C40DE /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3CA82C2C358145008C40DE /* SearchCell.swift */; };
 		AB3CA8312C3583E3008C40DE /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3CA8302C3583E3008C40DE /* SearchPresenter.swift */; };
@@ -124,6 +129,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AB2961B82C4649F500C0999C /* Localize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localize.swift; sourceTree = "<group>"; };
+		AB2961BA2C464A5F00C0999C /* String+Localize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localize.swift"; sourceTree = "<group>"; };
+		AB2961BC2C464A9300C0999C /* LocalizableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableProtocol.swift; sourceTree = "<group>"; };
+		AB2961BE2C464AAD00C0999C /* LocalizableKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableKeys.swift; sourceTree = "<group>"; };
+		AB2961C32C464D7700C0999C /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		AB3CA82C2C358145008C40DE /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		AB3CA82D2C358145008C40DE /* SearchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCell.xib; sourceTree = "<group>"; };
 		AB3CA8302C3583E3008C40DE /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
@@ -252,6 +262,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB2961B72C4649BF00C0999C /* Localizable */ = {
+			isa = PBXGroup;
+			children = (
+				AB2961B82C4649F500C0999C /* Localize.swift */,
+				AB2961BA2C464A5F00C0999C /* String+Localize.swift */,
+				AB2961BC2C464A9300C0999C /* LocalizableProtocol.swift */,
+				AB2961BE2C464AAD00C0999C /* LocalizableKeys.swift */,
+				AB2961C32C464D7700C0999C /* Localizable.xcstrings */,
+			);
+			path = Localizable;
+			sourceTree = "<group>";
+		};
 		AB3CA8322C3583E9008C40DE /* BannerCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -401,6 +423,7 @@
 		AB7A6AFD2C18434700E33A60 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AB2961B72C4649BF00C0999C /* Localizable */,
 				AB7A6AD22C1842E900E33A60 /* Assets.xcassets */,
 				AB9F725F2C1982C7007C321D /* movieGif.gif */,
 				AB7A6B0D2C186DB800E33A60 /* Utils */,
@@ -703,6 +726,7 @@
 			knownRegions = (
 				en,
 				Base,
+				tr,
 			);
 			mainGroup = AB7A6ABA2C1842E700E33A60;
 			packageReferences = (
@@ -740,6 +764,7 @@
 				AB9F72862C1AD30D007C321D /* MovieCell.xib in Resources */,
 				AB7A6B292C18855000E33A60 /* SecondPageViewController.xib in Resources */,
 				ABA79FB92C1C881800441357 /* SectionHeader.xib in Resources */,
+				AB2961C42C464D7700C0999C /* Localizable.xcstrings in Resources */,
 				AB7A6B242C18853300E33A60 /* FirstPageViewController.xib in Resources */,
 				AB7A6B192C186F9000E33A60 /* OnboardingViewController.xib in Resources */,
 				ABA20F5E2C32A00200EE2DC3 /* SpecialsViewController.xib in Resources */,
@@ -775,6 +800,7 @@
 				AB9F726A2C199B8D007C321D /* MainScreenPresenter.swift in Sources */,
 				ABE7B21A2C299B69003176A5 /* DetailRouter.swift in Sources */,
 				ABA20F562C2EB6DE00EE2DC3 /* NibOwnerLoadable.swift in Sources */,
+				AB2961BB2C464A5F00C0999C /* String+Localize.swift in Sources */,
 				AB8408BF2C36DC2000E0BC0C /* SearchResultViewController.swift in Sources */,
 				ABA20F522C2EA12300EE2DC3 /* EmptyView.swift in Sources */,
 				ABE7B2162C299B4D003176A5 /* DetailInteractor.swift in Sources */,
@@ -818,9 +844,11 @@
 				AB9F72652C199B6F007C321D /* MainScreenViewController.swift in Sources */,
 				AB7A6B032C18439200E33A60 /* Router.swift in Sources */,
 				AB95F28D2C2D9D69007D6BE4 /* FavoritesInteractor.swift in Sources */,
+				AB2961B92C4649F500C0999C /* Localize.swift in Sources */,
 				AB7A6AC72C1842E700E33A60 /* AppDelegate.swift in Sources */,
 				AB7A6AC92C1842E700E33A60 /* SceneDelegate.swift in Sources */,
 				ABE7B2142C2999B6003176A5 /* DetailViewController.swift in Sources */,
+				AB2961BD2C464A9300C0999C /* LocalizableProtocol.swift in Sources */,
 				AB7A6B012C18438800E33A60 /* ServiceManager.swift in Sources */,
 				AB9F727A2C19D3CC007C321D /* TabBarVC.swift in Sources */,
 				ABA20F582C2EB72D00EE2DC3 /* NibLoadable.swift in Sources */,
@@ -829,6 +857,7 @@
 				AB7A6B252C18853300E33A60 /* FirstPageViewController.swift in Sources */,
 				ABB3E1092C3C214100137B6F /* SearchMainPresenter.swift in Sources */,
 				AB7A6B2C2C18874B00E33A60 /* UIImage+Extensions.swift in Sources */,
+				AB2961BF2C464AAD00C0999C /* LocalizableKeys.swift in Sources */,
 				ABA20F5A2C2F159A00EE2DC3 /* String+Extensions.swift in Sources */,
 				ABA20F632C32A04300EE2DC3 /* SpecialsPresenter.swift in Sources */,
 				ABA20F6D2C32FB5D00EE2DC3 /* LoadingShowable.swift in Sources */,
