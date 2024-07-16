@@ -1,6 +1,8 @@
 # Viper-Movies
 Viper-Movies is an iOS application that utilizes the MovieDB.org database to provide users with a comprehensive movie browsing experience. It follows the VIPER architecture pattern and includes various key features and views designed for optimal usability.
 
+![mainFlow15ProMax]([https://github.com/ezgisg/Viper-Movies/blob/main/iPhone%2015%20Pro%20Max%20-%20Main%20Flow.png])
+
 ## Main Views
 * **Splash Screen:** The first screen displayed when the application is started. It is displayed every time the application is opened.
 * **Onboarding:** Includes application introduction, created using Page ViewController. Features:
