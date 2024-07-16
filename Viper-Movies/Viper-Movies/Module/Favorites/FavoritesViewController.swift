@@ -128,7 +128,7 @@ private extension FavoritesViewController {
     
     final func setupSearchBar() {
         searchBar.delegate = self
-        searchBar.placeholder = "Search..."
+        searchBar.placeholder = L10n.SearchInput.search.localized()
     }
     
     final func setupMainEmptyView(isActive: Bool) {
@@ -144,13 +144,14 @@ private extension FavoritesViewController {
     /// Initial setups
     final func setupEmptyViews() {
         mainEmptyView.addImage.image = UIImage(named: "addFavorite")
-        mainEmptyView.addText.text = "Let's add!"
-        mainEmptyView.noMoviesText.text = "No movies to list"
+        mainEmptyView.addText.text = L10n.letsAdd.localized()
+        mainEmptyView.noMoviesText.text = L10n.noMoviesToList.localized()
         
         searchEmptyView.addImage.isHidden = true
         searchEmptyView.addText.isHidden = true
-        searchEmptyView.noMoviesText.text = "No result"
+        searchEmptyView.noMoviesText.text = L10n.noResult.localized()
     }
 }
+
 
 

@@ -14,6 +14,10 @@ class FirstPageViewController: BaseViewController {
     @IBOutlet private weak var imageView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         let videoGif = UIImage.gifImageWithName("movieGif")
         imageView.image = videoGif
         onboardingMessage.text = L10n.onboardingFirstMessage.localized()

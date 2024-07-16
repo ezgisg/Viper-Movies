@@ -21,15 +21,15 @@ private extension TabBarController {
     final func setupTabbar() {
         /// MainViewController
         let mainVC = MainScreenRouter.createModule()
-        let mainNavigationController = getStyledNavigationController(with: mainVC, title: "In Theaters", image: .main)
+        let mainNavigationController = getStyledNavigationController(with: mainVC, title: L10n.inTheaters.localized(), image: .main)
         
         /// SpecialViewController
         let specialsVC = SpecialsRouter.createModule()
-        let specialsNavigationController = getStyledNavigationController(with: specialsVC, title: "Special Lists", image: .list)
+        let specialsNavigationController = getStyledNavigationController(with: specialsVC, title:L10n.specialLists.localized(), image: .list)
         
         /// Favorites
         let favoritesVC = FavoritesRouter.createModule()
-        let favoritesNavigationController = getStyledNavigationController(with: favoritesVC, title: "Favorites", image: .favorites)
+        let favoritesNavigationController = getStyledNavigationController(with: favoritesVC, title: L10n.favorites.localized(), image: .favorites)
         
         viewControllers = [mainNavigationController, specialsNavigationController, favoritesNavigationController]
         customizeTabBarAppearance()

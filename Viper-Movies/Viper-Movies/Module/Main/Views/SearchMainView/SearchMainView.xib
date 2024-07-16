@@ -11,6 +11,7 @@
             <connections>
                 <outlet property="containerStackView" destination="n26-I2-l2F" id="qbQ-z7-HdF"/>
                 <outlet property="containerView" destination="JVC-Ml-xJe" id="QOx-d4-yeM"/>
+                <outlet property="noResultLabel" destination="rB5-lU-CHf" id="eab-4H-qrt"/>
                 <outlet property="noResultView" destination="6Ab-DL-uGo" id="Jwz-gh-Dzq"/>
                 <outlet property="seeMoreButton" destination="OKl-d7-qGh" id="SZs-F5-ycw"/>
                 <outlet property="tableView" destination="XLc-9j-jyS" id="AcA-Je-Epx"/>

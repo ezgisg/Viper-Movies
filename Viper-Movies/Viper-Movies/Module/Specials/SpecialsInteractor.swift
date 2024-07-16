@@ -12,6 +12,17 @@ enum SelectedType: String {
     case popular = "Popular"
     case topRated = "Top Rated"
     case upcoming = "Upcoming"
+
+    var localized: String {
+        switch self {
+        case .popular:
+            return L10n.popular.localized()
+        case .topRated:
+            return L10n.topRated.localized()
+        case .upcoming:
+            return L10n.upcoming.localized()
+        }
+    }
 }
 
 // MARK: - SpecialsInteractorProtocol

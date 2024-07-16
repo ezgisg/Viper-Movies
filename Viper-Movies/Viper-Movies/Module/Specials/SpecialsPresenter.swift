@@ -12,7 +12,7 @@ protocol SpecialsPresenterProtocol: AnyObject {
     var fetchedMovies: [MovResult]? { get }
     var currentPage: Int { get set }
     
-    func getOptions() -> ([SelectedType])
+    func getOptions() -> [String]
     func fetchData(selectedType: String)
     func didSelect(movieId: Int)
     func loadMoreData(selectedType: String)
@@ -72,8 +72,9 @@ extension SpecialsPresenter: SpecialsPresenterProtocol {
     }
     
     ///To get types of data
-    func getOptions() -> ([SelectedType]) {
-        return [.topRated, .upcoming, .popular,]
+    func getOptions() -> [String] {
+        let options: [SelectedType] = [.topRated, .upcoming, .popular]
+        return options.map { ($0.localized) }
     }
     
     func didSelect(movieId: Int) {

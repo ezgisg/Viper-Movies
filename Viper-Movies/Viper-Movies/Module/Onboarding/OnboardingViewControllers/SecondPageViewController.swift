@@ -16,12 +16,17 @@ protocol SecondPageDelegate: AnyObject {
 class SecondPageViewController: BaseViewController {
     @IBOutlet private weak var imageView: UIImageView!
     weak var delegate: SecondPageDelegate?
-    @IBOutlet weak var onboardingMessage: UIButton!
+    @IBOutlet weak var onboardingMessage: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+     
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         imageView.image = .cinema
-        onboardingMessage.titleLabel?.text = L10n.onboardingSecondMessage.localized()
+        onboardingMessage.text = L10n.onboardingSecondMessage.localized()
     }
 
     /// Triggers the `Let's Discover` button's action for routing the tabBar with `SecondPageDelegate`.

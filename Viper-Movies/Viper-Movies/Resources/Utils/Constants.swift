@@ -21,13 +21,13 @@ struct Constants {
     }
     
     struct Titles {
-        static let upcoming = "Upcoming Movies"
-        static let noResult = "No Result"
+        static let upcoming = L10n.upcomingMovies.localized()
+        static let noResult = L10n.noResult.localized()
     }
     
     struct NoConnectionMessages {
-        static let noConnectionTitle = "No Connection"
-        static let noConnectionMessage = "Please check your internet connection"
+        static let noConnectionTitle = L10n.noConnection.localized()
+        static let noConnectionMessage = L10n.noConnectionMessage.localized()
     }
 }
 

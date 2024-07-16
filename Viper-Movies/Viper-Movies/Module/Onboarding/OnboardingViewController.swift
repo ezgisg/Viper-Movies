@@ -32,14 +32,20 @@ final class OnboardingViewController: BaseViewController {
     // MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
-        controllers.append(contentsOf: [firstPage, secondPage])
-        secondPage.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setupPageViewController()
         presenter?.viewDidAppear()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        controllers.append(contentsOf: [firstPage, secondPage])
+        secondPage.delegate = self
+        skipButton.setTitle(L10n.skip.localized(), for: .normal)
+        nextButton.setTitle(L10n.next.localized(), for: .normal)
     }
 }
 
@@ -121,11 +127,11 @@ private extension OnboardingViewController {
     final func setupLastonboardingScreen(index: Int) {
        guard index == controllers.count - 1 else {
            skipButton.isHidden = false
-           nextButton.setTitle("Next", for: .normal)
+           nextButton.setTitle(L10n.next.localized(), for: .normal)
            return
        }
        skipButton.isHidden = true
-       nextButton.setTitle("Start >>", for: .normal)
+       nextButton.setTitle("\(L10n.start.localized()) >>", for: .normal)
     }
 }
 

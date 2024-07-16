@@ -6,7 +6,6 @@
 
 // TODO: - Firebase Integration
 // TODO: - UITest
-// TODO: - Localizable
 
 import UIKit
 
@@ -16,10 +15,11 @@ enum MainScreenSectionType: Int, CaseIterable {
     case movieList = 1
 }
 
-enum SearchType: String {
-    case local = "Search in theaters"
-    case service = "Search in all"
+enum SearchType {
+    static let local = L10n.SearchInput.theater.localized()
+    static let service = L10n.SearchInput.all.localized()
 }
+
 
 // MARK: - MainScreenViewControllerProtocol
 protocol MainScreenViewControllerProtocol: BaseViewControllerProtocol {
@@ -97,7 +97,7 @@ private extension MainScreenViewController {
     
     final func setupSearchBar() {
         searchBar.delegate = self
-        searchBar.placeholder = "\(SearchType.local.rawValue)..."
+        searchBar.placeholder = SearchType.local
         setupSearchChangeButton()
     }
     
@@ -105,20 +105,20 @@ private extension MainScreenViewController {
         let localSearchActionState: UIMenuElement.State = isLocalSearch ? .on : .off
         let serviceSearchActionState: UIMenuElement.State = isLocalSearch ? .off : .on
         
-        localSearchAction = UIAction(title: SearchType.local.rawValue, image: UIImage(systemName: "pencil.circle"), attributes: [], state: localSearchActionState) { [weak self] action in
+        localSearchAction = UIAction(title: SearchType.local, image: UIImage(systemName: "pencil.circle"), attributes: [], state: localSearchActionState) { [weak self] action in
             guard let self else { return }
-            searchBar.placeholder = "\(SearchType.local.rawValue)..."
+            searchBar.placeholder = SearchType.local
             isLocalSearch = true
         }
         
-        serviceSearchAction = UIAction(title: SearchType.service.rawValue, image: UIImage(systemName: "pencil.circle"), attributes: [], state: serviceSearchActionState) { [weak self] action in
+        serviceSearchAction = UIAction(title: SearchType.service, image: UIImage(systemName: "pencil.circle"), attributes: [], state: serviceSearchActionState) { [weak self] action in
             guard let self else { return }
-            searchBar.placeholder = "\(SearchType.service.rawValue)..."
+            searchBar.placeholder = SearchType.service
             isLocalSearch = false
         }
         
         lazy var elements: [UIAction] = [localSearchAction, serviceSearchAction]
-        lazy var menu = UIMenu(title: "Chose search type...", children: elements)
+        lazy var menu = UIMenu(title: L10n.choseSearchType.localized(), children: elements)
         
         searchChangeButton.showsMenuAsPrimaryAction = true
         searchChangeButton.menu = menu
@@ -156,7 +156,7 @@ private extension MainScreenViewController {
             case .banner:
                 if let minDate = presenter?.getDates().0,
                    let maxDate = presenter?.getDates().1 {
-                    headerView.configure(with: "\(minDate) - \(maxDate) Posters")
+                    headerView.configure(with: "\(minDate) - \(maxDate) \(L10n.posters.localized())")
                 }
             case .movieList:
                 headerView.configure(with: movieListHeaderTitle)

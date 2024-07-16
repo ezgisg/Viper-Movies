@@ -38,7 +38,7 @@ extension SpecialsViewController {
     @IBAction func changeButtonClicked(_ sender: Any) {
         let previousText = pickerLabel.text
         let bottomSheetVC = BottomSheetViewController(
-            data: presenter?.getOptions().map({$0.rawValue}) ?? [],
+            data: presenter?.getOptions().map({$0}) ?? [],
             selectedOption: pickerLabel.text,
             ///callback
             optionSelected: { [weak self] selectedOption in
@@ -71,7 +71,7 @@ extension SpecialsViewController: SpecialsViewControllerProtocol {
 // MARK: - Setup Functions
 private extension SpecialsViewController {
     final func initialSetup() {
-        pickerLabel.text = presenter?.getOptions()[0].rawValue
+        pickerLabel.text = presenter?.getOptions()[0]
         
         labelContainer.layer.cornerRadius = 10
         labelContainer.backgroundColor = .systemGray5

@@ -13,12 +13,13 @@ class BottomSheetViewController: BaseViewController {
     @IBOutlet private var mainScreenContainer: UIView!
     @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var pickerView: UIPickerView!
+    @IBOutlet private weak var choseButton: UIButton!
     
     // MARK: - Private Variables
     private var data: [String]
     private var optionSelected: ((String) -> Void)
     private var selectedOption: String?
-    
+
     // MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +69,8 @@ private extension BottomSheetViewController {
         
         pickerView.backgroundColor = .clear
         mainScreenContainer.backgroundColor = UIColor.gray.withAlphaComponent(0.1)
+        
+        choseButton.setTitle(L10n.chose.localized(), for: .normal)
     }
     
     final func setupPicker() {

@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BottomSheetViewController" customModule="Viper_Movies" customModuleProvider="target">
             <connections>
+                <outlet property="choseButton" destination="3N5-di-LUb" id="6T7-Mf-CyP"/>
                 <outlet property="containerView" destination="hm6-Rb-Eo8" id="cTu-0V-LqE"/>
                 <outlet property="mainScreenContainer" destination="i5M-Pr-FkT" id="UTD-1K-2Ws"/>
                 <outlet property="pickerView" destination="xgJ-IV-Hz7" id="6yh-tw-u2n"/>

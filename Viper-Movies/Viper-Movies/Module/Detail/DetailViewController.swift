@@ -60,7 +60,7 @@ extension DetailViewController: DetailPresenterDelegate {
         let details = presenter?.getDetails()
         descriptionTextView.text = details?.overview ?? "No Info"
         movieName.text = details?.title ?? "Unknown"
-        detailLabel.text = String(format: "🌟 Rating: %.1f", details?.vote_average ?? 0)
+        detailLabel.text = String(format: "🌟\(L10n.rating.localized()): %.1f", details?.vote_average ?? 0)
     }
 }
 
@@ -142,9 +142,9 @@ private extension DetailViewController {
         guard let movieId = presenter?.movieId,
               let decoded = presenter?.getFromUserDefaults() else { return }
         if decoded.contains(where: { $0.id == movieId }) {
-            addToFavoriteButton.setTitle("Remove From Favorites", for: .normal)
+            addToFavoriteButton.setTitle(L10n.removeFromFavorite.localized(), for: .normal)
         } else {
-            addToFavoriteButton.setTitle("Add to Favorites", for: .normal)
+            addToFavoriteButton.setTitle(L10n.addToFavorite.localized(), for: .normal)
         }
     }
     

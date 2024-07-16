@@ -11,7 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SecondPageViewController" customModule="Viper_Movies" customModuleProvider="target">
             <connections>
                 <outlet property="imageView" destination="6le-NP-ZpM" id="Xea-aC-JaX"/>
-                <outlet property="onboardingMessage" destination="7Z9-5T-XA1" id="A1d-He-22C"/>
+                <outlet property="onboardingMessage" destination="l8K-Jg-32d" id="EFT-eL-OwQ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

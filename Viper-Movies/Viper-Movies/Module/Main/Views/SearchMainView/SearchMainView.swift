@@ -29,6 +29,7 @@ final class SearchMainView: UIView, NibOwnerLoadable {
     @IBOutlet private weak var seeMoreButton: UIButton!
     @IBOutlet private weak var containerStackView: UIStackView!
     @IBOutlet private weak var tableViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var noResultLabel: UILabel!
     
     // MARK: - Module Components
     var cellPresenter: SearchMainPresenter? {
@@ -80,6 +81,7 @@ extension SearchMainView : SearchMainViewProtocol {
 extension SearchMainView {
     ///To control no result view and see more button show-hide status
     final func checkVisibilityOfViews(isSearchActive: Bool, resultCount: Int) {
+        seeMoreButton.setTitle(L10n.seeMore.localized(), for: .normal)
         let isMoreThanShow = resultCount > elementCountToDisplay
         let isResultExist = resultCount != 0
         let isNoResultActive = isSearchActive && !isResultExist
@@ -115,6 +117,7 @@ private extension SearchMainView {
         noResultView.layer.cornerRadius = 20
         noResultView.backgroundColor = .systemGray5
         noResultView.layer.borderWidth = 0.2
+        noResultLabel.text = L10n.noResult.localized()
         
         containerStackView.layer.shadowColor = UIColor.black.cgColor
         containerStackView.layer.shadowOpacity = 0.5
