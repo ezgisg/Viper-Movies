@@ -8,11 +8,11 @@
 import Foundation
 
 // MARK: - Enum
-enum SelectedType: String {
+enum SelectedType: String, CaseIterable {
     case popular = "Popular"
     case topRated = "Top Rated"
     case upcoming = "Upcoming"
-
+    
     var localized: String {
         switch self {
         case .popular:
@@ -22,6 +22,10 @@ enum SelectedType: String {
         case .upcoming:
             return L10n.upcoming.localized()
         }
+    }
+    
+    static func fromLocalized(_ localized: String) -> SelectedType? {
+        return SelectedType.allCases.first { $0.localized == localized }
     }
 }
 

@@ -13,7 +13,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Favorile"
+            "value" : "Favorilere Ekle"
           }
         }
       }
@@ -64,7 +64,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Favorilere Ekle"
+            "value" : "Favoriler"
           }
         }
       }
@@ -81,7 +81,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vizyona Girecekler"
+            "value" : "Vizyondakiler"
           }
         }
       }

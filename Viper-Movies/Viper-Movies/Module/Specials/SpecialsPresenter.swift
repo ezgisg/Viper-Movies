@@ -63,7 +63,7 @@ extension SpecialsPresenter: SpecialsPresenterProtocol {
     }
     
     func fetchData(selectedType: String) {
-        guard let selectedEnumType = SelectedType(rawValue: selectedType) else {
+        guard let selectedEnumType = SelectedType.fromLocalized(selectedType) else {
             interactor?.fetchSelectedTypeMovies(selectedType: .popular, page: nil)
             return
         }
@@ -83,7 +83,7 @@ extension SpecialsPresenter: SpecialsPresenterProtocol {
     
     ///For loading data with pagination
     func loadMoreData(selectedType: String) {
-        guard let selectedEnumType = SelectedType(rawValue: selectedType),
+        guard let selectedEnumType = SelectedType.fromLocalized(selectedType),
               currentPage != pageCount ?? 1 else { return }
         currentPage += 1
         view?.showLoadingView()

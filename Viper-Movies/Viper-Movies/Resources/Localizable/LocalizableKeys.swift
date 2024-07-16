@@ -11,6 +11,7 @@ import Foundation
 typealias L10n = LocalizableKey
 
 // MARK: - LocalizableKey
+
 public enum LocalizableKey: String, LocalizableProtocol {
     
     // MARK: - RawValue
@@ -44,9 +45,6 @@ public enum LocalizableKey: String, LocalizableProtocol {
     case seeMore
     case similarMovies
    
-
-
-
     public enum SearchInput: String, LocalizableProtocol {
         // MARK: - RawValue
         public var stringValue: String {
