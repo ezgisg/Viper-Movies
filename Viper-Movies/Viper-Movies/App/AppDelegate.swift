@@ -93,7 +93,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 private extension AppDelegate {
     final func showConnectionAlert() {
         guard let topViewController = UIApplication.topViewController() as? BaseViewController else { return }
-        topViewController.showAlert(title: "No Internet Connection!", message: "Please check your internet connection status.") { [weak self] in
+        topViewController.showAlert(title: L10n.noConnection.localized(), message: L10n.noConnectionMessage.localized()) { [weak self] in
             guard let self,
                  !ReachabilityManager.shared.isConnectedToInternet() else { return }
             showConnectionAlert()

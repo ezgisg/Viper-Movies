@@ -162,64 +162,6 @@
             endingLineNumber = "43"
             landmarkName = "SpecialsInteractor"
             landmarkType = "3">
-            <Locations>
-               <Location
-                  uuid = "5CC6F3C3-68E8-46C1-A021-3E5588A5120D - a7651ef42a9cf29d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Viper_Movies.SpecialsInteractor.deinit"
-                  moduleName = "Viper-Movies"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ezgisumergunaydin/Documents/Repostories/Viper-Movies/Viper-Movies/Viper-Movies/Module/Specials/SpecialsInteractor.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0">
-               </Location>
-               <Location
-                  uuid = "5CC6F3C3-68E8-46C1-A021-3E5588A5120D - fc5049c20d2f1b02"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Viper_Movies.SpecialsInteractor.__deallocating_deinit"
-                  moduleName = "Viper-Movies"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ezgisumergunaydin/Documents/Repostories/Viper-Movies/Viper-Movies/Viper-Movies/Module/Specials/SpecialsInteractor.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0">
-               </Location>
-               <Location
-                  uuid = "5CC6F3C3-68E8-46C1-A021-3E5588A5120D - cc79810637a50b22"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Viper_Movies.SpecialsInteractor.__allocating_init() -&gt; Viper_Movies.SpecialsInteractor"
-                  moduleName = "Viper-Movies"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ezgisumergunaydin/Documents/Repostories/Viper-Movies/Viper-Movies/Viper-Movies/Module/Specials/SpecialsInteractor.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0">
-               </Location>
-               <Location
-                  uuid = "5CC6F3C3-68E8-46C1-A021-3E5588A5120D - 92bf0d36e6c5f756"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Viper_Movies.SpecialsInteractor.init() -&gt; Viper_Movies.SpecialsInteractor"
-                  moduleName = "Viper-Movies"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ezgisumergunaydin/Documents/Repostories/Viper-Movies/Viper-Movies/Viper-Movies/Module/Specials/SpecialsInteractor.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "44"
-                  endingLineNumber = "44">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
